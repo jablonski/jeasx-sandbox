@@ -61,7 +61,7 @@ serverless.all("*", async (request, reply) => {
   const context = {};
 
   // Extract pathname without query parameters
-  const requestPath = request.urlData().path;
+  const requestPath = request.urlData().path.replace(/^null\//, "/");
 
   // Transform "/a/b/c" into ["/a/b/c", "/a/b", "/a", ""]
   const pathSegments = requestPath
