@@ -3,7 +3,9 @@ import Layout from "./Layout";
 /**
  * @param {import("./types").RouteProps} props
  */
-export default function PageNotFound({}) {
+export default function PageNotFound({ request }) {
+  const { url, query, method, headers, body } = request;
+
   return (
     <Layout title="404 - Resource Not Found">
       <section class="center">
@@ -12,6 +14,14 @@ export default function PageNotFound({}) {
           The resource you requested has not been found at the specified
           address.
         </p>
+        {JSON.stringify({
+          node: `${process.version} (${process.arch})`,
+          url,
+          query,
+          method,
+          headers,
+          body,
+        })}
         <a href="/">Go to homepage</a>
       </section>
     </Layout>
