@@ -1,5 +1,5 @@
 {
-  "extends": "jeasx/tsconfig.json",
+  "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "jsxImportSource": "preact"
   },
