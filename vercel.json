@@ -1,5 +1,5 @@
 {
-  "devCommand": "jeasx dev",
+  "devCommand": "node cli.js dev",
   "trailingSlash": false,
   "rewrites": [
     {
