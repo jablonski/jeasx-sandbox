@@ -1,4 +1,4 @@
-import serverless from "jeasx/serverless.js";
+import serverless from "../serverless.js";
 
 await serverless.ready();
 
