@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Examples for dynamic websites (e.g. CMS content)",
+    "links": [
+      { "path": "/blog", "title": "Blog" },
+      { "path": "/products", "title": "Products" },
+      { "path": "/repositories", "title": "GitHub Repos" }
+    ]
+  },
+  {
+    "title": "SSR applications (no JavaScript required)",
+    "links": [
+      { "path": "/lottery", "title": "Lottery" },
+      { "path": "/todos", "title": "Todos" },
+      { "path": "/jokes", "title": "Jokes" },
+      { "path": "/wizard", "title": "Wizard" }
+    ]
+  },
+  {
+    "title": "Userland integration of JavaScript-Frameworks",
+    "links": [
+      { "path": "/alpine", "title": "Alpine.js" },
+      { "path": "/htmx", "title": "HTMX" },
+      { "path": "/lit", "title": "Lit" },
+      { "path": "/preact", "title": "Preact" }
+    ]
+  },
+  {
+    "title": "Generating various Content-Types",
+    "links": [
+      { "path": "/upload", "title": "Image" },
+      { "path": "/svg", "title": "SVG" },
+      { "path": "/json/request.json", "title": "JSON" },
+      { "path": "/sitemap.xml", "title": "XML" }
+    ]
+  },
+  {
+    "title": "Advanced features",
+    "links": [
+      { "path": "/prettier", "title": "Postprocess HTML" },
+      { "path": "/context", "title": "Use 'this' as context" },
+      { "path": "/interceptor", "title": "Intercept JSX" },
+      { "path": "/head", "title": "Helmet for Head" }
+    ]
+  }
+]
