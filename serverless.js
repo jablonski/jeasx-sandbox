@@ -42,7 +42,7 @@ serverless.register(fastifyStatic, {
 serverless.all("*", async (request, reply) => {
   let response;
   const context = {};
-  const requestPath = request.urlData().path;
+  const requestPath = request.urlData().path.replace(/^null\//, "/");
   const pathSegments = requestPath.split("/").filter((segment) => segment !== "").reduce((acc, segment) => {
     acc.push((acc.length > 0 ? acc[acc.length - 1] : "") + "/" + segment);
     return acc;
