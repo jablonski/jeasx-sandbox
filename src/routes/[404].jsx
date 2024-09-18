@@ -5,7 +5,7 @@ import Layout from "./Layout";
  */
 export default function PageNotFound({ request }) {
   const { url, query, method, headers, body } = request;
-  const urlPath = request.urlData().path;
+  const urlData = request.urlData();
 
   return (
     <Layout title="404 - Resource Not Found">
@@ -15,7 +15,7 @@ export default function PageNotFound({ request }) {
           The resource you requested has not been found at the specified
           address.
         </p>
-        {urlPath}
+        {JSON.stringify(urlData)}
         {JSON.stringify({
           node: `${process.version} (${process.arch})`,
           url,
