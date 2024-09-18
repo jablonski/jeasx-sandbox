@@ -16,6 +16,7 @@ const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 // Create a Fastify app instance
 const serverless = Fastify({
   logger: true,
+  trustProxy: true,
   disableRequestLogging: NODE_ENV_IS_DEVELOPMENT,
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || undefined,
 });
@@ -61,7 +62,7 @@ serverless.all("*", async (request, reply) => {
   const context = {};
 
   // Extract pathname without query parameters
-  const requestPath = request.urlData().path.replace(/^null\//, "/");
+  const requestPath = request.urlData().path;
 
   // Transform "/a/b/c" into ["/a/b/c", "/a/b", "/a", ""]
   const pathSegments = requestPath

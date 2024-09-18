@@ -13,6 +13,7 @@ import { join } from "node:path";
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const serverless = Fastify({
   logger: true,
+  trustProxy: true,
   disableRequestLogging: NODE_ENV_IS_DEVELOPMENT,
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || void 0
 });
@@ -42,7 +43,7 @@ serverless.register(fastifyStatic, {
 serverless.all("*", async (request, reply) => {
   let response;
   const context = {};
-  const requestPath = request.urlData().path.replace(/^null\//, "/");
+  const requestPath = request.urlData().path;
   const pathSegments = requestPath.split("/").filter((segment) => segment !== "").reduce((acc, segment) => {
     acc.push((acc.length > 0 ? acc[acc.length - 1] : "") + "/" + segment);
     return acc;
