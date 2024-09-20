@@ -3,7 +3,7 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Lit({ request, reply }) {
+export default function Lit({}) {
   return (
     <Layout
       title="jeasx with Lit"

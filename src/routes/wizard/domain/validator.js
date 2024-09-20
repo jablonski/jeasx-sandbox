@@ -1,13 +1,13 @@
 import { SLUGS } from "./constants";
 
 /**
- * @param {string} pathname
+ * @param {string} path
  * @param {{ [x: string]: string; }} form
  */
-export default function validator(pathname, form) {
+export default function validator(path, form) {
   const errors = {};
 
-  switch (pathname) {
+  switch (path) {
     case SLUGS.SCHADENTYPEN:
       if (!form?.["schadentypen[]"]) {
         errors["schadentypen[]"] =

@@ -7,5 +7,9 @@ type FastifyServer = typeof serverless;
 type RouteProps = {
   request?: FastifyRequest;
   reply?: FastifyReply;
-  pathname?: string;
+};
+
+type ThisContext = RouteProps & {
+  escape: (str: string) => string;
+  path: string;
 };

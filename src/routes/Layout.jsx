@@ -1,5 +1,5 @@
 /**
- * @this {import("./types").RouteProps}
+ * @this {import("./types").ThisContext}
  */
 export default function Layout({
   title = "",
@@ -9,13 +9,14 @@ export default function Layout({
   script = undefined,
   cspScriptUnsafeEval = false,
 }) {
-  const path = this.pathname;
   return (
     <>
       {"<!DOCTYPE html>"}
       <html lang="en">
         <head>
-          <base href={`${path.endsWith("/") ? path : path + "/"}`} />
+          <base
+            href={`${this.path.endsWith("/") ? this.path : this.path + "/"}`}
+          />
           <meta
             http-equiv="Content-Security-Policy"
             content={`default-src 'none'; script-src 'self'${cspScriptUnsafeEval ? " 'unsafe-eval'" : ""}; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; form-action 'self'; base-uri 'self'; connect-src 'self'; frame-src 'self';`}
@@ -32,7 +33,7 @@ export default function Layout({
           <title>{title}</title>
         </head>
         <body>
-          {path !== "/" && (
+          {this.path !== "/" && (
             <header>
               <a
                 href="/"
@@ -46,7 +47,7 @@ export default function Layout({
               </a>
               <a
                 href={`https://github.com/jeasx/jeasx-expo/tree/main/src/routes/${
-                  path.split("/")[1]
+                  this.path.split("/")[1]
                 }`}
                 style={{
                   position: "absolute",

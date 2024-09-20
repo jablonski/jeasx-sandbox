@@ -1,13 +1,13 @@
 import Layout from "../../Layout";
 
+const BASIC_AUTH = `Basic ${Buffer.from("demo:demo").toString("base64")}`;
+
 /**
  * @param {import("../../types").RouteProps} props
  */
 export default function Authorization({ request, reply }) {
   const authorization = request.headers["authorization"];
-  if (
-    authorization !== `Basic ${Buffer.from("demo:demo").toString("base64")}`
-  ) {
+  if (authorization !== BASIC_AUTH) {
     reply.header("WWW-Authenticate", 'Basic realm="Restricted Area');
     reply.status(401);
     return (

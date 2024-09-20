@@ -2,14 +2,12 @@ import DefaultLayout from "../Layout";
 import Header from "./components/Header";
 
 /**
- * @this {import("../types").RouteProps}
+ * @this {import("../types").ThisContext}
  */
 export default function Layout({ title = "", data = {}, children = [] }) {
-  const path = this.pathname;
-
   return (
     <DefaultLayout title={title} script="/wizard/index.js">
-      <Header path={path} data={data} />
+      <Header path={this.path} data={data} />
       {children}
     </DefaultLayout>
   );

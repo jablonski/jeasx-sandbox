@@ -3,7 +3,7 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function Upload({ request, reply }) {
+export default async function Upload({ request }) {
   const text = request.body?.["text"];
   return (
     <Layout title="SVG demo">

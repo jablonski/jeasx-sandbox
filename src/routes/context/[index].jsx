@@ -3,7 +3,7 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Context({ request, reply }) {
+export default function Context({ request }) {
   this.theme = request.query["theme"] || "light";
 
   return (

@@ -1,10 +1,11 @@
 import Layout from "../Layout";
 
 /**
+ * @this {import("../types").ThisContext}
  * @param {import("../types").RouteProps} props
  */
 export default function BlogDetail({ request, reply }) {
-  const slug = this.pathname.split("/").slice(2).join("");
+  const slug = this.path.split("/").slice(2).join("");
   const blog = JSON.parse(request.cookies["posts"]).find(
     (post) => post.slug === slug
   );
