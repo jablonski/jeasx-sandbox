@@ -3,8 +3,8 @@ import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyMultipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
-import fastifyUrlData from "@fastify/url-data";
 import "dotenv/config";
+import uri from "fast-uri";
 import Fastify from "fastify";
 import { jsxToString } from "jsx-async-runtime";
 import { createHash } from "node:crypto";
@@ -26,7 +26,6 @@ serverless.register(fastifyAccepts);
 serverless.register(fastifyCookie);
 serverless.register(fastifyFormbody);
 serverless.register(fastifyMultipart);
-serverless.register(fastifyUrlData);
 
 // Setup static file plugin
 const FASTIFY_STATIC_HEADERS =
@@ -62,7 +61,7 @@ serverless.all("*", async (request, reply) => {
   const context = {};
 
   // Extract pathname without query parameters
-  const requestPath = request.urlData().path;
+  const requestPath = uri.parse(request.url).path;
 
   // Transform "/a/b/c" into ["/a/b/c", "/a/b", "/a", ""]
   const pathSegments = requestPath

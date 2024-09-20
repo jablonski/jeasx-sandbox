@@ -5,7 +5,7 @@ import Image from "./Image";
  * @param {import("../types").RouteProps} props
  */
 export default async function BlogDetail({ request, reply }) {
-  const segments = request.urlData().path.split("/");
+  const segments = this.urlData.path.split("/");
   if (segments.length !== 3) {
     reply.status(404);
     return;

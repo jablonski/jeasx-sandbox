@@ -1,5 +1,5 @@
+import uri from "fast-uri";
 import { escapeEntities } from "jsx-async-runtime";
-
 /**
  * @param {import("./types").RouteProps} props
  */
@@ -8,4 +8,5 @@ export default function RootGuard({ request, reply }) {
   this.request = request;
   this.reply = reply;
   this.escape = escapeEntities;
+  this.urlData = uri.parse(request.url, { tolerant: true });
 }

@@ -19,7 +19,7 @@ export default function Controller({ request, reply }) {
       form: {},
     };
 
-    const pathname = request.urlData().path;
+    const pathname = this.urlData.path;
     const { previous, next } = navigate(pathname, props.data);
 
     props.previous = previous;
