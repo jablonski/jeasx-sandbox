@@ -12,7 +12,7 @@ export default function PageNotFound({ request }) {
           The resource you requested has not been found at the specified
           address.
         </p>
-        {JSON.stringify(this.urlData)}
+        {JSON.stringify(this.pathname)}
         <a href="/">Go to homepage</a>
       </section>
     </Layout>

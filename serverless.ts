@@ -1,10 +1,8 @@
-import fastifyAccepts from "@fastify/accepts";
 import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyMultipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
 import "dotenv/config";
-import uri from "fast-uri";
 import Fastify from "fastify";
 import { jsxToString } from "jsx-async-runtime";
 import { createHash } from "node:crypto";
@@ -22,7 +20,6 @@ const serverless = Fastify({
 });
 
 // Register required plugins
-serverless.register(fastifyAccepts);
 serverless.register(fastifyCookie);
 serverless.register(fastifyFormbody);
 serverless.register(fastifyMultipart);
@@ -61,7 +58,7 @@ serverless.all("*", async (request, reply) => {
   const context = {};
 
   // Extract pathname without query parameters
-  const requestPath = uri.parse(request.url).path;
+  const [requestPath] = request.url.split("?", 1);
 
   // Transform "/a/b/c" into ["/a/b/c", "/a/b", "/a", ""]
   const pathSegments = requestPath

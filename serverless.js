@@ -1,10 +1,8 @@
-import fastifyAccepts from "@fastify/accepts";
 import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyMultipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
 import "dotenv/config";
-import uri from "fast-uri";
 import Fastify from "fastify";
 import { jsxToString } from "jsx-async-runtime";
 import { createHash } from "node:crypto";
@@ -17,7 +15,6 @@ const serverless = Fastify({
   disableRequestLogging: NODE_ENV_IS_DEVELOPMENT,
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || void 0
 });
-serverless.register(fastifyAccepts);
 serverless.register(fastifyCookie);
 serverless.register(fastifyFormbody);
 serverless.register(fastifyMultipart);
@@ -42,7 +39,7 @@ serverless.register(fastifyStatic, {
 serverless.all("*", async (request, reply) => {
   let response;
   const context = {};
-  const requestPath = uri.parse(request.url).path;
+  const [requestPath] = request.url.split("?", 1);
   const pathSegments = requestPath.split("/").filter((segment) => segment !== "").reduce((acc, segment) => {
     acc.push((acc.length > 0 ? acc[acc.length - 1] : "") + "/" + segment);
     return acc;

@@ -9,9 +9,12 @@ export default async function ImageSharp({ request, reply }) {
   const height = Number(request.query["height"] || 0);
   const position = request.query["position"] || undefined;
 
-  const type = request.accepts().types("image/avif", "image/webp");
-  const format =
-    type === "image/avif" ? "avif" : type === "image/webp" ? "webp" : "jpg";
+  const accept = request.headers.accept;
+  const format = accept.includes("image/avif")
+    ? "avif"
+    : accept.includes("image/webp")
+      ? "webp"
+      : "jpg";
 
   reply.header("content-type", `image/${format}`);
   reply.header(

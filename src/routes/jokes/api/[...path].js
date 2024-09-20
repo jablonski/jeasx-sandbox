@@ -4,7 +4,7 @@ import jokes from "../jokes.js";
  * @param {import("../../types.js").RouteProps} props
  */
 export default function Jokes({ request, reply }) {
-  const path = this.urlData.path;
+  const path = this.pathname;
   const category = path.slice(path.lastIndexOf("/") + 1);
   const amount = request.query["amount"] || 1;
 

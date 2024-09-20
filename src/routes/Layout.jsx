@@ -9,7 +9,7 @@ export default function Layout({
   script = undefined,
   cspScriptUnsafeEval = false,
 }) {
-  const path = this.urlData.path;
+  const path = this.pathname;
   return (
     <>
       {"<!DOCTYPE html>"}
