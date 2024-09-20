@@ -11,7 +11,6 @@ import { join } from "node:path";
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const serverless = Fastify({
   logger: true,
-  trustProxy: true,
   disableRequestLogging: NODE_ENV_IS_DEVELOPMENT,
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || void 0
 });

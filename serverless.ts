@@ -14,7 +14,6 @@ const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 // Create a Fastify app instance
 const serverless = Fastify({
   logger: true,
-  trustProxy: true,
   disableRequestLogging: NODE_ENV_IS_DEVELOPMENT,
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || undefined,
 });
