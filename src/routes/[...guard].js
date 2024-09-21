@@ -8,5 +8,5 @@ export default function RootGuard({ request, reply }) {
   this.request = request;
   this.reply = reply;
   this.escape = escapeEntities;
-  this.path = request.url.split("?", 1)[0];
+  this.path = request.path;
 }
