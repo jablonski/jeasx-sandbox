@@ -3,12 +3,12 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Context({ request }) {
+export default function ThisContext({ request }) {
   this.theme = request.query["theme"] || "light";
 
   return (
     <Layout
-      title="Context object"
+      title="ThisContext object"
       description="Use 'this' to avoid prop drilling"
     >
       <section class="center">

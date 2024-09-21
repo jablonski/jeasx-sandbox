@@ -7,7 +7,7 @@ import Header from "./components/Header";
 export default function Layout({ title = "", data = {}, children = [] }) {
   return (
     <DefaultLayout title={title} script="/wizard/index.js">
-      <Header path={this.path} data={data} />
+      <Header path={this.request.path} data={data} />
       {children}
     </DefaultLayout>
   );

@@ -1,6 +1,6 @@
 import { FastifyReply } from "fastify/types/reply";
 import { FastifyRequest } from "fastify/types/request";
-import serverless from "../../serverless";
+import serverless from "jeasx/serverless";
 
 type FastifyServer = typeof serverless;
 
@@ -11,5 +11,4 @@ type RouteProps = {
 
 type ThisContext = RouteProps & {
   escape: (str: string) => string;
-  path: string;
 };

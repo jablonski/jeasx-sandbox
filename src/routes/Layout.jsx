@@ -9,14 +9,13 @@ export default function Layout({
   script = undefined,
   cspScriptUnsafeEval = false,
 }) {
+  const path = this.request.path;
   return (
     <>
       {"<!DOCTYPE html>"}
       <html lang="en">
         <head>
-          <base
-            href={`${this.path.endsWith("/") ? this.path : this.path + "/"}`}
-          />
+          <base href={`${path.endsWith("/") ? path : path + "/"}`} />
           <meta
             http-equiv="Content-Security-Policy"
             content={`default-src 'none'; script-src 'self'${cspScriptUnsafeEval ? " 'unsafe-eval'" : ""}; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; form-action 'self'; base-uri 'self'; connect-src 'self'; frame-src 'self';`}
@@ -33,7 +32,7 @@ export default function Layout({
           <title>{title}</title>
         </head>
         <body>
-          {this.path !== "/" && (
+          {path !== "/" && (
             <header>
               <a
                 href="/"
@@ -47,7 +46,7 @@ export default function Layout({
               </a>
               <a
                 href={`https://github.com/jeasx/jeasx-expo/tree/main/src/routes/${
-                  this.path.split("/")[1]
+                  path.split("/")[1]
                 }`}
                 style={{
                   position: "absolute",

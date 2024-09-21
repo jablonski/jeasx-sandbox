@@ -4,13 +4,9 @@ import validator from "./domain/validator";
 import { compress, decompress } from "./utils/zip";
 
 /**
- * @this {import("../types").ThisContext}
  * @param {import("../types").RouteProps} props
  */
 export default function Controller({ request, reply }) {
-  this.request = request;
-  this.reply = reply;
-
   try {
     const props = {
       data: decompress(request.cookies["data"]) || {},
@@ -20,7 +16,7 @@ export default function Controller({ request, reply }) {
       form: {},
     };
 
-    const path = this.path;
+    const path = request.path;
     const { previous, next } = navigate(path, props.data);
 
     props.previous = previous;
