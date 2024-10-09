@@ -1,11 +1,15 @@
-import Layout from "./Layout";
+import Layout from "../../Layout";
 import TodoFilters from "./TodoFilters";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
 
 export default function TodoApp({ todos, status, autofocus }) {
   return (
-    <Layout title="Todos" description="A simple todo app">
+    <Layout
+      title="Todos"
+      description="A simple todo app"
+      css="/todos/index.css"
+    >
       <section class="todoapp">
         <header class="header">
           <h1>todos</h1>

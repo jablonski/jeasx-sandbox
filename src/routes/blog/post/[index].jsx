@@ -7,7 +7,11 @@ export default function BlogPost({ request, reply }) {
   if (request.method === "POST" && typeof request.body === "object") {
     const posts = JSON.parse(request.cookies["posts"]);
     posts.unshift({ ...request.body, date: new Date().toISOString() });
-    reply.setCookie("posts", JSON.stringify(posts));
+    reply.setCookie("posts", JSON.stringify(posts), {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+    });
     return reply.redirect("/blog");
   }
 

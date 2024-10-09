@@ -2,7 +2,7 @@ export default function TodoFilters({ status }) {
   return (
     <ul class="filters">
       <li>
-        <a href="/" class={{ selected: !status }}>
+        <a href="" class={{ selected: !status }}>
           all
         </a>
       </li>

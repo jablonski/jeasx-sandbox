@@ -28,10 +28,10 @@
   {
     "title": "Generating various Content-Types",
     "links": [
-      { "path": "/upload", "title": "Image" },
-      { "path": "/svg", "title": "SVG" },
-      { "path": "/json/request.json", "title": "JSON" },
-      { "path": "/sitemap.xml", "title": "XML" }
+      { "path": "/upload", "title": "Image optimization" },
+      { "path": "/svg", "title": "SVG generator" },
+      { "path": "/json/request.json", "title": "JSON Response" },
+      { "path": "/sitemap.xml", "title": "XML-Sitemap" }
     ]
   },
   {

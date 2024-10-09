@@ -8,7 +8,11 @@ export default function BlogIndex({ request, reply }) {
   const posts = request.cookies["posts"]
     ? JSON.parse(request.cookies["posts"])
     : data;
-  reply.setCookie("posts", JSON.stringify(posts));
+  reply.setCookie("posts", JSON.stringify(posts), {
+    path: "/",
+    httpOnly: true,
+    sameSite: "strict",
+  });
 
   return (
     <Layout title="Blog">

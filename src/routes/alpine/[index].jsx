@@ -10,7 +10,7 @@ export default async function Jokes() {
     >
       <h1 class="center">Jokes</h1>
       <form
-        method="post"
+        method={"post"}
         x-data="{
               jokes:[],
               counter: +(sessionStorage.getItem('counter') || 3),

@@ -29,7 +29,7 @@ export default function Layout({
           {script && (
             <script src={`${script}?${process.env.BUILD_TIME}`} defer></script>
           )}
-          <title>{title}</title>
+          <title>{title} &raquo; Jeasx - JSX with Ease</title>
         </head>
         <body>
           {path !== "/" && (
@@ -48,6 +48,7 @@ export default function Layout({
                 href={`https://github.com/jeasx/jeasx-expo/tree/main/src/routes/${
                   path.split("/")[1]
                 }`}
+                target="_blank"
                 style={{
                   position: "absolute",
                   top: "1rem",

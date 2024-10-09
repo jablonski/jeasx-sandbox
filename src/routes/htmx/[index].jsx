@@ -11,12 +11,12 @@ export default function Htmx({ request, reply }) {
   return (
     <Layout
       title="HTMX example"
-      description="jeasx integrates easily with HTMX"
+      description="Jeasx integrates easily with HTMX"
       script="/htmx/index.js"
     >
       <h1 class="center">HTMX example</h1>
       <p>
-        jeasx is the perfect match for{" "}
+        Jeasx is the perfect match for{" "}
         <a href="https://htmx.org/" target="_blank">
           HTMX
         </a>{" "}

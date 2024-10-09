@@ -6,12 +6,21 @@ import sitemap from "./sitemap.json";
  */
 export default function Frontpage({}) {
   return (
-    <Layout title="jeasx expo" description="Welcome to jeasx - JSX with Ease">
+    <Layout title="Expo" description="Welcome to Jeasx - JSX with Ease">
       <section class="center">
-        <h1>jeasx - expo</h1>
+        <h1>Jeasx-Expo</h1>
         <p>
           Here are some simple examples of what can be done with the power of{" "}
-          <a href="https://www.jeasx.dev">jeasx</a>.
+          <a href="https://www.jeasx.dev">Jeasx</a>.
+        </p>
+        <p>
+          The examples are styled with{" "}
+          <a href="https://picocss.com" target="_blank">
+            Pico CSS
+          </a>{" "}
+          (mostly classless), so they are easier to read in source code. The
+          code is also optimized for readability: no unnecessary abstractions,
+          no fancy stuff, just simple and clean code to get you started quickly.
         </p>
       </section>
       {sitemap.map(({ title, links }) => (

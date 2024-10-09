@@ -6,14 +6,14 @@ import Layout from "../Layout";
 export default function Lit({}) {
   return (
     <Layout
-      title="jeasx with Lit"
-      description="jeasx integrates easily with Lit"
+      title="Jeasx with Lit"
+      description="Jeasx integrates easily with Lit"
       script="/lit/index.js"
     >
       <section class="center">
         <h1>Lit example</h1>
         <p>
-          jeasx works smoothly with{" "}
+          Jeasx works smoothly with{" "}
           <a href="https://lit.dev/" target="_blank">
             Lit.
           </a>
