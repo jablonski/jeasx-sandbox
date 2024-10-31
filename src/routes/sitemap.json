@@ -37,6 +37,7 @@
   {
     "title": "Advanced features",
     "links": [
+      { "path": "/fragments", "title": "Template Fragments" },
       { "path": "/prettier", "title": "Postprocess HTML" },
       { "path": "/context", "title": "Use 'this' as context" },
       { "path": "/interceptor", "title": "Intercept JSX" },
