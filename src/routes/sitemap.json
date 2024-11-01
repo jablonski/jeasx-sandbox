@@ -28,7 +28,8 @@
   {
     "title": "Generating various Content-Types",
     "links": [
-      { "path": "/upload", "title": "Image optimization" },
+      { "path": "/upload", "title": "Binary Upload" },
+      { "path": "/sharp", "title": "Image Scaler" },
       { "path": "/svg", "title": "SVG generator" },
       { "path": "/json/request.json", "title": "JSON Response" },
       { "path": "/sitemap.xml", "title": "XML-Sitemap" }

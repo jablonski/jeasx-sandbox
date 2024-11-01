@@ -1,4 +1,5 @@
 import Layout from "../Layout";
+import { Product } from "./Product";
 
 /**
  * @param {import("../types").RouteProps} props
@@ -84,26 +85,4 @@ function Fragment({ name = undefined, children = [] }) {
   ) {
     return <>{children}</>;
   }
-}
-
-async function Product({ id }) {
-  const product = await (
-    await fetch(`https://dummyjson.com/products/${id}`)
-  ).json();
-
-  return (
-    <article>
-      <header>
-        <h3>{product.title}</h3>
-        <b>{product.price} €</b>
-      </header>
-      <img
-        src={product.thumbnail}
-        alt={product.title}
-        width="300"
-        height="300"
-      />
-      <p>{product.description}</p>
-    </article>
-  );
 }

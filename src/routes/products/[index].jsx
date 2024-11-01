@@ -1,10 +1,10 @@
 import Layout from "../Layout";
-import Image from "./Image";
+import Image from "../sharp/Image";
 
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function BlogOverview({}) {
+export default async function ProductOverview({}) {
   const { products } = await (
     await fetch("https://dummyjson.com/products")
   ).json();

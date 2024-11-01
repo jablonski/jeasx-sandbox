@@ -1,10 +1,10 @@
 import Layout from "../Layout";
-import Image from "./Image";
+import Image from "../sharp/Image";
 
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function BlogDetail({ request, reply }) {
+export default async function ProductDetail({ request, reply }) {
   const segments = request.path.split("/");
   if (segments.length !== 3) {
     reply.status(404);
