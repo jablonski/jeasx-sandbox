@@ -9,7 +9,13 @@ export default function FragmentsExample({ request }) {
   return (
     <Fragments
       container={({ children }) => (
-        <Layout script="/htmx/index.js">{children}</Layout>
+        <Layout
+          title="Template fragments"
+          description="Template fragments allow you to render a fragment or partial bit of the content within a template, rather than the entire template."
+          script="/htmx/index.js"
+        >
+          {children}
+        </Layout>
       )}
     >
       <Fragment>
@@ -20,13 +26,14 @@ export default function FragmentsExample({ request }) {
           <a href="https://htmx.org/" target="_blank">
             HTMX
           </a>
-          . Sometimes, however, creating many routes by hand can be tedious. The
-          concept of{" "}
+          . Sometimes, however, creating many routes by hand can be tedious.{" "}
           <a href="https://htmx.org/essays/template-fragments/" target="_blank">
-            template fragments
+            Template fragments
           </a>{" "}
-          is a nice idea and can be easily implemented in Jeasx using just a few
-          lines of custom code.
+          allow you to render a fragment or partial bit of the content within a
+          template, rather than the entire template. In Jeasx you can implement
+          this feature in userland with just a few lines of code bundled in two
+          simple components.
         </p>
       </Fragment>
       <Fragment name="product">
@@ -59,22 +66,24 @@ export default function FragmentsExample({ request }) {
  * @this {import("../types").ThisContext}
  */
 function Fragments({ container, children = [] }) {
-  const Container = container;
-  return this.request.path.includes("~") ? (
-    <>{children}</>
-  ) : (
-    <Container>{children}</Container>
-  );
+  if (this.request.path.includes("~")) {
+    return <>{children}</>;
+  } else {
+    const Container = container;
+    return <Container>{children}</Container>;
+  }
 }
 
 /**
  * @this {import("../types").ThisContext}
  */
-function Fragment({ name = "", children = [] }) {
-  return (
-    (!this.request.path.includes("~") ||
-      (name && this.request.path.endsWith(name))) && <>{children}</>
-  );
+function Fragment({ name = undefined, children = [] }) {
+  if (
+    !this.request.path.includes("~") ||
+    (name && this.request.path.endsWith(name))
+  ) {
+    return <>{children}</>;
+  }
 }
 
 async function Product({ id }) {
