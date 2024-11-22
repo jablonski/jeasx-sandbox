@@ -27,7 +27,11 @@ export default function Layout({
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="stylesheet" href={`${css}?${process.env.BUILD_TIME}`} />
           {script && (
-            <script src={`${script}?${process.env.BUILD_TIME}`} defer></script>
+            <script
+              type="module"
+              src={`${script}?${process.env.BUILD_TIME}`}
+              defer
+            ></script>
           )}
           <title>{title} &raquo; Jeasx - JSX with Ease</title>
         </head>
