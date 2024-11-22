@@ -5,7 +5,7 @@
     "@fastify/cookie": "11.0.1",
     "@fastify/formbody": "8.0.1",
     "@fastify/multipart": "9.0.1",
-    "@fastify/static": "8.0.2",
+    "@fastify/static": "8.0.3",
     "@lit-labs/motion": "1.0.7",
     "@picocss/pico": "2.0.6",
     "@preact/signals": "1.3.0",
