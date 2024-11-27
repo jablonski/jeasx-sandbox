@@ -1,10 +1,7 @@
 import "dotenv/config";
 import * as esbuild from "esbuild";
 
-const BUILD_TIME =
-  process.env.NODE_ENV === "development"
-    ? `"snapshot"`
-    : `"${Date.now().toString(36)}"`;
+const BUILD_TIME = `"${Date.now().toString(36)}"`;
 
 const BROWSER_PUBLIC_ENV = Object.keys(process.env)
   .filter((key) => key.startsWith("BROWSER_PUBLIC_"))
@@ -18,7 +15,7 @@ const BROWSER_PUBLIC_ENV = Object.keys(process.env)
 
 const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
   ? process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
-  : ["chrome116", "edge116", "firefox115", "safari16"];
+  : ["chrome126", "edge126", "firefox128", "safari17"];
 
 const args = process.argv.slice(2);
 
