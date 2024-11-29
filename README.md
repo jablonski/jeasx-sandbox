@@ -1,5 +1,5 @@
-# jeasx - the ease of JSX with the power of SSR
+# jeasx-sandbox
 
-This is the `jeasx` core repository.
+This is a repository to ease the development of the jeasx core repository.
 
 Please visit <https://www.jeasx.dev> to learn more.

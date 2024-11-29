@@ -1,6 +1,6 @@
 import { FastifyReply } from "fastify/types/reply";
 import { FastifyRequest } from "fastify/types/request";
-import serverless from "jeasx/serverless";
+import serverless from "../../serverless";
 
 type FastifyServer = typeof serverless;
 
