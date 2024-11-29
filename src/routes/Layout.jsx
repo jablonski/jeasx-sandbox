@@ -10,10 +10,6 @@ export default function Layout({
   cspScriptUnsafeEval = false,
 }) {
   const path = this.request.path;
-  const version =
-    process.env.NODE_ENV === "development"
-      ? Date.now().toString(36)
-      : process.env.BUILD_TIME;
 
   return (
     <>
@@ -30,9 +26,13 @@ export default function Layout({
           <meta name="description" content={description} />
           <meta name="view-transition" content="same-origin" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="stylesheet" href={`${css}?${version}`} />
+          <link rel="stylesheet" href={`${css}?${process.env.BUILD_TIME}`} />
           {script && (
-            <script type="module" src={`${script}?${version}`} defer></script>
+            <script
+              type="module"
+              src={`${script}?${process.env.BUILD_TIME}`}
+              defer
+            ></script>
           )}
           <title>{title} &raquo; Jeasx - JSX with Ease</title>
         </head>
