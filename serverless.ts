@@ -67,7 +67,7 @@ const routesByPathCache: { [path: string]: string[] } = {};
 
 // Handle all requests
 serverless.all("*", async (request, reply) => {
-  let response: any;
+  let response: unknown;
 
   // Global context object for route handlers
   const context = {};
