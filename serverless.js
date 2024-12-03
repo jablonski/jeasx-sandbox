@@ -47,7 +47,7 @@ serverless.all("*", async (request, reply) => {
   const context = {};
   const path = request.path;
   const routes = [];
-  for (const route of routesByPathCache[path] || generatePossibleRoutes(path)) {
+  for (const route of routesByPathCache[path] || generateRoutes(path)) {
     const modulePath = join(process.cwd(), "dist", route);
     try {
       (await stat(modulePath)).isFile();
@@ -86,7 +86,7 @@ serverless.all("*", async (request, reply) => {
   const responseHandler = context["response"];
   return typeof responseHandler === "function" ? await responseHandler(payload) : payload;
 });
-function generatePossibleRoutes(path) {
+function generateRoutes(path) {
   const segments = generateSegments(path);
   const edges = generateEdges(segments[0]);
   return [

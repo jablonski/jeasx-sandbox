@@ -79,7 +79,7 @@ serverless.all("*", async (request, reply) => {
   const routes: string[] = [];
 
   // Execute route handlers for current request
-  for (const route of routesByPathCache[path] || generatePossibleRoutes(path)) {
+  for (const route of routesByPathCache[path] || generateRoutes(path)) {
     const modulePath = join(process.cwd(), "dist", route);
 
     try {
@@ -149,9 +149,9 @@ serverless.all("*", async (request, reply) => {
 });
 
 /**
- * Generates possible routes based on the given input path.
+ * Generates all possible routes based on the given input path.
  */
-function generatePossibleRoutes(path: string): string[] {
+function generateRoutes(path: string): string[] {
   // "/a/b/c" => ["/a/b/c", "/a/b", "/a", ""]
   const segments = generateSegments(path);
 
@@ -170,7 +170,10 @@ function generatePossibleRoutes(path: string): string[] {
 }
 
 /**
- * Transforms "/a/b/c" into ["/a/b/c", "/a/b", "/a", ""].
+ * Transforms a given path into an array of all its segments.
+ *
+ * @example
+ * generateSegments("/a/b/c") => ["/a/b/c", "/a/b", "/a", ""]
  */
 function generateSegments(path: string): string[] {
   return path
@@ -185,7 +188,10 @@ function generateSegments(path: string): string[] {
 }
 
 /**
- * Transforms "/a/b/c" into ["/a/b/[c]", "/a/b/c/[index]"].
+ * Generates edge routes for the given input path.
+ *
+ * An edge is either a route with a named segment (e.g. "/a/b/[c]")
+ * or a route with an "index" segment (e.g. "/a/b/c/[index]").
  */
 function generateEdges(path: string): string[] {
   const edges = [];
