@@ -114,7 +114,7 @@ function generateEdges(path) {
   return edges;
 }
 function isJSX(obj) {
-  return typeof obj === "object" && "type" in obj && "props" in obj;
+  return typeof obj === "object" && obj !== null && "type" in obj && "props" in obj;
 }
 var serverless_default = serverless;
 export {
