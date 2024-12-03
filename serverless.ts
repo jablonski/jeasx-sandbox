@@ -62,7 +62,8 @@ serverless.addHook("onRequest", async (request, reply) => {
   request.path = index === -1 ? request.url : request.url.slice(0, index);
 });
 
-const routeCache = {};
+// Cache effective routes for requested paths
+const routesByPathCache: { [path: string]: string[] } = {};
 
 // Handle all requests
 serverless.all("*", async (request, reply) => {
@@ -75,10 +76,10 @@ serverless.all("*", async (request, reply) => {
   const path = request.path;
 
   // Effective routes for the current path
-  const routes = [];
+  const routes: string[] = [];
 
-  // Execute route handlers for the request
-  for (const route of routeCache[path] || generatePossibleRoutes(path)) {
+  // Execute route handlers for current request
+  for (const route of routesByPathCache[path] || generatePossibleRoutes(path)) {
     const modulePath = join(process.cwd(), "dist", route);
 
     try {
@@ -87,9 +88,10 @@ serverless.all("*", async (request, reply) => {
       continue;
     }
 
+    // The current route exists, so add it to effective routes
     routes.push(route);
 
-    // Build content hash in development, so we can refresh code via "query string hack".
+    // Build content hash in development, so we can refresh code via "query string hack"
     const hash = NODE_ENV_IS_DEVELOPMENT
       ? "?" +
         createHash("sha1")
@@ -127,7 +129,7 @@ serverless.all("*", async (request, reply) => {
 
   // Cache effective routes for non-development environments
   if (!NODE_ENV_IS_DEVELOPMENT && reply.statusCode !== 404) {
-    routeCache[path] = routes;
+    routesByPathCache[path] = routes;
   }
 
   // Make sure a Content-Type header is set
@@ -139,7 +141,7 @@ serverless.all("*", async (request, reply) => {
     ? await jsxToString.call(context, response)
     : response;
 
-  // Post-process the payload with an optional response handler
+  // Post-process the payload with an optional response handler.
   const responseHandler = context["response"];
   return typeof responseHandler === "function"
     ? await responseHandler(payload)

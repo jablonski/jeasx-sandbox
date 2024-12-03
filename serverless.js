@@ -41,13 +41,13 @@ serverless.addHook("onRequest", async (request, reply) => {
   const index = request.url.indexOf("?");
   request.path = index === -1 ? request.url : request.url.slice(0, index);
 });
-const routeCache = {};
+const routesByPathCache = {};
 serverless.all("*", async (request, reply) => {
   let response;
   const context = {};
   const path = request.path;
   const routes = [];
-  for (const route of routeCache[path] || generatePossibleRoutes(path)) {
+  for (const route of routesByPathCache[path] || generatePossibleRoutes(path)) {
     const modulePath = join(process.cwd(), "dist", route);
     try {
       (await stat(modulePath)).isFile();
@@ -77,7 +77,7 @@ serverless.all("*", async (request, reply) => {
     }
   }
   if (!NODE_ENV_IS_DEVELOPMENT && reply.statusCode !== 404) {
-    routeCache[path] = routes;
+    routesByPathCache[path] = routes;
   }
   if (!reply.hasHeader("Content-Type")) {
     reply.header("Content-Type", "text/html; charset=utf-8");
