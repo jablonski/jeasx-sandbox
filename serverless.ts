@@ -141,7 +141,7 @@ serverless.all("*", async (request, reply) => {
     ? await jsxToString.call(context, response)
     : response;
 
-  // Post-process the payload with an optional response handler.
+  // Post-process the payload with an optional response handler
   const responseHandler = context["response"];
   return typeof responseHandler === "function"
     ? await responseHandler(payload)
