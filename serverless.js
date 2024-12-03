@@ -76,7 +76,7 @@ serverless.all("*", async (request, reply) => {
       break;
     }
   }
-  if (!NODE_ENV_IS_DEVELOPMENT) {
+  if (!NODE_ENV_IS_DEVELOPMENT && reply.statusCode !== 404) {
     routeCache[path] = routes;
   }
   if (!reply.hasHeader("Content-Type")) {

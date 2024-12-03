@@ -126,7 +126,7 @@ serverless.all("*", async (request, reply) => {
   }
 
   // Cache effective routes for non-development environments
-  if (!NODE_ENV_IS_DEVELOPMENT) {
+  if (!NODE_ENV_IS_DEVELOPMENT && reply.statusCode !== 404) {
     routeCache[path] = routes;
   }
 
