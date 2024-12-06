@@ -25,6 +25,7 @@ export default function ImageExamples() {
             width={(idx + 2) * 200}
             height={idx * 200}
             position="entropy"
+            loading="lazy"
           />
         ))}
       </section>

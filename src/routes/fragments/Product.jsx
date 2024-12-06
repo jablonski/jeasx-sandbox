@@ -18,6 +18,7 @@ export async function Product({ id }) {
         height="200"
         position="entropy"
         immutable
+        loading="lazy"
       />
       <p>{product.description}</p>
     </article>

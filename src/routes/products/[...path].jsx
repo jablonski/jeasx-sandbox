@@ -31,6 +31,7 @@ export default async function ProductDetail({ request, reply }) {
             alt={product.title}
             position="entropy"
             immutable
+            loading="lazy"
             width="200"
             height="200"
           />

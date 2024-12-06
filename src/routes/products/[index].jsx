@@ -27,6 +27,7 @@ export default async function ProductOverview({}) {
                       position="entropy"
                       alt={title}
                       immutable
+                      loading="lazy"
                     />
                     <hr />
                     <b>{price} €</b>
