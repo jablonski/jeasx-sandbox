@@ -3,11 +3,11 @@ import Submit from "./Submit";
 export default function Actions() {
   return (
     <section role="group">
-      <Submit label="Zurück" value="Zurück" />
+      <Submit label="Back" value="Back" />
       &nbsp;
-      <Submit label="Speichern" value="Speichern" class="secondary" />
+      <Submit label="Save" value="Save" class="secondary" />
       &nbsp;
-      <Submit label="Weiter" value="Weiter" />
+      <Submit label="Next" value="Next" />
     </section>
   );
 }

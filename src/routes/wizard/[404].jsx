@@ -5,10 +5,10 @@ import Layout from "./Layout";
  */
 export default function PageNotFound({}) {
   return (
-    <Layout title="404 - Seite nicht gefunden">
-      <h2>Fehler 404</h2>
-      <p>Die Seite existiert nicht.</p>
-      <a href="/wizard">Zur Homepage</a>
+    <Layout title="404 - Page not found">
+      <h2>Error 404</h2>
+      <p>The page does not exist.</p>
+      <a href="/wizard">To the homepage</a>
     </Layout>
   );
 }

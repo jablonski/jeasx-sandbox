@@ -8,31 +8,30 @@ export default function validator(path, form) {
   const errors = {};
 
   switch (path) {
-    case SLUGS.SCHADENTYPEN:
-      if (!form?.["schadentypen[]"]) {
-        errors["schadentypen[]"] =
-          "Bitte wählen Sie mindestens einen Schadentyp aus.";
+    case SLUGS.DAMAGE_TYPES:
+      if (!form?.["damage_types[]"]) {
+        errors["damage_types[]"] = "Please select at least one damage type.";
       }
       break;
 
-    case SLUGS.SCHADENMELDUNG:
-      if (!form?.["schadenmeldung"]) {
-        errors["schadenmeldung"] = "Bitte wählen Sie eine Variante aus.";
+    case SLUGS.CLAIM_REPORT:
+      if (!form?.["claim_report"]) {
+        errors["claim_report"] = "Please select an option.";
       }
       break;
   }
 
   if (
-    form?.["telefon"] &&
+    form?.["phone"] &&
     !/^(\(?([\d \-\)\–\+\(]+\/?){6,}\)?([ .\-–\/]?)([\d]+))$/im.test(
-      form?.["telefon"]
+      form?.["phone"]
     )
   ) {
-    errors["telefon"] = "Bitte geben Sie eine gültige Telefonnummer ein.";
+    errors["phone"] = "Please enter a valid phone number.";
   }
 
-  if (form?.["plz"] && !/^\d\d\d\d\d$/im.test(form?.["plz"])) {
-    errors["plz"] = "Bitte geben Sie eine gültige Postleitzahl ein.";
+  if (form?.["zip"] && !/^\d{5}$/im.test(form?.["zip"])) {
+    errors["zip"] = "Please enter a valid zip code.";
   }
 
   return errors;

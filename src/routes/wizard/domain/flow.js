@@ -10,45 +10,45 @@ export default function flow(data) {
   const steps = [];
 
   steps.push(SLUGS.START);
-  steps.push(SLUGS.SCHADENTYPEN);
-  steps.push(SLUGS.SCHADENMELDUNG);
-  steps.push(SLUGS.SCHADENMELDER);
+  steps.push(SLUGS.DAMAGE_TYPES);
+  steps.push(SLUGS.CLAIM_REPORT);
+  steps.push(SLUGS.CLAIMANT);
 
-  if (data?.[SLUGS.SCHADENMELDUNG]?.["schadenmeldung"] === "Versicherter") {
-    steps.push(SLUGS.SCHADENNEHMER);
+  if (data?.[SLUGS.CLAIM_REPORT]?.["claim_report"] === "Insured") {
+    steps.push(SLUGS.INSURED);
   } else {
-    steps.push(SLUGS.SCHADENVERURSACHER);
+    steps.push(SLUGS.PERPETRATOR);
   }
 
-  steps.push(SLUGS.SCHADENDETAILS);
+  steps.push(SLUGS.DAMAGE_DETAILS);
 
   if (
-    data?.[SLUGS.SCHADENTYPEN]?.["schadentypen[]"]?.includes("1") ||
-    data?.[SLUGS.SCHADENTYPEN]?.["schadentypen[]"]?.includes("4")
+    data?.[SLUGS.DAMAGE_TYPES]?.["damage_types[]"]?.includes("1") ||
+    data?.[SLUGS.DAMAGE_TYPES]?.["damage_types[]"]?.includes("4")
   ) {
-    steps.push(SLUGS.SCHADENDETAILS_FREMDES_FAHRZEUG);
-  }
-
-  if (
-    data?.[SLUGS.SCHADENTYPEN]?.["schadentypen[]"]?.includes("3") ||
-    data?.[SLUGS.SCHADENTYPEN]?.["schadentypen[]"]?.includes("6")
-  ) {
-    steps.push(SLUGS.SCHADENDETAILS_EIGENES_FAHRZEUG);
+    steps.push(SLUGS.DAMAGE_DETAILS_FOREIGN_VEHICLE);
   }
 
   if (
-    data?.[SLUGS.SCHADENTYPEN]?.["schadentypen[]"]?.includes("2") ||
-    data?.[SLUGS.SCHADENTYPEN]?.["schadentypen[]"]?.includes("5")
+    data?.[SLUGS.DAMAGE_TYPES]?.["damage_types[]"]?.includes("3") ||
+    data?.[SLUGS.DAMAGE_TYPES]?.["damage_types[]"]?.includes("6")
   ) {
-    steps.push(SLUGS.SCHADENDETAILS_TIER_ODER_GEGENSTAND);
+    steps.push(SLUGS.DAMAGE_DETAILS_OWN_VEHICLE);
   }
 
-  if (data?.[SLUGS.SCHADENTYPEN]?.["schadentypen[]"]?.includes("7")) {
-    steps.push(SLUGS.SCHADENDETAILS_PERSON);
+  if (
+    data?.[SLUGS.DAMAGE_TYPES]?.["damage_types[]"]?.includes("2") ||
+    data?.[SLUGS.DAMAGE_TYPES]?.["damage_types[]"]?.includes("5")
+  ) {
+    steps.push(SLUGS.DAMAGE_DETAILS_ANIMAL_OR_OBJECT);
   }
 
-  steps.push(SLUGS.RECHTSBELEHRUNG);
-  steps.push(SLUGS.DANKE);
+  if (data?.[SLUGS.DAMAGE_TYPES]?.["damage_types[]"]?.includes("7")) {
+    steps.push(SLUGS.DAMAGE_DETAILS_PERSON);
+  }
+
+  steps.push(SLUGS.LEGAL_NOTICE);
+  steps.push(SLUGS.THANK_YOU);
   steps.push(SLUGS.START);
 
   return steps;

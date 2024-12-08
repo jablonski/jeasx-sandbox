@@ -9,9 +9,9 @@ import { compress } from "./utils/zip";
 /**
  * @param {import("../types").RouteProps & any} props
  */
-export default function Speichern({ reply, data }) {
+export default function Save({ reply, data }) {
   const token =
-    "PHV-" +
+    "ID-" +
     createHash("sha1")
       .update(JSON.stringify(data))
       .digest("hex")
@@ -25,16 +25,15 @@ export default function Speichern({ reply, data }) {
   reply.clearCookie("data");
 
   return (
-    <Layout title="Speichern">
+    <Layout title="Save">
       <Form>
-        <Headline>Ihre Angaben wurden gespeichert</Headline>
+        <Headline>Your data has been saved</Headline>
         <Input
-          label="Um ihre Angaben neu zu laden, benutzen Sie bitte den folgenden Schlüssel:"
+          label="To reload your data, please use the following token:"
           readonly
-          disabled
           value={token}
         />
-        <Submit label="Schadenmeldung neu starten" />
+        <Submit label="Start new claim report" />
       </Form>
     </Layout>
   );

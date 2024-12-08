@@ -9,19 +9,19 @@ export default function Start() {
     <Layout title="Start">
       <Form>
         <Paragraph>
-          Im Folgenden stellen wir Ihnen einige Fragen, damit wir den
-          entstandenen Schaden zuordnen und bearbeiten können.
+          In the following, we will ask you some questions to be able to assign
+          and process the reported damage.
         </Paragraph>
         <Paragraph>
-          Sie können Ihre Schadenmeldung jederzeit Zwischenspeichern und unter
-          Angabe des Codes innerhalb von 10 Tagen wieder aufrufen.
+          You can save your damage report at any time and retrieve it within 10
+          days using the code.
         </Paragraph>
         <Input
-          label="Falls Sie eine schon begonnene Schadenmeldung weiterführen wollen:"
+          label="If you want to continue an already started damage report:"
           name="$hash"
-          placeholder="PHV-XVYZ9SH"
+          placeholder="ID-XVYZ9SH"
         />
-        <Submit label="Schadenmeldung starten" />
+        <Submit label="Start damage report" />
       </Form>
     </Layout>
   );

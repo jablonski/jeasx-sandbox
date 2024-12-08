@@ -2,28 +2,28 @@ import { SLUGS } from "../domain/constants";
 import Progress from "./Progress";
 
 const groups = [
-  { label: "Start", links: [SLUGS.SCHADENTYPEN] },
+  { label: "Start", links: [SLUGS.DAMAGE_TYPES] },
   {
-    label: "Schadenmeldung",
+    label: "Claim Report",
     links: [
-      SLUGS.SCHADENMELDUNG,
-      SLUGS.SCHADENMELDER,
-      SLUGS.SCHADENNEHMER,
-      SLUGS.SCHADENVERURSACHER,
+      SLUGS.CLAIM_REPORT,
+      SLUGS.CLAIMANT,
+      SLUGS.INSURED,
+      SLUGS.PERPETRATOR,
     ],
   },
   {
-    label: "Schadendetails",
+    label: "Damage Details",
     links: [
-      SLUGS.SCHADENDETAILS,
-      SLUGS.SCHADENDETAILS_FREMDES_FAHRZEUG,
-      SLUGS.SCHADENDETAILS_EIGENES_FAHRZEUG,
-      SLUGS.SCHADENDETAILS_TIER_ODER_GEGENSTAND,
-      SLUGS.SCHADENDETAILS_PERSON,
+      SLUGS.DAMAGE_DETAILS,
+      SLUGS.DAMAGE_DETAILS_FOREIGN_VEHICLE,
+      SLUGS.DAMAGE_DETAILS_OWN_VEHICLE,
+      SLUGS.DAMAGE_DETAILS_ANIMAL_OR_OBJECT,
+      SLUGS.DAMAGE_DETAILS_PERSON,
     ],
   },
-  { label: "Rechtliche Belehrung", links: [SLUGS.RECHTSBELEHRUNG] },
-  { label: "Vielen Dank", links: [SLUGS.DANKE] },
+  { label: "Legal Notice", links: [SLUGS.LEGAL_NOTICE] },
+  { label: "Thank You", links: [SLUGS.THANK_YOU] },
 ];
 
 export default function Header({ path, data }) {
@@ -31,7 +31,7 @@ export default function Header({ path, data }) {
 
   return (
     <header>
-      <h1>Ihre Schadenmeldung zur KFZ-Versicherung</h1>
+      <h1>Your Car Insurance Claim Form</h1>
       <nav aria-label="breadcrumb">
         <ul>
           {groups.slice(0, currentStep + 1).map(({ label, links }) => (

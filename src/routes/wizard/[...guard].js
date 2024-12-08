@@ -43,9 +43,9 @@ export default function Controller({ request, reply }) {
       switch (request.body["$action"] || "") {
         case "":
           break;
-        case "Speichern":
-          return reply.redirect(SLUGS.SPEICHERN);
-        case "Zurück":
+        case "Save":
+          return reply.redirect(SLUGS.SAVE);
+        case "Back":
           return reply.redirect(props.previous);
         default:
           props.errors = validator(path, props.data[path]);
