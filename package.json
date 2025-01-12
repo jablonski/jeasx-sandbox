@@ -3,9 +3,9 @@
   "type": "module",
   "dependencies": {
     "@fastify/cookie": "11.0.2",
-    "@fastify/formbody": "8.0.1",
-    "@fastify/multipart": "9.0.1",
-    "@fastify/static": "8.0.3",
+    "@fastify/formbody": "8.0.2",
+    "@fastify/multipart": "9.0.2",
+    "@fastify/static": "8.0.4",
     "@lit-labs/motion": "1.0.7",
     "@picocss/pico": "2.0.6",
     "@preact/signals": "2.0.0",
