@@ -17,13 +17,11 @@ export default function Layout({
         <head>
           <base href={`${path.endsWith("/") ? path : path + "/"}`} />
           <meta
-            http-equiv="Content-Security-Policy"
+            http-equiv="content-security-policy"
             content={`default-src 'none'; script-src 'self'${cspScriptUnsafeEval ? " 'unsafe-eval'" : ""}; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; form-action 'self'; base-uri 'self'; connect-src 'self'; frame-src 'self';`}
           />
-          <meta http-equiv="Referrer-Policy" content="same-origin" />
           <meta charset="utf-8" />
           <meta name="description" content={description} />
-          <meta name="view-transition" content="same-origin" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="stylesheet" href={`${css}?${process.env.BUILD_TIME}`} />
           {script && (

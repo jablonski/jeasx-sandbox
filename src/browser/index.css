@@ -1,5 +1,9 @@
 @import "../../node_modules/@picocss/pico/css/pico.css";
 
+@view-transition {
+  navigation: auto;
+}
+
 .center {
   text-align: center;
 }
