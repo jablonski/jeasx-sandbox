@@ -15,7 +15,7 @@
     "esbuild": "0.24.2",
     "fastify": "5.2.1",
     "htmx.org": "2.0.4",
-    "jsx-async-runtime": "0.7.0",
+    "jsx-async-runtime": "0.7.1",
     "lit": "3.2.1",
     "pm2": "5.4.3",
     "preact": "10.25.4",
