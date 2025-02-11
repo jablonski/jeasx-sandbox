@@ -50,13 +50,16 @@ serverless.register(fastifyStatic, {
     : undefined,
 });
 
-// Add path without query parameters to request
 declare module "fastify" {
   interface FastifyRequest {
+    // Add path without query parameters to request
     path: string;
+    // Add current route to request
+    route: string;
   }
 }
 
+serverless.decorateRequest("route", "");
 serverless.decorateRequest("path", "");
 serverless.addHook("onRequest", async (request, reply) => {
   const index = request.url.indexOf("?");
@@ -81,7 +84,7 @@ serverless.all("*", async (request, reply) => {
 
   // Execute route handlers for current request
   for (const route of generateRoutes(path)) {
-    const modulePath = join(cwd, "dist", route);
+    const modulePath = join(cwd, "dist", `routes${route}.js`);
 
     // Resolve module via cache
     let module = modulesCache[modulePath];
@@ -119,6 +122,9 @@ serverless.all("*", async (request, reply) => {
       }
     }
 
+    // Store current route in request
+    request.route = route;
+
     // Call the handler with request, reply and optional props
     response = await module.default.call(context, {
       request,
@@ -131,11 +137,11 @@ serverless.all("*", async (request, reply) => {
     } else if (typeof response === "string" || Buffer.isBuffer(response)) {
       break;
     } else if (
-      route.endsWith("/[...guard].js") &&
+      route.endsWith("/[...guard]") &&
       (response === undefined || !isJSX(response))
     ) {
       continue;
-    } else if (route.endsWith("/[404].js")) {
+    } else if (route.endsWith("/[404]")) {
       reply.status(404);
       break;
     } else if (reply.statusCode === 404) {
@@ -174,10 +180,10 @@ function generateRoutes(path: string): string[] {
   return [
     ...segments
       .toReversed() // [...guard]s are evaluated from top to bottom
-      .map((segment) => `routes${segment}/[...guard].js`),
-    ...edges.map((edge) => `routes${edge}.js`),
-    ...segments.map((segment) => `routes${segment}/[...path].js`),
-    ...segments.map((segment) => `routes${segment}/[404].js`),
+      .map((segment) => `${segment}/[...guard]`),
+    ...edges.map((edge) => `${edge}`),
+    ...segments.map((segment) => `${segment}/[...path]`),
+    ...segments.map((segment) => `${segment}/[404]`),
   ];
 }
 
