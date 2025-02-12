@@ -5,7 +5,7 @@ import Layout from "../Layout";
  * @param {import("../types").RouteProps} props
  */
 export default function BlogDetail({ request, reply }) {
-  const slug = request.path.split("/").slice(2).join("");
+  const slug = request.path.substring(request.route.lastIndexOf("/") + 1);
   const blog = JSON.parse(request.cookies["posts"]).find(
     (post) => post.slug === slug
   );
