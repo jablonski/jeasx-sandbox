@@ -6,7 +6,6 @@ export default async function Jokes() {
       title="Jokes"
       description="Some funny jokes"
       script="/alpinejs/index.js"
-      cspScriptUnsafeEval
     >
       <h1 class="center">Jokes</h1>
       <form

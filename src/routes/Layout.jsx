@@ -7,7 +7,6 @@ export default function Layout({
   children = [],
   css = "/index.css",
   script = undefined,
-  cspScriptUnsafeEval = false,
 }) {
   const path = this.request.path;
   return (
@@ -16,10 +15,6 @@ export default function Layout({
       <html lang="en">
         <head>
           <base href={`${path.endsWith("/") ? path : path + "/"}`} />
-          <meta
-            http-equiv="content-security-policy"
-            content={`default-src 'none'; script-src 'self'${cspScriptUnsafeEval ? " 'unsafe-eval'" : ""}; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; form-action 'self'; base-uri 'self'; connect-src 'self'; frame-src 'self';`}
-          />
           <meta charset="utf-8" />
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />

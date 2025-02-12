@@ -13,6 +13,7 @@ export default function Form({ request }) {
         <label>
           {label}:
           <input
+            // @ts-ignore
             type={type}
             name={name}
             value={this.escape(body[name] ?? value)}

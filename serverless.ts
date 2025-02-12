@@ -52,10 +52,8 @@ serverless.register(fastifyStatic, {
 
 declare module "fastify" {
   interface FastifyRequest {
-    // Add path without query parameters to request
-    path: string;
-    // Add current route to request
-    route: string;
+    path: string; // Path without query parameters
+    route: string; // Path to resolved route handler
   }
 }
 
