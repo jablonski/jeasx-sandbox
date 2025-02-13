@@ -49,7 +49,8 @@
       { "path": "/prettier", "title": "Postprocess HTML" },
       { "path": "/context", "title": "Use 'this' as context" },
       { "path": "/interceptor", "title": "Intercept JSX" },
-      { "path": "/head", "title": "Helmet for Head" }
+      { "path": "/head", "title": "Helmet for Head" },
+      { "path": "/client-jsx", "title": "Client-Side JSX" }
     ]
   }
 ]

@@ -49,11 +49,26 @@ export default function Layout({
                 style={{
                   position: "absolute",
                   top: "1rem",
-                  left: "calc(100vw - 6em)",
+                  left: "calc(100vw - 4em)",
                 }}
               >
-                Source &raquo;
+                <img src="/icons/github.svg" width="20" height="20" />
               </a>
+              {script && (
+                <a
+                  href={`https://github.com/jeasx/jeasx-expo/tree/main/src/browser/${
+                    script.split("/")[1]
+                  }`}
+                  target="_blank"
+                  style={{
+                    position: "absolute",
+                    top: "1rem",
+                    left: "calc(100vw - 2.5em)",
+                  }}
+                >
+                  <img src="/icons/javascript.svg" width="20" height="20" />
+                </a>
+              )}
             </header>
           )}
           <main class="container">{children}</main>
