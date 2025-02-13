@@ -13,6 +13,7 @@
       { "path": "/lottery", "title": "Lottery" },
       { "path": "/todos", "title": "Todos" },
       { "path": "/jokes", "title": "Jokes" },
+      { "path": "/path-to-regexp", "title": "Path-To-Regexp" },
       { "path": "/wizard", "title": "Wizard" }
     ]
   },
