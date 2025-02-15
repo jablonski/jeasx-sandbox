@@ -52,7 +52,13 @@ export default function Layout({
                   left: "calc(100vw - 4em)",
                 }}
               >
-                <img src="/icons/github.svg" width="20" height="20" />
+                <img
+                  src="/icons/github.svg"
+                  width="20"
+                  height="20"
+                  alt="GitHub Logo"
+                  title="Server source"
+                />
               </a>
               {script && (
                 <a
@@ -66,7 +72,13 @@ export default function Layout({
                     left: "calc(100vw - 2.5em)",
                   }}
                 >
-                  <img src="/icons/javascript.svg" width="20" height="20" />
+                  <img
+                    src="/icons/javascript.svg"
+                    width="20"
+                    height="20"
+                    alt="JavaScript Logo"
+                    title="Browser source"
+                  />
                 </a>
               )}
             </header>

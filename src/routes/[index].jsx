@@ -6,7 +6,7 @@ import sitemap from "./sitemap.json";
  */
 export default function Frontpage({}) {
   return (
-    <Layout title="Expo" description="Welcome to Jeasx - JSX with Ease">
+    <Layout title="Jeasx-Expo" description="Welcome to Jeasx - JSX with Ease">
       <section class="center">
         <h1>Jeasx-Expo</h1>
         <p>

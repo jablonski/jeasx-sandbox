@@ -4,9 +4,7 @@ import JokesJSON from "./components/JokesJSON";
 
 const Components = { JokesHTML, JokesJSON };
 
-globalThis.renderJSX = async (container = "", component = "", props = {}) => {
+globalThis.renderJSX = async (container, component, props = {}) => {
   const Component = Components[component];
-  document.getElementById(container).innerHTML = await jsxToString(
-    <Component {...props} />
-  );
+  container.innerHTML = await jsxToString(<Component {...props} />);
 };
