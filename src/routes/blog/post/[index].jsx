@@ -16,7 +16,7 @@ export default function BlogPost({ request, reply }) {
   }
 
   return (
-    <Layout title="New blog post">
+    <Layout title="New blog post" robots="noindex">
       <h1>New blog post</h1>
       <form method="post" novalidate>
         <label>

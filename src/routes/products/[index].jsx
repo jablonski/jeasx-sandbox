@@ -10,7 +10,11 @@ export default async function ProductOverview({}) {
   ).json();
 
   return (
-    <Layout title="Products" description="Product overview">
+    <Layout
+      title="Products"
+      description="Product overview"
+      robots="index,nofollow"
+    >
       <section class="center">
         <h1>Product overview</h1>
         <div class="grid">

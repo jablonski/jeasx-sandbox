@@ -16,7 +16,11 @@ export default async function ProductDetail({ request, reply }) {
   }
 
   return (
-    <Layout title={product.title} description={product.description}>
+    <Layout
+      title={product.title}
+      description={product.description}
+      robots="noindex,nofollow"
+    >
       <article class="center">
         <h1>{product.title}</h1>
         <p>{product.description}</p>
