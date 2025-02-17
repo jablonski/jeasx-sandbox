@@ -11,5 +11,6 @@
     "api/vercel.js": {
       "includeFiles": "{node_modules,dist,public}/**/*"
     }
-  }
+  },
+  "outputDirectory": null
 }
