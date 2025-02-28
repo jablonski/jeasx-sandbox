@@ -8,19 +8,17 @@ import { jsxToString } from "jsx-async-runtime";
 import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
+const MODULES_CACHE = {};
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const CWD = process.cwd();
+const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS && JSON.parse(process.env.FASTIFY_STATIC_HEADERS);
 const serverless = Fastify({
   logger: true,
   disableRequestLogging: Boolean(process.env.FASTIFY_DISABLE_REQUEST_LOGGING),
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || void 0,
   trustProxy: Boolean(process.env.FASTIFY_TRUST_PROXY)
-});
-serverless.register(fastifyCookie);
-serverless.register(fastifyFormbody);
-serverless.register(fastifyMultipart);
-const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS ? JSON.parse(String(process.env.FASTIFY_STATIC_HEADERS)) : void 0;
-serverless.register(fastifyStatic, {
-  root: ["public", "dist/browser"].map((dir) => join(process.cwd(), dir)),
+}).register(fastifyCookie).register(fastifyFormbody).register(fastifyMultipart).register(fastifyStatic, {
+  root: ["public", "dist/browser"].map((dir) => join(CWD, dir)),
   prefix: "/",
   wildcard: false,
   cacheControl: false,
@@ -36,22 +34,16 @@ serverless.register(fastifyStatic, {
       }
     }
   } : void 0
-});
-serverless.decorateRequest("route", "");
-serverless.decorateRequest("path", "");
-serverless.addHook("onRequest", async (request, reply) => {
+}).decorateRequest("route", "").decorateRequest("path", "").addHook("onRequest", async (request, reply) => {
   const index = request.url.indexOf("?");
   request.path = index === -1 ? request.url : request.url.slice(0, index);
-});
-const modulesCache = {};
-const cwd = process.cwd();
-serverless.all("*", async (request, reply) => {
+}).all("*", async (request, reply) => {
   let response;
   const context = {};
   const path = request.path;
   for (const route of generateRoutes(path)) {
-    const modulePath = join(cwd, "dist", `routes${route}.js`);
-    let module = modulesCache[modulePath];
+    const modulePath = join(CWD, "dist", `routes${route}.js`);
+    let module = MODULES_CACHE[modulePath];
     if (module === null) {
       continue;
     }
@@ -60,14 +52,14 @@ serverless.all("*", async (request, reply) => {
         (await stat(modulePath)).isFile();
       } catch {
         if (!NODE_ENV_IS_DEVELOPMENT) {
-          modulesCache[modulePath] = null;
+          MODULES_CACHE[modulePath] = null;
         }
         continue;
       }
       if (NODE_ENV_IS_DEVELOPMENT) {
         module = await import(`file://${modulePath}?${createHash("sha1").update(await readFile(modulePath, "utf-8")).digest("hex")}`);
       } else {
-        module = modulesCache[modulePath] = await import(`file://${modulePath}`);
+        module = MODULES_CACHE[modulePath] = await import(`file://${modulePath}`);
       }
     }
     request.route = route;
@@ -78,9 +70,9 @@ serverless.all("*", async (request, reply) => {
     });
     if (reply.sent) {
       return;
-    } else if (typeof response === "string" || Buffer.isBuffer(response)) {
+    } else if (typeof response === "string" || Buffer.isBuffer(response) || isJSX(response)) {
       break;
-    } else if (route.endsWith("/[...guard]") && (response === void 0 || !isJSX(response))) {
+    } else if (route.endsWith("/[...guard]") && (response === void 0 || typeof response === "object")) {
       continue;
     } else if (route.endsWith("/[404]")) {
       reply.status(404);

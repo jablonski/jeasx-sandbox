@@ -9,46 +9,15 @@ import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
 
+// Cache for resolved route modules, 'null' means module does not exist.
+const MODULES_CACHE: { [path: string]: { default: Function } | null } = {};
+
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const CWD = process.cwd();
 
-// Create a Fastify app instance
-const serverless = Fastify({
-  logger: true,
-  disableRequestLogging: Boolean(process.env.FASTIFY_DISABLE_REQUEST_LOGGING),
-  bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || undefined,
-  trustProxy: Boolean(process.env.FASTIFY_TRUST_PROXY),
-});
-
-// Register required plugins
-serverless.register(fastifyCookie);
-serverless.register(fastifyFormbody);
-serverless.register(fastifyMultipart);
-
-// Setup static file plugin
-const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS
-  ? JSON.parse(String(process.env.FASTIFY_STATIC_HEADERS))
-  : undefined;
-
-serverless.register(fastifyStatic, {
-  root: ["public", "dist/browser"].map((dir) => join(process.cwd(), dir)),
-  prefix: "/",
-  wildcard: false,
-  cacheControl: false,
-  setHeaders: FASTIFY_STATIC_HEADERS
-    ? (reply, path) => {
-        for (const [suffix, headers] of Object.entries(
-          FASTIFY_STATIC_HEADERS
-        )) {
-          if (path.endsWith(suffix)) {
-            for (const [key, value] of Object.entries(headers)) {
-              reply.setHeader(key, value);
-            }
-            return;
-          }
-        }
-      }
-    : undefined,
-});
+const FASTIFY_STATIC_HEADERS =
+  process.env.FASTIFY_STATIC_HEADERS &&
+  JSON.parse(process.env.FASTIFY_STATIC_HEADERS);
 
 declare module "fastify" {
   interface FastifyRequest {
@@ -57,113 +26,139 @@ declare module "fastify" {
   }
 }
 
-serverless.decorateRequest("route", "");
-serverless.decorateRequest("path", "");
-serverless.addHook("onRequest", async (request, reply) => {
-  const index = request.url.indexOf("?");
-  request.path = index === -1 ? request.url : request.url.slice(0, index);
-});
-
-// Cache loaded modules, null means not found
-const modulesCache: { [path: string]: { default: Function } | null } = {};
-
-// Store current working directory
-const cwd = process.cwd();
-
-// Handle all requests
-serverless.all("*", async (request, reply) => {
-  let response: unknown;
-
-  // Global context object for route handlers
-  const context = {};
-
-  // Current request path
-  const path = request.path;
-
-  // Execute route handlers for current request
-  for (const route of generateRoutes(path)) {
-    const modulePath = join(cwd, "dist", `routes${route}.js`);
-
-    // Resolve module via cache
-    let module = modulesCache[modulePath];
-
-    // Module was cached as not found?
-    if (module === null) {
-      continue;
-    }
-
-    // Module was not loaded yet?
-    if (module === undefined) {
-      // Check file existence of module
-      try {
-        (await stat(modulePath)).isFile();
-      } catch {
-        if (!NODE_ENV_IS_DEVELOPMENT) {
-          // Cache module as not found
-          modulesCache[modulePath] = null;
+// Create a Fastify app instance
+const serverless = Fastify({
+  logger: true,
+  disableRequestLogging: Boolean(process.env.FASTIFY_DISABLE_REQUEST_LOGGING),
+  bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || undefined,
+  trustProxy: Boolean(process.env.FASTIFY_TRUST_PROXY),
+})
+  .register(fastifyCookie)
+  .register(fastifyFormbody)
+  .register(fastifyMultipart)
+  .register(fastifyStatic, {
+    root: ["public", "dist/browser"].map((dir) => join(CWD, dir)),
+    prefix: "/",
+    wildcard: false,
+    cacheControl: false,
+    setHeaders: FASTIFY_STATIC_HEADERS
+      ? (reply, path) => {
+          for (const [suffix, headers] of Object.entries(
+            FASTIFY_STATIC_HEADERS
+          )) {
+            if (path.endsWith(suffix)) {
+              for (const [key, value] of Object.entries(headers)) {
+                reply.setHeader(key, value);
+              }
+              return;
+            }
+          }
         }
+      : undefined,
+  })
+  .decorateRequest("route", "")
+  .decorateRequest("path", "")
+  .addHook("onRequest", async (request, reply) => {
+    const index = request.url.indexOf("?");
+    request.path = index === -1 ? request.url : request.url.slice(0, index);
+  })
+  .all("*", async (request, reply) => {
+    let response: unknown;
+
+    // Global context object for route handlers
+    const context = {};
+
+    // Current request path
+    const path = request.path;
+
+    // Execute route handlers for current request
+    for (const route of generateRoutes(path)) {
+      const modulePath = join(CWD, "dist", `routes${route}.js`);
+
+      // Resolve module via cache
+      let module = MODULES_CACHE[modulePath];
+
+      // Module was cached as not found?
+      if (module === null) {
         continue;
       }
 
-      if (NODE_ENV_IS_DEVELOPMENT) {
-        // Use file hash to (re)load modified modules in development
-        module = await import(
-          `file://${modulePath}?${createHash("sha1")
-            .update(await readFile(modulePath, "utf-8"))
-            .digest("hex")}`
-        );
+      // Module was not loaded yet?
+      if (module === undefined) {
+        // Check file existence of module
+        try {
+          (await stat(modulePath)).isFile();
+        } catch {
+          if (!NODE_ENV_IS_DEVELOPMENT) {
+            // Cache module as not found
+            MODULES_CACHE[modulePath] = null;
+          }
+          continue;
+        }
+
+        if (NODE_ENV_IS_DEVELOPMENT) {
+          // Use file hash to (re)load modified modules in development
+          module = await import(
+            `file://${modulePath}?${createHash("sha1")
+              .update(await readFile(modulePath, "utf-8"))
+              .digest("hex")}`
+          );
+        } else {
+          // Load and cache module for non-development
+          module = MODULES_CACHE[modulePath] = await import(
+            `file://${modulePath}`
+          );
+        }
+      }
+
+      // Store current route in request
+      request.route = route;
+
+      // Call the handler with request, reply and optional props
+      response = await module.default.call(context, {
+        request,
+        reply,
+        ...(typeof response === "object" ? response : {}),
+      });
+
+      if (reply.sent) {
+        return;
+      } else if (
+        typeof response === "string" ||
+        Buffer.isBuffer(response) ||
+        isJSX(response)
+      ) {
+        break;
+      } else if (
+        route.endsWith("/[...guard]") &&
+        (response === undefined || typeof response === "object")
+      ) {
+        continue;
+      } else if (route.endsWith("/[404]")) {
+        reply.status(404);
+        break;
+      } else if (reply.statusCode === 404) {
+        continue;
       } else {
-        // Load and cache module for non-development
-        module = modulesCache[modulePath] = await import(
-          `file://${modulePath}`
-        );
+        break;
       }
     }
 
-    // Store current route in request
-    request.route = route;
-
-    // Call the handler with request, reply and optional props
-    response = await module.default.call(context, {
-      request,
-      reply,
-      ...(typeof response === "object" ? response : {}),
-    });
-
-    if (reply.sent) {
-      return;
-    } else if (typeof response === "string" || Buffer.isBuffer(response)) {
-      break;
-    } else if (
-      route.endsWith("/[...guard]") &&
-      (response === undefined || !isJSX(response))
-    ) {
-      continue;
-    } else if (route.endsWith("/[404]")) {
-      reply.status(404);
-      break;
-    } else if (reply.statusCode === 404) {
-      continue;
-    } else {
-      break;
+    // Make sure a Content-Type header is set
+    if (!reply.hasHeader("Content-Type")) {
+      reply.header("Content-Type", "text/html; charset=utf-8");
     }
-  }
 
-  // Make sure a Content-Type header is set
-  if (!reply.hasHeader("Content-Type")) {
-    reply.header("Content-Type", "text/html; charset=utf-8");
-  }
+    const payload = isJSX(response)
+      ? await jsxToString.call(context, response)
+      : response;
 
-  const payload = isJSX(response)
-    ? await jsxToString.call(context, response)
-    : response;
-
-  // Post-process the payload with an optional response handler
-  const responseHandler = context["response"];
-  return typeof responseHandler === "function"
-    ? await responseHandler(payload)
-    : payload;
-});
+    // Post-process the payload with an optional response handler
+    const responseHandler = context["response"];
+    return typeof responseHandler === "function"
+      ? await responseHandler(payload)
+      : payload;
+  });
 
 /**
  * Generates all possible routes based on the given input path.
