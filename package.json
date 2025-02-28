@@ -15,11 +15,11 @@
     "esbuild": "0.25.0",
     "fastify": "5.2.1",
     "htmx.org": "2.0.4",
-    "jsx-async-runtime": "0.8.0",
+    "jsx-async-runtime": "0.8.1",
     "lit": "3.2.1",
     "path-to-regexp": "8.2.0",
     "pm2": "5.4.3",
-    "preact": "10.26.2",
+    "preact": "10.26.3",
     "preact-render-to-string": "6.5.13",
     "prettier": "3.5.2",
     "sharp": "0.33.5"
