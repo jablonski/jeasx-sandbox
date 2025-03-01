@@ -8,11 +8,10 @@ import { jsxToString } from "jsx-async-runtime";
 import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
-const MODULES_CACHE = {};
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const CWD = process.cwd();
 const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS && JSON.parse(process.env.FASTIFY_STATIC_HEADERS);
-const serverless = Fastify({
+var serverless_default = Fastify({
   logger: true,
   disableRequestLogging: Boolean(process.env.FASTIFY_DISABLE_REQUEST_LOGGING),
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || void 0,
@@ -37,13 +36,15 @@ const serverless = Fastify({
 }).decorateRequest("route", "").decorateRequest("path", "").addHook("onRequest", async (request, reply) => {
   const index = request.url.indexOf("?");
   request.path = index === -1 ? request.url : request.url.slice(0, index);
-}).all("*", async (request, reply) => {
+}).all("*", handler);
+const modules = {};
+async function handler(request, reply) {
   let response;
   const context = {};
   const path = request.path;
   for (const route of generateRoutes(path)) {
     const modulePath = join(CWD, "dist", `routes${route}.js`);
-    let module = MODULES_CACHE[modulePath];
+    let module = modules[modulePath];
     if (module === null) {
       continue;
     }
@@ -52,14 +53,14 @@ const serverless = Fastify({
         (await stat(modulePath)).isFile();
       } catch {
         if (!NODE_ENV_IS_DEVELOPMENT) {
-          MODULES_CACHE[modulePath] = null;
+          modules[modulePath] = null;
         }
         continue;
       }
       if (NODE_ENV_IS_DEVELOPMENT) {
         module = await import(`file://${modulePath}?${createHash("sha1").update(await readFile(modulePath, "utf-8")).digest("hex")}`);
       } else {
-        module = MODULES_CACHE[modulePath] = await import(`file://${modulePath}`);
+        module = modules[modulePath] = await import(`file://${modulePath}`);
       }
     }
     request.route = route;
@@ -89,7 +90,7 @@ const serverless = Fastify({
   const payload = isJSX(response) ? await jsxToString.call(context, response) : response;
   const responseHandler = context["response"];
   return typeof responseHandler === "function" ? await responseHandler(payload) : payload;
-});
+}
 function generateRoutes(path) {
   const segments = generateSegments(path);
   const edges = generateEdges(segments[0]);
@@ -120,7 +121,6 @@ function generateEdges(path) {
 function isJSX(obj) {
   return !!obj && typeof obj === "object" && "type" in obj && "props" in obj;
 }
-var serverless_default = serverless;
 export {
   serverless_default as default
 };
