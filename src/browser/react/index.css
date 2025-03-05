@@ -1,0 +1,84 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.App {
+  padding: 2rem;
+  text-align: center;
+}
+
+.lottery {
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 600px;
+}
+
+.lottery h1 {
+  color: #333;
+}
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.number.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.number:hover {
+  background-color: #39623b;
+  color: white;
+}
+
+.error {
+  margin-top: 10px;
+  color: red;
+}
+
+.selected-numbers {
+  margin-top: 20px;
+}
+
+.selected-numbers h2 {
+  color: #333;
+}
+
+.selected-numbers ul {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.selected-numbers li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #007bff;
+  width: 40px;
+  height: 40px;
+  color: white;
+}

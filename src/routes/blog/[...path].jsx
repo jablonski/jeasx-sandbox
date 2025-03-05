@@ -6,7 +6,7 @@ import Layout from "../Layout";
  */
 export default function BlogDetail({ request, reply }) {
   const slug = request.path.substring(request.route.lastIndexOf("/") + 1);
-  const blog = JSON.parse(request.cookies["posts"]).find(
+  const blog = JSON.parse(request.cookies["posts"] || "[]").find(
     (post) => post.slug === slug
   );
   if (!blog) {
@@ -15,7 +15,7 @@ export default function BlogDetail({ request, reply }) {
   }
 
   return (
-    <Layout title={blog.title} robots={"index,nofollow"}>
+    <Layout title={blog.title} robots={"noindex,nofollow"}>
       <article>
         <header>
           <time>

@@ -3,7 +3,6 @@
  */
 export default function Status({ request, reply }) {
   const { url, path, route, query, method, headers, body } = request;
-
   reply.header("Content-Type", "application/json");
   return {
     node: `${process.version} (${process.arch})`,
@@ -14,6 +13,5 @@ export default function Status({ request, reply }) {
     method,
     headers,
     body,
-    env: process.env,
   };
 }

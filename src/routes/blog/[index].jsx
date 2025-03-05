@@ -18,7 +18,9 @@ export default function BlogIndex({ request, reply }) {
     <Layout title="Blog">
       <h1 class="center">Blog posts</h1>
       <section class="center">
-        <a href="/blog/post">Submit New Post</a>
+        <a href="/blog/post" rel="nofollow">
+          Submit New Post
+        </a>
         <br />
         (Login: demo/demo)
       </section>
