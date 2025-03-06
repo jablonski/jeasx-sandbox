@@ -26,7 +26,7 @@
     ]
   },
   {
-    "title": "Userland integration of JavaScript-Frameworks",
+    "title": "Userland integration of JavaScript-Libraries",
     "links": [
       { "path": "/alpine", "title": "Alpine.js" },
       { "path": "/lit", "title": "Lit" },
