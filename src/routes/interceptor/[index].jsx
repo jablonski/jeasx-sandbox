@@ -40,7 +40,7 @@ export default function JSXInterceptor({ request }) {
   );
 }
 
-function HouseKeeper({ children = [] }) {
+function HouseKeeper({ children = undefined }) {
   this.jsxToString = (jsxElement) => {
     // Rewrite className to class
     if (jsxElement?.props?.className) {

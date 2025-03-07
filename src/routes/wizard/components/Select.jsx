@@ -3,7 +3,7 @@ export default function Select({
   name,
   required = false,
   submitOnChange = false,
-  children = [],
+  children = undefined,
 }) {
   return (
     <label>

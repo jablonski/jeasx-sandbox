@@ -66,7 +66,7 @@ export default function FragmentsExample({ request }) {
 /**
  * @this {import("../types").ThisContext}
  */
-function Fragments({ container, children = [] }) {
+function Fragments({ container, children = undefined }) {
   if (this.request.path.includes("~")) {
     return <>{children}</>;
   } else {
@@ -78,7 +78,7 @@ function Fragments({ container, children = [] }) {
 /**
  * @this {import("../types").ThisContext}
  */
-function Fragment({ name = undefined, children = [] }) {
+function Fragment({ name = undefined, children = undefined }) {
   if (
     !this.request.path.includes("~") ||
     (name && this.request.path.endsWith(name))

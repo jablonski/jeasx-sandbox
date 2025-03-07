@@ -1,3 +1,3 @@
-export default function Paragraph({ children = [] }) {
+export default function Paragraph({ children = undefined }) {
   return <p>{children}</p>;
 }

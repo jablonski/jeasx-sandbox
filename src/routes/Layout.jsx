@@ -4,10 +4,10 @@
 export default function Layout({
   title = "",
   description = "",
-  children = [],
   css = "/index.css",
   script = undefined,
   robots = undefined,
+  children = undefined,
 }) {
   const path = this.request.path;
   return (
