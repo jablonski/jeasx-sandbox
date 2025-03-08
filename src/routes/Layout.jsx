@@ -29,7 +29,6 @@ export default function Layout({
             <script
               type="module"
               src={`${script}?${process.env.BUILD_TIME}`}
-              defer
             ></script>
           )}
           <title>{title} &raquo; Jeasx - JSX with Ease</title>
