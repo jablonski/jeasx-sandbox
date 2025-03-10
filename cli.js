@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 import fs from "node:fs/promises";
+import dotenvflow from "./dotenvflow.js";
 
-switch (process.argv[2]) {
+const command = process.argv[2];
+if (command === "dev") {
+  process.env.NODE_ENV = "development";
+}
+
+dotenvflow();
+
+switch (command) {
   case "start":
     await start();
     break;
@@ -42,7 +50,6 @@ async function build() {
 }
 
 async function dev() {
-  process.env.NODE_ENV = "development";
   // Run build to prepare browser assets for fastify-static
   await build();
   // Start the dev environment
