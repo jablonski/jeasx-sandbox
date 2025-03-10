@@ -13,5 +13,6 @@ export default function Status({ request, reply }) {
     method,
     headers,
     body,
+    env: process.env,
   };
 }
