@@ -17,5 +17,3 @@ export default function env() {
       process.loadEnvFile(file);
     });
 }
-
-env();
