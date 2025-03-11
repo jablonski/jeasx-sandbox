@@ -9,7 +9,6 @@ import { readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
 import env from "./env.js";
 
-// Load environemnt variables from .env* files
 env();
 
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
