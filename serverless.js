@@ -41,6 +41,7 @@ var serverless_default = Fastify({
 }).all("*", handler);
 const modules = {};
 async function handler(request, reply) {
+  dotenvflow();
   let response;
   const context = {};
   const path = request.path;
