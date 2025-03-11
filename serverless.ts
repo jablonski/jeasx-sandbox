@@ -7,9 +7,6 @@ import { jsxToString } from "jsx-async-runtime";
 import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
-import env from "./env.js";
-
-env();
 
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const CWD = process.cwd();
