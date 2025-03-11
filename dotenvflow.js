@@ -11,11 +11,6 @@ export default function dotenvflow() {
   }
 
   envFiles
-    .filter((file) => {
-      return fs.existsSync(file);
-    })
-    .forEach((file) => {
-      console.log(`Loading env from ${file}`);
-      process.loadEnvFile(file);
-    });
+    .filter((file) => fs.existsSync(file))
+    .forEach((file) => process.loadEnvFile(file));
 }
