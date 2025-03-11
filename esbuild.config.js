@@ -1,6 +1,5 @@
 import * as esbuild from "esbuild";
-import dotenvflow from "./dotenvflow.js";
-dotenvflow();
+
 const BUILD_TIME = `"${Date.now().toString(36)}"`;
 
 const BROWSER_PUBLIC_ENV = Object.keys(process.env)
