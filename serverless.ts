@@ -73,6 +73,7 @@ const modules: { [path: string]: { default: Function } | null } = {};
  * Resolves route module based on the request path and execute it.
  */
 async function handler(request: FastifyRequest, reply: FastifyReply) {
+  dotenvflow();
   let response: unknown;
 
   // Global context object for route handlers
