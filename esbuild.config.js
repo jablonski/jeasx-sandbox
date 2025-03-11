@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild";
-import dotenvflow from "./dotenvflow";
+import dotenvflow from "./dotenvflow.js";
 dotenvflow();
 const BUILD_TIME = `"${Date.now().toString(36)}"`;
 
