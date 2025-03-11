@@ -15,7 +15,7 @@ export default function dotenvflow() {
       return fs.existsSync(file);
     })
     .forEach((file) => {
-      console.info(`Loading env from ${file}`);
+      console.log(`Loading env from ${file}`);
       process.loadEnvFile(file);
     });
 }
