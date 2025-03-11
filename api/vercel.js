@@ -1,7 +1,4 @@
-import env from "../env.js";
 import serverless from "../serverless.js";
-
-env();
 
 await serverless.ready();
 
