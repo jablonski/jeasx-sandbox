@@ -1,20 +1,26 @@
 import fs from "fs";
 
-export default function dotenvflow() {
-  const envFiles = [".env.defaults", ".env", ".env.local"];
+let envFiles = undefined;
 
-  if (process.env.NODE_ENV) {
-    envFiles.push(
-      `.env.${process.env.NODE_ENV}`,
-      `.env.${process.env.NODE_ENV}.local`
-    );
+export default function dotenvflow() {
+  if (envFiles === undefined) {
+    console.log("BUILDING ENV");
+    const dotFiles = [".env.defaults", ".env", ".env.local"];
+
+    if (process.env.NODE_ENV) {
+      dotFiles.push(
+        `.env.${process.env.NODE_ENV}`,
+        `.env.${process.env.NODE_ENV}.local`
+      );
+    }
+
+    envFiles = dotFiles.filter((file) => {
+      return fs.existsSync(file);
+    });
   }
 
-  envFiles
-    .filter((file) => {
-      return fs.existsSync(file);
-    })
-    .forEach((file) => {
-      process.loadEnvFile(file);
-    });
+  envFiles.forEach((file) => {
+    console.log(file);
+    process.loadEnvFile(file);
+  });
 }
