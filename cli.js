@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 import fs from "node:fs/promises";
-import dotenvflow from "./dotenvflow.js";
+import env from "./env.js";
 
-const command = process.argv[2];
-if (command === "dev") {
+if (process.argv[2] === "dev") {
   process.env.NODE_ENV = "development";
 }
 
-dotenvflow();
+env();
 
-switch (command) {
+switch (process.argv[2]) {
   case "start":
     await start();
     break;
