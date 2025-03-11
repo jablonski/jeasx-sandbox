@@ -11,7 +11,7 @@ export default function dotenvflow() {
     );
   }
 
-  fs.readdirSync(process.cwd()).forEach((file) => console.log(file));
+  fs.readdirSync("dist").forEach((file) => console.log(file));
 
   envFiles
     .map((file) => path.resolve(process.cwd(), file))
