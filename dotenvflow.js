@@ -11,6 +11,7 @@ export default function dotenvflow() {
   }
 
   envFiles
+    .map((file) => `./${file}`)
     .filter((file) => {
       console.log(file, fs.existsSync(file));
       return fs.existsSync(file);
