@@ -5,7 +5,7 @@ import { existsSync } from "node:fs";
  *
  * @returns {void}
  */
-export default function env() {
+export default function loadenv() {
   const files = [".env.defaults", ".env", ".env.local"];
 
   if (process.env.NODE_ENV) {
@@ -16,7 +16,7 @@ export default function env() {
   }
 
   files.filter(existsSync).forEach((file) => {
-    console.info(`🌻 Loading ${file}`);
+    console.info(`🌿 Loading ${file}`);
     process.loadEnvFile(file);
   });
 }
