@@ -1,9 +1,7 @@
 import { existsSync } from "node:fs";
 
 /**
- * Load environment variables from .env* files
- *
- * @returns {void}
+ * Load environment variables into process.env from .env* files.
  */
 export default function loadenv() {
   const files = [".env.defaults", ".env", ".env.local"];
@@ -16,7 +14,7 @@ export default function loadenv() {
   }
 
   files.filter(existsSync).forEach((file) => {
-    console.info(`🌿 Loading ${file}`);
+    console.info(`🌻 Loading ${file}`);
     process.loadEnvFile(file);
   });
 }
