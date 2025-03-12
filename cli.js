@@ -2,12 +2,6 @@
 import fs from "node:fs/promises";
 import env from "./env.js";
 
-if (process.argv[2] === "dev") {
-  process.env.NODE_ENV = "development";
-}
-
-env();
-
 switch (process.argv[2]) {
   case "start":
     await start();
@@ -41,6 +35,7 @@ async function start() {
 }
 
 async function build() {
+  env();
   const argv = [...process.argv];
   process.argv = [];
   await clean();
@@ -49,6 +44,7 @@ async function build() {
 }
 
 async function dev() {
+  process.env.NODE_ENV = "development";
   // Run build to prepare browser assets for fastify-static
   await build();
   // Start the dev environment
