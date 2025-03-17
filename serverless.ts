@@ -66,7 +66,14 @@ export default Fastify({
     const index = request.url.indexOf("?");
     request.path = index === -1 ? request.url : request.url.slice(0, index);
   })
-  .all("*", handler);
+  .all("*", async (request: FastifyRequest, reply: FastifyReply) => {
+    try {
+      await handler(request, reply);
+    } catch (error) {
+      console.error("❌", error);
+      throw error;
+    }
+  });
 
 // Cache for resolved route modules, 'null' means no module exists.
 const modules: { [path: string]: { default: Function } | null } = {};
@@ -75,104 +82,99 @@ const modules: { [path: string]: { default: Function } | null } = {};
  * Resolves route module based on the request path and execute it.
  */
 async function handler(request: FastifyRequest, reply: FastifyReply) {
-  try {
-    let response: unknown;
+  let response: unknown;
 
-    // Global context object for route handlers
-    const context = {};
+  // Global context object for route handlers
+  const context = {};
 
-    // Current request path
-    const path = request.path;
+  // Current request path
+  const path = request.path;
 
-    // Execute route handlers for current request
-    for (const route of generateRoutes(path)) {
-      const modulePath = join(CWD, "dist", `routes${route}.js`);
+  // Execute route handlers for current request
+  for (const route of generateRoutes(path)) {
+    const modulePath = join(CWD, "dist", `routes${route}.js`);
 
-      // Resolve module via cache
-      let module = modules[modulePath];
+    // Resolve module via cache
+    let module = modules[modulePath];
 
-      // Module was cached as not found?
-      if (module === null) {
+    // Module was cached as not found?
+    if (module === null) {
+      continue;
+    }
+
+    // Module was not loaded yet?
+    if (module === undefined) {
+      // Check file existence of module
+      try {
+        (await stat(modulePath)).isFile();
+      } catch {
+        if (!NODE_ENV_IS_DEVELOPMENT) {
+          // Cache module as not found
+          modules[modulePath] = null;
+        }
         continue;
       }
 
-      // Module was not loaded yet?
-      if (module === undefined) {
-        // Check file existence of module
-        try {
-          (await stat(modulePath)).isFile();
-        } catch {
-          if (!NODE_ENV_IS_DEVELOPMENT) {
-            // Cache module as not found
-            modules[modulePath] = null;
-          }
-          continue;
-        }
-
-        if (NODE_ENV_IS_DEVELOPMENT) {
-          // Use file hash to (re)load modified modules in development
-          module = await import(
-            `file://${modulePath}?${createHash("sha1")
-              .update(await readFile(modulePath, "utf-8"))
-              .digest("hex")}`
-          );
-        } else {
-          // Load and cache module for non-development
-          module = modules[modulePath] = await import(`file://${modulePath}`);
-        }
-      }
-
-      // Store current route in request
-      request.route = route;
-
-      // Call the handler with request, reply and optional props
-      response = await module.default.call(context, {
-        request,
-        reply,
-        ...(typeof response === "object" ? response : {}),
-      });
-
-      if (reply.sent) {
-        return;
-      } else if (
-        typeof response === "string" ||
-        Buffer.isBuffer(response) ||
-        isJSX(response)
-      ) {
-        break;
-      } else if (
-        route.endsWith("/[...guard]") &&
-        (response === undefined || typeof response === "object")
-      ) {
-        continue;
-      } else if (route.endsWith("/[404]")) {
-        reply.status(404);
-        break;
-      } else if (reply.statusCode === 404) {
-        continue;
+      if (NODE_ENV_IS_DEVELOPMENT) {
+        // Use file hash to (re)load modified modules in development
+        module = await import(
+          `file://${modulePath}?${createHash("sha1")
+            .update(await readFile(modulePath, "utf-8"))
+            .digest("hex")}`
+        );
       } else {
-        break;
+        // Load and cache module for non-development
+        module = modules[modulePath] = await import(`file://${modulePath}`);
       }
     }
 
-    // Make sure a Content-Type header is set
-    if (!reply.hasHeader("Content-Type")) {
-      reply.header("Content-Type", "text/html; charset=utf-8");
+    // Store current route in request
+    request.route = route;
+
+    // Call the handler with request, reply and optional props
+    response = await module.default.call(context, {
+      request,
+      reply,
+      ...(typeof response === "object" ? response : {}),
+    });
+
+    if (reply.sent) {
+      return;
+    } else if (
+      typeof response === "string" ||
+      Buffer.isBuffer(response) ||
+      isJSX(response)
+    ) {
+      break;
+    } else if (
+      route.endsWith("/[...guard]") &&
+      (response === undefined || typeof response === "object")
+    ) {
+      continue;
+    } else if (route.endsWith("/[404]")) {
+      reply.status(404);
+      break;
+    } else if (reply.statusCode === 404) {
+      continue;
+    } else {
+      break;
     }
-
-    const payload = isJSX(response)
-      ? await jsxToString.call(context, response)
-      : response;
-
-    // Post-process the payload with an optional response handler
-    const responseHandler = context["response"];
-    return typeof responseHandler === "function"
-      ? await responseHandler(payload)
-      : payload;
-  } catch (e) {
-    console.error("❌", e);
-    throw e;
   }
+
+  // Make sure a Content-Type header is set
+  if (!reply.hasHeader("Content-Type")) {
+    reply.header("Content-Type", "text/html; charset=utf-8");
+  }
+
+  const payload = isJSX(response)
+    ? await jsxToString.call(context, response)
+    : response;
+
+  // Post-process the payload with an optional response handler
+  const responseHandler = context["response"];
+  return typeof responseHandler === "function"
+    ? await responseHandler(payload)
+    : payload;
 }
 
 /**
