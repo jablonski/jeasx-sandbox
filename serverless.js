@@ -43,62 +43,62 @@ var serverless_default = Fastify({
 }).all("*", handler);
 const modules = {};
 async function handler(request, reply) {
-  let response;
-  const context = {};
-  const path = request.path;
-  for (const route of generateRoutes(path)) {
-    const modulePath = join(CWD, "dist", `routes${route}.js`);
-    let module = modules[modulePath];
-    if (module === null) {
-      continue;
-    }
-    if (module === void 0) {
-      try {
-        (await stat(modulePath)).isFile();
-      } catch {
-        if (!NODE_ENV_IS_DEVELOPMENT) {
-          modules[modulePath] = null;
-        }
+  try {
+    let response;
+    const context = {};
+    const path = request.path;
+    for (const route of generateRoutes(path)) {
+      const modulePath = join(CWD, "dist", `routes${route}.js`);
+      let module = modules[modulePath];
+      if (module === null) {
         continue;
       }
-      if (NODE_ENV_IS_DEVELOPMENT) {
-        module = await import(`file://${modulePath}?${createHash("sha1").update(await readFile(modulePath, "utf-8")).digest("hex")}`);
-      } else {
-        module = modules[modulePath] = await import(`file://${modulePath}`);
+      if (module === void 0) {
+        try {
+          (await stat(modulePath)).isFile();
+        } catch {
+          if (!NODE_ENV_IS_DEVELOPMENT) {
+            modules[modulePath] = null;
+          }
+          continue;
+        }
+        if (NODE_ENV_IS_DEVELOPMENT) {
+          module = await import(`file://${modulePath}?${createHash("sha1").update(await readFile(modulePath, "utf-8")).digest("hex")}`);
+        } else {
+          module = modules[modulePath] = await import(`file://${modulePath}`);
+        }
       }
-    }
-    request.route = route;
-    try {
+      request.route = route;
       response = await module.default.call(context, {
         request,
         reply,
         ...typeof response === "object" ? response : {}
       });
-    } catch (e) {
-      console.error("\u274C", e);
-      throw e;
+      if (reply.sent) {
+        return;
+      } else if (typeof response === "string" || Buffer.isBuffer(response) || isJSX(response)) {
+        break;
+      } else if (route.endsWith("/[...guard]") && (response === void 0 || typeof response === "object")) {
+        continue;
+      } else if (route.endsWith("/[404]")) {
+        reply.status(404);
+        break;
+      } else if (reply.statusCode === 404) {
+        continue;
+      } else {
+        break;
+      }
     }
-    if (reply.sent) {
-      return;
-    } else if (typeof response === "string" || Buffer.isBuffer(response) || isJSX(response)) {
-      break;
-    } else if (route.endsWith("/[...guard]") && (response === void 0 || typeof response === "object")) {
-      continue;
-    } else if (route.endsWith("/[404]")) {
-      reply.status(404);
-      break;
-    } else if (reply.statusCode === 404) {
-      continue;
-    } else {
-      break;
+    if (!reply.hasHeader("Content-Type")) {
+      reply.header("Content-Type", "text/html; charset=utf-8");
     }
+    const payload = isJSX(response) ? await jsxToString.call(context, response) : response;
+    const responseHandler = context["response"];
+    return typeof responseHandler === "function" ? await responseHandler(payload) : payload;
+  } catch (e) {
+    console.error("\u274C", e);
+    throw e;
   }
-  if (!reply.hasHeader("Content-Type")) {
-    reply.header("Content-Type", "text/html; charset=utf-8");
-  }
-  const payload = isJSX(response) ? await jsxToString.call(context, response) : response;
-  const responseHandler = context["response"];
-  return typeof responseHandler === "function" ? await responseHandler(payload) : payload;
 }
 function generateRoutes(path) {
   const segments = generateSegments(path);
