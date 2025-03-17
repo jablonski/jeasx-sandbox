@@ -26,9 +26,9 @@
     "sharp": "0.33.5"
   },
   "scripts": {
-    "start": "node cli.js start",
-    "build": "node cli.js build",
-    "dev": "node cli.js dev",
+    "start": "./cli.js start",
+    "build": "./cli.js build",
+    "dev": "./cli.js dev",
     "compile": "esbuild --platform=node --format=esm --outdir=. serverless.ts"
   }
 }

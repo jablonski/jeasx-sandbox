@@ -125,11 +125,16 @@ async function handler(request: FastifyRequest, reply: FastifyReply) {
     request.route = route;
 
     // Call the handler with request, reply and optional props
-    response = await module.default.call(context, {
-      request,
-      reply,
-      ...(typeof response === "object" ? response : {}),
-    });
+    try {
+      response = await module.default.call(context, {
+        request,
+        reply,
+        ...(typeof response === "object" ? response : {}),
+      });
+    } catch (e) {
+      console.error("❌", e);
+      throw e;
+    }
 
     if (reply.sent) {
       return;

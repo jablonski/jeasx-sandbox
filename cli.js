@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S NODE_OPTIONS=--enable-source-maps node
 import fs from "node:fs/promises";
 import env from "./env.js";
 

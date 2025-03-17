@@ -68,11 +68,16 @@ async function handler(request, reply) {
       }
     }
     request.route = route;
-    response = await module.default.call(context, {
-      request,
-      reply,
-      ...typeof response === "object" ? response : {}
-    });
+    try {
+      response = await module.default.call(context, {
+        request,
+        reply,
+        ...typeof response === "object" ? response : {}
+      });
+    } catch (e) {
+      console.error("\u274C", e);
+      throw e;
+    }
     if (reply.sent) {
       return;
     } else if (typeof response === "string" || Buffer.isBuffer(response) || isJSX(response)) {
