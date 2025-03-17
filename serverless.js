@@ -42,7 +42,7 @@ var serverless_default = Fastify({
   request.path = index === -1 ? request.url : request.url.slice(0, index);
 }).all("*", async (request, reply) => {
   try {
-    await handler(request, reply);
+    return await handler(request, reply);
   } catch (error) {
     console.error("\u274C", error);
     throw error;

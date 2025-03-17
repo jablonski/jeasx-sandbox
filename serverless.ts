@@ -68,7 +68,7 @@ export default Fastify({
   })
   .all("*", async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-      await handler(request, reply);
+      return await handler(request, reply);
     } catch (error) {
       console.error("❌", error);
       throw error;
