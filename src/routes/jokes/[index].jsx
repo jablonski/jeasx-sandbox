@@ -50,7 +50,7 @@ export default function Jokes({ request, reply }) {
       </form>
       {data.length > 0 && (
         <ul>
-          {data.masp((joke) => (
+          {data.map((joke) => (
             <li>{joke}</li>
           ))}
         </ul>
