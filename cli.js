@@ -1,6 +1,6 @@
 #!/usr/bin/env node
+import concurrently from "concurrently";
 import fs from "node:fs/promises";
-import env from "./env.js";
 
 switch (process.argv[2]) {
   case "start":
@@ -35,23 +35,15 @@ async function start() {
 }
 
 async function build() {
-  env();
-  const argv = [...process.argv];
-  process.argv = [];
   await clean();
   await import("./esbuild.config.js");
-  process.argv = argv;
 }
 
 async function dev() {
   process.env.NODE_ENV = "development";
-  // Run build to prepare browser assets for fastify-static
-  await build();
-  // Start the dev environment
-  process.argv[2] = "start";
-  process.argv[3] ??= "ecosystem.config.cjs";
-  // @ts-ignore
-  await import("pm2/bin/pm2-runtime");
+  concurrently(["npm:start", "npm:build", ...process.argv.slice(3)], {
+    prefixColors: "auto",
+  });
 }
 
 async function clean() {
