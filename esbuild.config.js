@@ -21,12 +21,9 @@ const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
 
 [
   {
-    entryPoints: [
-      "src/routes/**/[*].js",
-      "src/routes/**/[*].ts",
-      "src/routes/**/[*].jsx",
-      "src/routes/**/[*].tsx",
-    ],
+    entryPoints: ["js", "ts", "jsx", "tsx"].map(
+      (ext) => `src/routes/**/[*].${ext}`
+    ),
     define: {
       "process.env.BUILD_TIME": BUILD_TIME,
     },
@@ -42,13 +39,9 @@ const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
     packages: "external",
   },
   {
-    entryPoints: [
-      "src/browser/**/index.js",
-      "src/browser/**/index.ts",
-      "src/browser/**/index.jsx",
-      "src/browser/**/index.tsx",
-      "src/browser/**/index.css",
-    ],
+    entryPoints: ["js", "ts", "jsx", "tsx", "css"].map(
+      (ext) => `src/browser/**/index.${ext}`
+    ),
     define: BROWSER_PUBLIC_ENV,
     minify: process.env.NODE_ENV !== "development",
     logLevel: "info",
