@@ -34,7 +34,6 @@ async function start() {
 }
 
 async function build() {
-  await clean();
   await import("./esbuild.config.js");
 }
 

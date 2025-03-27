@@ -19,7 +19,8 @@ const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
   ? process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
   : ["chrome126", "edge126", "firefox128", "safari17"];
 
-[
+/** @type import("esbuild").BuildOptions[] */
+const buildOptions = [
   {
     entryPoints: ["js", "ts", "jsx", "tsx"].map(
       (ext) => `src/routes/**/[*].${ext}`
@@ -69,11 +70,12 @@ const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
       "*.woff2",
     ],
   },
-].forEach(async (options) => {
-  // @ts-ignore
-  await esbuild.build(options);
+];
+
+buildOptions.forEach(async (options) => {
   if (process.env.NODE_ENV === "development") {
-    // @ts-ignore
     (await esbuild.context(options)).watch();
+  } else {
+    await esbuild.build(options);
   }
 });
