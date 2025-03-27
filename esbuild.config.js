@@ -30,6 +30,9 @@ const buildOptions = [
     },
     minify: process.env.NODE_ENV !== "development",
     logLevel: "info",
+    logOverride: {
+      "empty-glob": "silent",
+    },
     color: true,
     bundle: true,
     sourcemap: true,
@@ -46,6 +49,9 @@ const buildOptions = [
     define: BROWSER_PUBLIC_ENV,
     minify: process.env.NODE_ENV !== "development",
     logLevel: "info",
+    logOverride: {
+      "empty-glob": "silent",
+    },
     color: true,
     bundle: true,
     sourcemap: true,
