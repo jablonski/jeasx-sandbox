@@ -42,15 +42,6 @@ async function dev() {
   process.env.NODE_ENV = "development";
   await build();
   await start();
-  // await Promise.all([start(), build()]);
-  // concurrently(
-  //   process.argv.length === 3
-  //     ? ["npm:start", "npm:build"]
-  //     : process.argv.slice(3),
-  //   {
-  //     prefixColors: "auto",
-  //   }
-  // );
 }
 
 async function clean() {

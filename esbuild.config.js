@@ -70,11 +70,10 @@ const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
     ],
   },
 ].forEach(async (options) => {
+  // @ts-ignore
+  await esbuild.build(options);
   if (process.env.NODE_ENV === "development") {
     // @ts-ignore
     (await esbuild.context(options)).watch();
-  } else {
-    // @ts-ignore
-    await esbuild.build(options);
   }
 });
