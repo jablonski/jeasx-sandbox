@@ -12,7 +12,7 @@ import { existsSync } from "node:fs";
  */
 export default function env() {
   if (!process.loadEnvFile) {
-    console.info("🌻 <node:process.loadEnvFile> is not available");
+    console.warn("🌻 <node:process.loadEnvFile> is not available");
     return;
   }
 
