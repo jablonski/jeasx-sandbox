@@ -29,6 +29,6 @@
     "build": "node cli.js build",
     "dev": "node cli.js dev",
     "clean": "node cli.js clean",
-    "compile": "esbuild --platform=node --format=esm --outdir=. serverless.ts"
+    "compile": "esbuild --platform=node --format=esm --sourcemap=linked --sources-content=false --outdir=. serverless.ts"
   }
 }
