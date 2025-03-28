@@ -20,8 +20,8 @@
     "preact": "10.26.4",
     "preact-render-to-string": "6.5.13",
     "prettier": "3.5.3",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "sharp": "0.33.5"
   },
   "scripts": {
