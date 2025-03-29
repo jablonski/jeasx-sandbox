@@ -2,14 +2,12 @@
 !/public/
 !/src/
 !.env
-!.npmrc
 !cli.js
-!ecosystem.config.cjs
 !env.js
 !esbuild.config.js
 !package-lock.json
 !package.json
 !server.js
 !serverless.js
-!serverless.ts
+!serverless.js.map
 !tsconfig.json
