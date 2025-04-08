@@ -22,7 +22,7 @@
     "prettier": "3.5.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sharp": "0.34.0"
+    "sharp": "0.34.1"
   },
   "scripts": {
     "start": "node cli.js start",
