@@ -12,7 +12,7 @@ export default function TodoApp({ todos, status, autofocus }) {
     >
       <section class="todoapp">
         <header class="header">
-          <h1>my todos</h1>
+          <h1>todos</h1>
           <TodoInput autofocus={autofocus} />
         </header>
         <section class="main">
