@@ -5,7 +5,7 @@ import sitemap from "./sitemap.json";
  * @param {import("./types").RouteProps} props
  */
 export default function Frontpage({}) {
-  console.log(process.env);
+  console.log(["https://expo.jeasx.dev"]);
   return (
     <Layout title="Jeasx-Expo" description="Welcome to Jeasx - JSX with Ease">
       <section class="center">
