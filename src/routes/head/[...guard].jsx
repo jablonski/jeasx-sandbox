@@ -20,7 +20,7 @@ export default async function HeadGuard() {
   };
 
   // Use response handler to replace HEAD_MARK with unified head.
-  this.response = async (payload) => {
+  this.responseHandler = async (payload) => {
     const htmlHead = await $jsxToString.call(
       this,
       <head>{unifyHead(headTags.flat())}</head>

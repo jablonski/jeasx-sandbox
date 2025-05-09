@@ -8,7 +8,7 @@ export default function Prettier({ request, reply }) {
   const form = request.body || { printWidth: 80, tabWidth: 2 };
 
   if (request.query["printWidth"] && request.query["tabWidth"]) {
-    this.response = async (payload) => {
+    this.responseHandler = async (payload) => {
       reply.header("content-type", "text/plain; charset=utf-8");
       return typeof payload === "string"
         ? await prettier.format(payload, {
