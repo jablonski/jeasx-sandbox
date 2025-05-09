@@ -6,6 +6,7 @@ import Layout from "../Layout";
 export default async function ErrorHandlerExample({ request, reply }) {
   if (request.query["errorHandler"] === "true") {
     this.errorHandler = async (error, request, reply) => {
+      reply.status(500);
       return (
         <Layout title="Internal Server Error">
           <h1>Internal Server Error</h1>
