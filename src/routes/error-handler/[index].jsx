@@ -6,7 +6,8 @@ import Layout from "../Layout";
 export default async function ErrorHandlerExample({ request, reply }) {
   if (request.query["errorHandler"] === "true") {
     this.errorHandler = async (error) => {
-      reply.status(500);
+      // You can decide if you want to create a log entry.
+      // console.error("❌", error);
       return (
         <Layout title="Internal Server Error">
           <h1>Internal Server Error</h1>
@@ -48,5 +49,5 @@ export default async function ErrorHandlerExample({ request, reply }) {
 }
 
 async function ComponentWithError() {
-  return await (await fetch("/invalid")).text();
+  return <div>{await (await fetch("/invalid")).text()}</div>;
 }
