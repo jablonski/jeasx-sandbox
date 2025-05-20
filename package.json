@@ -16,7 +16,7 @@
     "@lit-labs/motion": "1.0.8",
     "@picocss/pico": "2.1.1",
     "@preact/signals": "2.0.4",
-    "@types/node": "22.15.19",
+    "@types/node": "22.15.20",
     "@types/react": "19.1.4",
     "@types/react-dom": "19.1.5",
     "alpinejs": "3.14.9",
