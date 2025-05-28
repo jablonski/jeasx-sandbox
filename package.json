@@ -23,7 +23,7 @@
     "esbuild": "0.25.5",
     "fastify": "5.3.3",
     "htmx.org": "2.0.4",
-    "jsx-async-runtime": "1.0.1",
+    "jsx-async-runtime": "1.0.2",
     "lit": "3.3.0",
     "path-to-regexp": "8.2.0",
     "preact": "10.26.7",
