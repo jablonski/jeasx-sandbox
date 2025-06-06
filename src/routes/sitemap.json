@@ -32,7 +32,8 @@
       { "path": "/lit", "title": "Lit" },
       { "path": "/preact", "title": "Preact" },
       { "path": "/react", "title": "React" },
-      { "path": "/client-jsx", "title": "Client-Side JSX" }
+      { "path": "/client-jsx", "title": "Client-Side JSX" },
+      { "path": "/cap", "title": "Cap.js" }
     ]
   },
   {
