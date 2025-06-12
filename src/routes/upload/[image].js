@@ -5,12 +5,13 @@ import sharp from "sharp";
  */
 export default async function Image({ request, reply }) {
   if (request.method === "POST") {
-    const file = await request.file();
-    const format = file.fields["format"]["value"];
-    const size = +file.fields["size"]["value"];
-    const rotate = +file.fields["rotate"]["value"];
+    const body = request.body || {};
+    const upload = body["upload"];
+    const format = body["format"];
+    const size = Number(body["size"]);
+    const rotate = Number(body["rotate"]);
     reply.header("Content-Type", `image/${format}`);
-    return await sharp(await file.toBuffer())
+    return await sharp(upload)
       .resize({
         width: size,
         height: size,
