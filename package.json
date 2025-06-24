@@ -30,7 +30,7 @@
     "path-to-regexp": "8.2.0",
     "preact": "10.26.9",
     "preact-render-to-string": "6.5.13",
-    "prettier": "3.5.3",
+    "prettier": "3.6.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sharp": "0.34.2"
