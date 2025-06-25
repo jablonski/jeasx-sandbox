@@ -18,7 +18,7 @@
     "@lit-labs/motion": "1.0.8",
     "@picocss/pico": "2.1.1",
     "@preact/signals": "2.2.0",
-    "@types/node": "22.15.32",
+    "@types/node": "22.15.33",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "alpinejs": "3.14.9",
@@ -30,7 +30,7 @@
     "path-to-regexp": "8.2.0",
     "preact": "10.26.9",
     "preact-render-to-string": "6.5.13",
-    "prettier": "3.6.0",
+    "prettier": "3.6.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sharp": "0.34.2"
