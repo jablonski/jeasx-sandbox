@@ -1,15 +1,9 @@
-import { signal } from "@preact/signals";
+import { time } from "./signals";
 
-const time = signal(new Date());
-
-setInterval(() => {
-  time.value = new Date();
-}, 500);
-
-export default function Clock() {
+export default function Clock({ locale }) {
   return (
     <div class="center">
-      <time>{time.value.toLocaleTimeString()}</time>
+      <time>{time.value.toLocaleTimeString(locale)}</time>
     </div>
   );
 }
