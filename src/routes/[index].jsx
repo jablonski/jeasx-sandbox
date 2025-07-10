@@ -10,7 +10,7 @@ export default function Frontpage({}) {
       <section class="center">
         <h1>Jeasx-Expo</h1>
         <p>
-          Here are some simple examples of what can be done with the power of{" "}
+          Here are some examples of what can be done with the power of{" "}
           <a href="https://www.jeasx.dev">Jeasx</a>.
         </p>
         <p>
@@ -23,10 +23,11 @@ export default function Frontpage({}) {
           no fancy stuff, just simple and clean code to get you started quickly.
         </p>
       </section>
-      {sitemap.map(({ title, links }) => (
+      {sitemap.map(({ title, description, links }) => (
         <section class="center">
           <hr />
           <h2>{title}</h2>
+          <p>{description}</p>
           <div class="grid">
             {links.map(({ title, path }) => (
               <a href={path}>

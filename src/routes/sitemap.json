@@ -1,6 +1,7 @@
 [
   {
-    "title": "Examples for dynamic websites (e.g. CMS content)",
+    "title": "Dynamic websites",
+    "description": "Jeasx excels in creating dynamic websites, seamlessly integrating content from headless CMS or content APIs.",
     "links": [
       { "path": "/blog", "title": "Blog" },
       { "path": "/products", "title": "Products" },
@@ -8,7 +9,8 @@
     ]
   },
   {
-    "title": "SSR applications (no JavaScript required)",
+    "title": "Web applications without client-side JavaScript",
+    "description": "Jeasx enables the creation of web applications with enhanced UX, thanks to browser support for view transitions.",
     "links": [
       { "path": "/lottery", "title": "Lottery" },
       { "path": "/todos", "title": "Todos" },
@@ -18,7 +20,8 @@
     ]
   },
   {
-    "title": "HTMX examples",
+    "title": "HTMX - Taking HTML Seriously",
+    "description": "Jeasx seamlessly integrates with HTMX (or Fixi), enabling UI updates with HTML fragments.",
     "links": [
       { "path": "/htmx", "title": "Simple form" },
       { "path": "/nominatim", "title": "Active search" },
@@ -27,7 +30,8 @@
     ]
   },
   {
-    "title": "Userland integration of client side JavaScript",
+    "title": "Islands of client side JavaScript",
+    "description": "Jeasx integrates smoothly with established JavaScript libraries to enhance UX through islands of interaction.",
     "links": [
       { "path": "/alpine", "title": "Alpine.js" },
       { "path": "/lit", "title": "Lit" },
@@ -39,6 +43,7 @@
   },
   {
     "title": "Generating various Content-Types",
+    "description": "Jeasx is not limited to rendering HTML — it can generate various content types with the power of server-side JavaScript.",
     "links": [
       { "path": "/upload", "title": "Binary Upload" },
       { "path": "/sharp", "title": "Image Scaler" },
@@ -49,6 +54,7 @@
   },
   {
     "title": "Advanced features",
+    "description": "Jeasx offers advanced features that delight web developers.",
     "links": [
       { "path": "/error-handler", "title": "Catch errors" },
       { "path": "/prettier", "title": "Prettify HTML" },
