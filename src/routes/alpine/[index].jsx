@@ -3,13 +3,21 @@ import Layout from "../Layout";
 export default async function Jokes() {
   return (
     <Layout
-      title="Jokes"
-      description="Some funny jokes"
+      title="Use Alpine.js in Jeasx"
+      description="How to use Alpine.js with Jeasx?"
       script="/alpinejs/index.js"
     >
-      <h1 class="center">Jokes</h1>
+      <h1 class="center">Use Alpine.js with Jeasx</h1>
+      <p class="center">
+        <a href="https://alpinejs.dev" target="_blank">
+          Alpine.js
+        </a>{" "}
+        is a rugged, minimal tool for composing behavior directly in your
+        markup. Jeasx allows to use Alpine.js by simply importing it as browser
+        bundle.
+      </p>
       <form
-        method={"post"}
+        method="post"
         x-data="{
               jokes:[],
               counter: +(sessionStorage.getItem('counter') || 3),
@@ -17,7 +25,7 @@ export default async function Jokes() {
                 this.jokes = await (await fetch(`/jokes/api/${category}?amount=${this.counter}`)).json()
               },
             }"
-        x-effect={`sessionStorage.setItem('counter', counter)`}
+        x-effect="sessionStorage.setItem('counter', counter)"
       >
         <div class="grid">
           <button
