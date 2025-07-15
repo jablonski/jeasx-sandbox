@@ -5,7 +5,7 @@ import Input from "./components/Input";
 import Legend from "./components/Legend";
 import Layout from "./Layout";
 
-export default function ClaimReport({ data, form, errors }) {
+export default function ({ data, form, errors }) {
   return (
     <Layout title="Claim Report" data={data}>
       <Form>

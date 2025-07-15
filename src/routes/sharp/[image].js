@@ -5,7 +5,7 @@ const ALLOWED_IMAGE_SRC = ["/images", "https://cdn.dummyjson.com"];
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function ImageSharp({ request, reply }) {
+export default async function ({ request, reply }) {
   const src = request.query["src"];
 
   if (!ALLOWED_IMAGE_SRC.find((url) => src.startsWith(url))) {

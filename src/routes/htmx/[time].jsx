@@ -1,6 +1,6 @@
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Time({}) {
+export default function ({}) {
   return new Date().toTimeString();
 }

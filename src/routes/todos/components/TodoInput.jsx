@@ -1,4 +1,4 @@
-export default function TodoInput({ autofocus }) {
+export default function ({ autofocus }) {
   return (
     <form method="post">
       <input

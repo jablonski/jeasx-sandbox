@@ -3,7 +3,7 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function Repositories({ request }) {
+export default async function ({ request }) {
   const q = request.query["q"] || "jeasx";
 
   const repositories = (

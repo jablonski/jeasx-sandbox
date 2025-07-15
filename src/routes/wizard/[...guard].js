@@ -6,7 +6,7 @@ import { compress, decompress } from "./utils/zip";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Controller({ request, reply }) {
+export default function ({ request, reply }) {
   try {
     const props = {
       data: decompress(request.cookies["data"]) || {},

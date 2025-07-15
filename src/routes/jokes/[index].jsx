@@ -4,7 +4,7 @@ import jokes from "./jokes";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Jokes({ request, reply }) {
+export default function ({ request, reply }) {
   const body = request.body || {};
   const category = body["category"];
   const counter = Number(body["counter"] || request.cookies["counter"] || "3");

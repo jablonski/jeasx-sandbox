@@ -6,7 +6,7 @@ import Legend from "./components/Legend";
 import Textarea from "./components/Textarea";
 import Layout from "./Layout";
 
-export default function DamageDetailsAnimalOrObject({ data, form, errors }) {
+export default function ({ data, form, errors }) {
   return (
     <Layout title="Damage Details for Animal or Object" data={data}>
       <Form>

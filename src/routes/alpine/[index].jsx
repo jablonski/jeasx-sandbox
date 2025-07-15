@@ -1,6 +1,6 @@
 import Layout from "../Layout";
 
-export default async function Jokes() {
+export default async function () {
   return (
     <Layout
       title="Use Alpine.js in Jeasx"

@@ -4,7 +4,7 @@ import { Product } from "./Product";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function FragmentsExample({ request }) {
+export default function ({ request }) {
   const id = request.query["id"] || 1;
 
   return (

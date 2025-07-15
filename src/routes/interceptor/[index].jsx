@@ -4,7 +4,7 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function JSXInterceptor({ request }) {
+export default function ({ request }) {
   const removeStyles = request.query["styles"] === "off";
 
   return (

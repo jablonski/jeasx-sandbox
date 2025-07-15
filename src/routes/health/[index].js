@@ -3,7 +3,7 @@ globalThis.replyStatus = 200;
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Status({ request, reply }) {
+export default function ({ request, reply }) {
   if (request.query["status"]) {
     globalThis.replyStatus = parseInt(request.query["status"]);
   }

@@ -9,7 +9,7 @@ import { compress } from "./utils/zip";
 /**
  * @param {import("../types").RouteProps & any} props
  */
-export default function Save({ reply, data }) {
+export default function ({ reply, data }) {
   const token =
     "ID-" +
     createHash("sha1")

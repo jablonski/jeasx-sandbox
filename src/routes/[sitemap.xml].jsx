@@ -3,7 +3,7 @@ import sitemap from "./sitemap.json";
 /**
  * @param {import("./types").RouteProps} props
  */
-export default function Sitemap({ reply }) {
+export default function ({ reply }) {
   reply.header("content-type", "text/xml; charset=utf-8");
   return (
     <>

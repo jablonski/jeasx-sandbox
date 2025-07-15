@@ -4,7 +4,7 @@ import Image from "../sharp/Image";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function ProductDetail({ request, reply }) {
+export default async function ({ request, reply }) {
   const id = request.path.substring(request.route.lastIndexOf("/") + 1);
   const product = await (
     await fetch(`https://dummyjson.com/product/${id}`)

@@ -1,7 +1,7 @@
 import Layout from "../Layout";
 import Preact from "./Preact";
 
-export default function Jokes() {
+export default function () {
   return (
     <Layout
       title="Jokes"

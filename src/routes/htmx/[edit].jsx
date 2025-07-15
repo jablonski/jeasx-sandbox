@@ -3,7 +3,7 @@ import fields from "./fields";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Form({ request }) {
+export default function ({ request }) {
   const body = request.body || {};
 
   return (

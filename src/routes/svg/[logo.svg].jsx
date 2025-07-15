@@ -1,7 +1,7 @@
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Logo({ request, reply }) {
+export default function ({ request, reply }) {
   const text = request.query["text"] || "";
   reply.header("Content-Type", "image/svg+xml; charset=utf-8");
   return (

@@ -3,7 +3,7 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function HeadDemo({}) {
+export default function ({}) {
   return (
     <Layout
       title="Head demo"

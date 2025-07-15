@@ -1,7 +1,7 @@
 import Layout from "../Layout";
 import Image from "./Image";
 
-export default function ImageExamples() {
+export default function () {
   return (
     <Layout
       title="Image transformation"

@@ -4,7 +4,7 @@ import Paragraph from "./components/Paragraph";
 import Submit from "./components/Submit";
 import Layout from "./Layout";
 
-export default function Start() {
+export default function () {
   return (
     <Layout title="Start">
       <Form>

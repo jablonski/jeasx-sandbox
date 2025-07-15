@@ -4,7 +4,7 @@ import sitemap from "./sitemap.json";
 /**
  * @param {import("./types").RouteProps} props
  */
-export default function Frontpage({}) {
+export default function ({}) {
   return (
     <Layout title="Jeasx-Expo" description="Welcome to Jeasx - JSX with Ease">
       <section class="center">

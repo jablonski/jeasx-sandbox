@@ -4,7 +4,7 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Prettier({ request, reply }) {
+export default function ({ request, reply }) {
   const form = request.body || { printWidth: 80, tabWidth: 2 };
 
   if (request.query["printWidth"] && request.query["tabWidth"]) {

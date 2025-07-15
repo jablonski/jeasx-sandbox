@@ -6,7 +6,7 @@ import Legend from "./components/Legend";
 import RadioGroup from "./components/RadioGroup";
 import Layout from "./Layout";
 
-export default function Insured({ data, form, errors }) {
+export default function ({ data, form, errors }) {
   return (
     <Layout title="Claimant" data={data}>
       <Form>

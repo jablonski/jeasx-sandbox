@@ -2,7 +2,7 @@ import { jsxToString } from "jsx-async-runtime";
 
 const HEAD_MARK = "[[HEAD]]";
 
-export default async function HeadGuard() {
+export default async function () {
   const headTags = [];
 
   // Useful pattern to retain existing overrides

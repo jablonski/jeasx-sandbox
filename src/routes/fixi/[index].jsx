@@ -5,7 +5,7 @@ import View from "./[view]";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Htmx({ request, reply }) {
+export default function ({ request, reply }) {
   const body = request.body || { action: "edit" };
   return (
     <Layout

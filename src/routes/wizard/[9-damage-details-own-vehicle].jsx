@@ -6,7 +6,7 @@ import RadioGroup from "./components/RadioGroup";
 import Textarea from "./components/Textarea";
 import Layout from "./Layout";
 
-export default function DamageDetailsOwnVehicle({ data, form, errors }) {
+export default function ({ data, form, errors }) {
   return (
     <Layout title="Damage Details for your own Vehicle" data={data}>
       <Form>

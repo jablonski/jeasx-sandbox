@@ -3,7 +3,7 @@ import Layout from "../Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function ErrorHandlerExample({ request, reply }) {
+export default async function ({ request, reply }) {
   if (request.query["errorHandler"] === "true") {
     this.errorHandler = async (error) => {
       // You can decide if you want to create a log entry.

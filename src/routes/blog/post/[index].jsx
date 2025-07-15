@@ -3,7 +3,7 @@ import Layout from "../../Layout";
 /**
  * @param {import("../../types").RouteProps} props
  */
-export default function BlogPost({ request, reply }) {
+export default function ({ request, reply }) {
   if (request.method === "POST" && typeof request.body === "object") {
     const posts = JSON.parse(request.cookies["posts"] || "[]");
     posts.unshift({ ...request.body, date: new Date().toISOString() });

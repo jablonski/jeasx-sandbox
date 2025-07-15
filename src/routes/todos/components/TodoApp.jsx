@@ -3,7 +3,7 @@ import TodoFilters from "./TodoFilters";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
 
-export default function TodoApp({ todos, status, autofocus }) {
+export default function ({ todos, status, autofocus }) {
   return (
     <Layout
       title="Todos"

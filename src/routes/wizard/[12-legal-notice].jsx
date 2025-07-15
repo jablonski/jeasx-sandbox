@@ -4,7 +4,7 @@ import Headline from "./components/Headline";
 import Paragraph from "./components/Paragraph";
 import Layout from "./Layout";
 
-export default function LegalNotice({ data }) {
+export default function ({ data }) {
   return (
     <Layout title="Legal Notice" data={data}>
       <Form>

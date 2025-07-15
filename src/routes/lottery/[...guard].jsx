@@ -1,7 +1,7 @@
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function PropsGuard({ request }) {
+export default function ({ request }) {
   const body = request.body || {};
 
   const number = +body["number"];

@@ -1,7 +1,7 @@
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function Props({ request, reply }) {
+export default function ({ request, reply }) {
   const query = request.query || {};
   const body = request.body || {};
 

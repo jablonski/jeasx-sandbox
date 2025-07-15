@@ -4,7 +4,7 @@ import React from "./React";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function ReactExample({}) {
+export default function ({}) {
   return (
     <Layout
       title="React example"

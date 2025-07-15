@@ -4,7 +4,7 @@ import data from "./data.json";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function BlogIndex({ request, reply }) {
+export default function ({ request, reply }) {
   const posts = request.cookies["posts"]
     ? JSON.parse(request.cookies["posts"])
     : data;

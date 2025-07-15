@@ -7,7 +7,7 @@ import Layout from "./Layout";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default function ThankYou({ reply }) {
+export default function ({ reply }) {
   reply.clearCookie("data");
 
   return (

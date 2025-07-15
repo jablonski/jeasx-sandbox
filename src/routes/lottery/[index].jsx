@@ -1,6 +1,6 @@
 import Layout from "../Layout";
 
-export default function Lottery({ number, delta, numbers, submit }) {
+export default function ({ number, delta, numbers, submit }) {
   return (
     <Layout
       title={`Lottery ${numbers.join(", ")}`}

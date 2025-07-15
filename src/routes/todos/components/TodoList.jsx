@@ -1,4 +1,4 @@
-export default function TodoList({ todos, status }) {
+export default function ({ todos, status }) {
   return (
     <form method="post">
       <ul class="todo-list">

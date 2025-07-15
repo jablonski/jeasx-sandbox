@@ -1,4 +1,4 @@
-export default function TodoFilters({ status }) {
+export default function ({ status }) {
   return (
     <ul class="filters">
       <li>

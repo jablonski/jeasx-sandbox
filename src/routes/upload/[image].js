@@ -3,7 +3,7 @@ import sharp from "sharp";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function Image({ request, reply }) {
+export default async function ({ request, reply }) {
   if (request.method === "POST") {
     const body = request.body || {};
     const upload = body["upload"];
