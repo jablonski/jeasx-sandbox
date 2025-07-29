@@ -29,11 +29,11 @@
     "jsx-async-runtime": "1.0.3",
     "lit": "3.3.1",
     "path-to-regexp": "8.2.0",
-    "preact": "10.26.9",
+    "preact": "10.27.0",
     "preact-render-to-string": "6.5.13",
     "prettier": "3.6.2",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "sharp": "0.34.3"
   }
 }
