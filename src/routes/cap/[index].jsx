@@ -14,14 +14,18 @@ export default async function ({ request, reply }) {
         return (
           <Layout>
             <h1>Thank you, {name}!</h1>
-            <a href="">Start again</a>
+            <p>
+              Simply reload this page to simulate an invalid captcha process.
+            </p>
+            <hr />
+            <a href={request.path}>Start again</a>
           </Layout>
         );
       } else {
         return (
           <Layout>
             <h1>No success!</h1>
-            <a href="">Start again</a>
+            <a href={request.path}>Start again</a>
           </Layout>
         );
       }
@@ -49,7 +53,7 @@ export default async function ({ request, reply }) {
           <input type="text" name="name" value={request?.body?.["name"]} />
         </label>
         <label>
-          <cap-widget data-cap-api-endpoint="/cap/api/"></cap-widget>
+          <cap-widget data-cap-api-endpoint={`${request.path}/`}></cap-widget>
         </label>
         <label>
           <input type="submit" value="Submit" />
