@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "devCommand": "node cli.js dev",
   "trailingSlash": false,
   "rewrites": [
