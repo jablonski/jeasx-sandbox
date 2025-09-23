@@ -15,13 +15,14 @@ if (!globalThis.cap) {
         delete: async (token) => {
           cache.challenges.delete(token);
         },
-        listExpired: async () => {
+        deleteExpired: async () => {
           const now = Date.now();
-          return cache.challenges
-            .entries()
-            .filter(([, { expires }]) => expires < now)
-            .map(([token]) => token)
-            .toArray();
+          cache.challenges.entries().forEach(([key, expires]) => {
+            if (expires < now) {
+              cache.challenges.delete(key);
+            }
+          });
+          return [];
         },
       },
       tokens: {
@@ -35,13 +36,14 @@ if (!globalThis.cap) {
         delete: async (key) => {
           cache.tokens.delete(key);
         },
-        listExpired: async () => {
+        deleteExpired: async () => {
           const now = Date.now();
-          return cache.tokens
-            .entries()
-            .filter(([, expires]) => expires < now)
-            .map(([token]) => token)
-            .toArray();
+          cache.tokens.entries().forEach(([key, expires]) => {
+            if (expires < now) {
+              cache.tokens.delete(key);
+            }
+          });
+          return [];
         },
       },
     },
