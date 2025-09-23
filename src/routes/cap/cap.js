@@ -22,7 +22,6 @@ if (!globalThis.cap) {
               cache.challenges.delete(key);
             }
           });
-          return [];
         },
       },
       tokens: {
@@ -43,7 +42,6 @@ if (!globalThis.cap) {
               cache.tokens.delete(key);
             }
           });
-          return [];
         },
       },
     },
