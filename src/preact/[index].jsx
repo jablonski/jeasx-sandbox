@@ -1,12 +1,12 @@
 import Layout from "../Layout";
-import Preact from "./Preact";
+import Preact from "./assets/Preact";
 
 export default function () {
   return (
     <Layout
       title="Jokes"
       description="Tell me some jokes"
-      script="/preact/index.js"
+      script="/preact/assets/index.js"
     >
       <div class="center">
         <h1>Preact examples with state &amp; signals</h1>

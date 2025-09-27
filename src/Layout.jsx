@@ -47,7 +47,7 @@ export default function Layout({
                 &laquo; Back
               </a>
               <a
-                href={`https://github.com/jeasx/jeasx-expo/tree/main/src/routes/${
+                href={`https://github.com/jeasx/jeasx-expo/tree/main/src/${
                   path.split("/")[1]
                 }`}
                 target="_blank"
@@ -65,27 +65,6 @@ export default function Layout({
                   title="Server source"
                 />
               </a>
-              {script && (
-                <a
-                  href={`https://github.com/jeasx/jeasx-expo/tree/main/src/browser/${
-                    script.split("/")[1]
-                  }`}
-                  target="_blank"
-                  style={{
-                    position: "absolute",
-                    top: "1rem",
-                    left: "calc(100vw - 2.5em)",
-                  }}
-                >
-                  <img
-                    src="/icons/javascript.svg"
-                    width="20"
-                    height="20"
-                    alt="JavaScript Logo"
-                    title="Browser source"
-                  />
-                </a>
-              )}
             </header>
           )}
           <main class="container">{children}</main>

@@ -5,7 +5,7 @@ export default async function () {
     <Layout
       title="Use Alpine.js in Jeasx"
       description="How to use Alpine.js with Jeasx?"
-      script="/alpinejs/index.js"
+      script="./index.js"
     >
       <h1 class="center">Use Alpine.js with Jeasx</h1>
       <p class="center">
