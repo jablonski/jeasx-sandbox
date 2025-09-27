@@ -22,9 +22,7 @@ const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
 /** @type esbuild.BuildOptions[] */
 const buildOptions = [
   {
-    entryPoints: ["js", "ts", "jsx", "tsx"].map(
-      (ext) => `src/routes/**/[*].${ext}`
-    ),
+    entryPoints: ["js", "ts", "jsx", "tsx"].map((ext) => `src/**/[*].${ext}`),
     define: {
       "process.env.BUILD_TIME": BUILD_TIME,
     },
@@ -38,13 +36,13 @@ const buildOptions = [
     sourcemap: process.sourceMapsEnabled,
     sourcesContent: false,
     outbase: "src",
-    outdir: "dist",
+    outdir: "dist/routes",
     platform: "neutral",
     packages: "external",
   },
   {
     entryPoints: ["js", "ts", "jsx", "tsx", "css"].map(
-      (ext) => `src/browser/**/index.${ext}`
+      (ext) => `src/**/index.${ext}`
     ),
     define: BROWSER_PUBLIC_ENV,
     minify: process.env.NODE_ENV !== "development",
@@ -56,7 +54,7 @@ const buildOptions = [
     bundle: true,
     sourcemap: process.sourceMapsEnabled,
     sourcesContent: true,
-    outbase: "src/browser",
+    outbase: "src",
     outdir: "dist/browser",
     platform: "browser",
     format: "esm",
