@@ -17,7 +17,7 @@ const BROWSER_PUBLIC_ENV = Object.keys(process.env)
 
 const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
   ? process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
-  : ["chrome126", "edge126", "firefox128", "safari17"];
+  : ["chrome130", "edge130", "firefox130", "safari18"];
 
 /** @type esbuild.BuildOptions[] */
 const buildOptions = [
