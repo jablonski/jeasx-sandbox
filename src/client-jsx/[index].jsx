@@ -4,7 +4,7 @@ export default function () {
   return (
     <Layout
       title="Asynchronous JSX components in the browser"
-      script="/client-jsx/index.js"
+      script="./index.js"
     >
       <h1 class="center">(Asynchronous) JSX components in the browser</h1>
       <p class="center">

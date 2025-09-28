@@ -6,7 +6,7 @@ export default function () {
     <Layout
       title="Jokes"
       description="Tell me some jokes"
-      script="/preact/assets/index.js"
+      script="./assets/index.js"
     >
       <div class="center">
         <h1>Preact examples with state &amp; signals</h1>

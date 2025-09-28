@@ -36,7 +36,7 @@ export default async function ({ request, reply }) {
     <Layout
       title="Captcha example"
       description="Using Cap.js as proof-of-work captcha"
-      script="/cap/index.js"
+      script="./index.js"
     >
       <h1 class="center">Cap.js</h1>
       <p class="center">

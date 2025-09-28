@@ -5,11 +5,7 @@ import TodoList from "./TodoList";
 
 export default function ({ todos, status, autofocus }) {
   return (
-    <Layout
-      title="Todos"
-      description="A simple todo app"
-      css="/todos/index.css"
-    >
+    <Layout title="Todos" description="A simple todo app" css="./index.css">
       <section class="todoapp">
         <header class="header">
           <h1>todos</h1>

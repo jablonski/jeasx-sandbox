@@ -8,7 +8,7 @@ export default function ({}) {
     <Layout
       title="Jeasx with Lit"
       description="Jeasx integrates easily with Lit"
-      script="/lit/index.js"
+      script="./index.js"
     >
       <section class="center">
         <h1>Lit example</h1>

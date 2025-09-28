@@ -11,7 +11,7 @@ export default function ({ request, reply }) {
     <Layout
       title="Fixi example"
       description="Jeasx integrates easily with Fixi"
-      script="/fixi/index.js"
+      script="./index.js"
     >
       <h1 class="center">Fixi example</h1>
       <p>

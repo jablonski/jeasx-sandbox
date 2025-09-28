@@ -5,7 +5,7 @@ export default function ({ number, delta, numbers, submit }) {
     <Layout
       title={`Lottery ${numbers.join(", ")}`}
       description="A fake lottery"
-      css="/lottery/index.css"
+      css="./index.css"
     >
       <main class="lottery">
         <h1>Lottery (6 out of 49)</h1>

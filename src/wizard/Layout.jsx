@@ -10,7 +10,7 @@ export default function Layout({
   children = undefined,
 }) {
   return (
-    <DefaultLayout title={title} script="/wizard/index.js">
+    <DefaultLayout title={title} script="../index.js">
       <Header path={this.request.path} data={data} />
       {children}
     </DefaultLayout>

@@ -8,8 +8,8 @@ export default function ({}) {
   return (
     <Layout
       title="React example"
-      css="/react/assets/index.css"
-      script="/react/assets/index.js"
+      css="./assets/index.css"
+      script="./assets/index.js"
     >
       <div class="App">
         <React component="Lottery" title="Lottery 6 from 49" />
