@@ -16,7 +16,7 @@ export default function ({ request }) {
             // @ts-ignore
             type={type}
             name={name}
-            value={this.escape(body[name] ?? value)}
+            value={body[name] ?? value}
           />
         </label>
       ))}

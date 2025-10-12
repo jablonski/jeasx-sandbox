@@ -37,7 +37,7 @@ export default function ({ request, reply }) {
           </header>
           <main>
             <h2>
-              <a href={slug}>{this.escape(title)}</a>
+              <a href={slug}>{title}</a>
             </h2>
           </main>
           <footer>{author}</footer>

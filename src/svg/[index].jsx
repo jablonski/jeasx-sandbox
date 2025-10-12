@@ -10,12 +10,7 @@ export default async function ({ request }) {
       <form method="post">
         <label>
           Enter some text
-          <input
-            type="text"
-            name="text"
-            value={this.escape(request.body?.["text"])}
-            autofocus
-          />
+          <input type="text" name="text" value={text} autofocus />
         </label>
         <input type="submit" value="Submit" />
       </form>

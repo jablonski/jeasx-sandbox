@@ -17,7 +17,7 @@ export default function ({ todos, status }) {
                 >
                   [{todo.status}]
                 </button>
-                <label>{this.escape(todo.label)}</label>
+                <label>{todo.label}</label>
                 <button
                   class="destroy"
                   name="removeTodo"

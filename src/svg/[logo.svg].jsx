@@ -13,7 +13,7 @@ export default function ({ request, reply }) {
             y={40 + (index % 2)}
             style={`font: italic 40px serif; fill: ${color};`}
           >
-            {this.escape(text)}
+            {text}
           </text>
         )
       )}

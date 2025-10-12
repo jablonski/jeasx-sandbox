@@ -43,7 +43,7 @@ export default function ({ request, reply }) {
           name="path"
           placeholder="/users/:id/delete"
           autofocus
-          value={this.escape(path)}
+          value={path}
         />
         <label>
           <input
@@ -72,7 +72,7 @@ export default function ({ request, reply }) {
       {path && (
         <p class="center">
           <code>
-            {regexp && `/${this.escape(regexp.source)}/${regexp.flags}`}
+            {regexp && `/${regexp.source}/${regexp.flags}`}
             {error}
           </code>
         </p>

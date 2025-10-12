@@ -12,8 +12,8 @@ export default function ({ request }) {
         <input type="hidden" name="action" value="edit" />
         {fields.map(({ label, name }) => (
           <div>
-            {label}: <b>{this.escape(body[name])}</b>
-            <input type="hidden" name={name} value={this.escape(body[name])} />
+            {label}: <b>{body[name]}</b>
+            <input type="hidden" name={name} value={body[name]} />
           </div>
         ))}
       </fieldset>

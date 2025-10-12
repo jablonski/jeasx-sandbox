@@ -21,7 +21,9 @@ export default async function ({}) {
           {products.map(
             ({ id, title, price, description, thumbnail }, index) => (
               <>
-                {index % 3 === 0 ? `</div><div class="grid">` : ""}
+                {index % 3 === 0
+                  ? { html: /* html */ `</div><div class="grid">` }
+                  : ""}
                 <article>
                   <header>
                     <Image

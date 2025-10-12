@@ -12,7 +12,7 @@ export default function Layout({
   const path = this.request.path;
   return (
     <>
-      {"<!DOCTYPE html>"}
+      {{ html: "<!DOCTYPE html>" }}
       <html lang="en">
         <head>
           <base href={`${path.endsWith("/") ? path : path + "/"}`} />

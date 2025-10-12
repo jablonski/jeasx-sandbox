@@ -27,9 +27,9 @@ export default function ({ request, reply }) {
           </time>
         </header>
         <main>
-          <h1>{this.escape(blog.title)}</h1>
-          <p>{this.escape(blog.description)}</p>
-          <p>{this.escape(blog.body)}</p>
+          <h1>{blog.title}</h1>
+          <p>{blog.description}</p>
+          <p>{blog.body}</p>
         </main>
       </article>
       <section class="center">

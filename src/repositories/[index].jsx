@@ -23,12 +23,7 @@ export default async function ({ request }) {
     >
       <h1 class="center">Search GitHub Repositories</h1>
       <form method="get">
-        <input
-          type="search"
-          name="q"
-          placeholder="Search..."
-          value={this.escape(q)}
-        />
+        <input type="search" name="q" placeholder="Search..." value={q} />
       </form>
       <ul>
         {repositories.map(({ html_url, full_name, description }) => (
