@@ -9,7 +9,7 @@
     "compile": "esbuild --platform=node --format=esm --sourcemap=linked --sources-content=false --outdir=. serverless.ts"
   },
   "dependencies": {
-    "@cap.js/server": "4.0.2",
+    "@cap.js/server": "4.0.3",
     "@cap.js/widget": "0.1.30",
     "@fastify/cookie": "11.0.2",
     "@fastify/formbody": "8.0.2",
