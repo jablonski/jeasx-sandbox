@@ -5,6 +5,7 @@
 !cli.js
 !env.js
 !esbuild.config.js
+!jeasx.config.js
 !package-lock.json
 !package.json
 !server.js
