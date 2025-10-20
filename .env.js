@@ -1,3 +1,4 @@
+// @ts-nocheck
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 
 export default {
