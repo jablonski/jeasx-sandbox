@@ -31,7 +31,7 @@ export default async function env() {
   }
 
   try {
-    const configFile = join(process.cwd(), "jeasx.config.js");
+    const configFile = `file://${join(process.cwd(), "jeasx.config.js")}`;
     const configObject = (await import(configFile)).default;
     Object.entries(configObject).forEach(([key, value]) => {
       if (!(key in process.env)) {
