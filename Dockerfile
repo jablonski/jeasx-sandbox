@@ -7,5 +7,5 @@ COPY --chown=node:node package.json package-lock.json ./
 RUN npm install --omit=dev && npm cache clean --force
 COPY --chown=node:node . ./
 
-RUN npm run build
+RUN node --run build
 CMD ["node","--run","start"]
