@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:24-alpine
 
 USER node
 WORKDIR /home/node
@@ -8,4 +8,4 @@ RUN npm install --omit=dev && npm cache clean --force
 COPY --chown=node:node . ./
 
 RUN npm run build
-CMD ["npm","start"]
+CMD ["node","--run","start"]
