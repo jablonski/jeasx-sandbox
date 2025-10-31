@@ -13,7 +13,7 @@ export default function ({ request }) {
         <Layout
           title="Template fragments"
           description="Template fragments allow you to render a fragment or partial bit of the content within a template, rather than the entire template."
-          script="/htmx/index.js"
+          script="./index.js"
         >
           {children}
         </Layout>

@@ -8,7 +8,7 @@ export default function ({ request, reply }) {
     <Layout
       title="HTMX Active Search"
       description="Implementing active search with HTMX and Jeasx"
-      script="/htmx/index.js"
+      script="./index.js"
     >
       <h1 class="center">HTMX Active Search</h1>
       <p>
