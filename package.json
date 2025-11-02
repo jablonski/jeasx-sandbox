@@ -23,7 +23,7 @@
     "@types/react-dom": "19.2.2",
     "alpinejs": "3.15.1",
     "cheerio": "1.1.2",
-    "esbuild": "0.25.11",
+    "esbuild": "0.25.12",
     "fastify": "5.6.1",
     "htmx.org": "2.0.8",
     "jsx-async-runtime": "2.0.0",
