@@ -28,7 +28,6 @@ export default async function env() {
       .filter(existsSync)
       .forEach(process.loadEnvFile);
   }
-
   try {
     const envFile = `file://${join(process.cwd(), ".env.js")}`;
     const envObject = (await import(envFile)).default;
