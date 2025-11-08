@@ -1,3 +1,4 @@
+import fastifyCompress from "@fastify/compress";
 import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyMultipart from "@fastify/multipart";
@@ -12,7 +13,7 @@ const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const CWD = process.cwd();
 const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS && JSON.parse(process.env.FASTIFY_STATIC_HEADERS);
 const JEASX_ROUTE_CACHE_LIMIT = process.env.JEASX_ROUTE_CACHE_LIMIT && JSON.parse(process.env.JEASX_ROUTE_CACHE_LIMIT);
-var serverless_default = Fastify({
+const fastify = Fastify({
   logger: true,
   disableRequestLogging: JSON.parse(
     process.env.FASTIFY_DISABLE_REQUEST_LOGGING || "false"
@@ -20,7 +21,12 @@ var serverless_default = Fastify({
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || void 0,
   trustProxy: JSON.parse(process.env.FASTIFY_TRUST_PROXY || "false"),
   rewriteUrl: process.env.FASTIFY_REWRITE_URL && new Function(`return ${process.env.FASTIFY_REWRITE_URL}`)()
-}).register(fastifyCookie).register(fastifyFormbody).register(fastifyMultipart, {
+});
+await fastify.register(
+  fastifyCompress,
+  JSON.parse(process.env.FASTIFY_COMPRESS_OPTIONS || "{}")
+);
+fastify.register(fastifyCookie).register(fastifyFormbody).register(fastifyMultipart, {
   attachFieldsToBody: JSON.parse(
     process.env.FASTIFY_MULTIPART_ATTACH_FIELDS_TO_BODY || '"keyValues"'
   )
@@ -158,6 +164,7 @@ async function renderJSX(context, response) {
   const responseHandler = context["responseHandler"];
   return typeof responseHandler === "function" ? await responseHandler.call(context, payload) : payload;
 }
+var serverless_default = fastify;
 export {
   serverless_default as default
 };
