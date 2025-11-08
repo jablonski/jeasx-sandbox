@@ -11,7 +11,6 @@
   "dependencies": {
     "@cap.js/server": "4.0.3",
     "@cap.js/widget": "0.1.31",
-    "@fastify/compress": "8.2.0",
     "@fastify/cookie": "11.0.2",
     "@fastify/formbody": "8.0.2",
     "@fastify/multipart": "9.3.0",

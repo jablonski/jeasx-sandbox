@@ -1,4 +1,3 @@
-import fastifyCompress from "@fastify/compress";
 import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyMultipart from "@fastify/multipart";
@@ -29,8 +28,8 @@ declare module "fastify" {
   }
 }
 
-// Create Fastify instance
-const fastify = Fastify({
+// Create and export a Fastify app instance
+export default Fastify({
   logger: true,
   disableRequestLogging: JSON.parse(
     process.env.FASTIFY_DISABLE_REQUEST_LOGGING || "false"
@@ -40,14 +39,7 @@ const fastify = Fastify({
   rewriteUrl:
     process.env.FASTIFY_REWRITE_URL &&
     new Function(`return ${process.env.FASTIFY_REWRITE_URL}`)(),
-});
-
-await fastify.register(
-  fastifyCompress,
-  JSON.parse(process.env.FASTIFY_COMPRESS_OPTIONS || "{}")
-);
-
-fastify
+})
   .register(fastifyCookie)
   .register(fastifyFormbody)
   .register(fastifyMultipart, {
@@ -276,5 +268,3 @@ async function renderJSX(context: object, response: unknown) {
     ? await responseHandler.call(context, payload)
     : payload;
 }
-
-export default fastify;
