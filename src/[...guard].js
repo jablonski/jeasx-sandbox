@@ -9,7 +9,10 @@ export default function ({ request, reply }) {
   this.reply = reply;
 
   this.responseHandler = async (payload) => {
-    if (request.headers["accept-encoding"]?.includes("gzip")) {
+    if (
+      typeof payload === "string" &&
+      request.headers["accept-encoding"]?.includes("gzip")
+    ) {
       reply.header("content-encoding", "gzip");
       return new Promise((resolve, reject) => {
         gzip(payload, {}, (error, result) => {
