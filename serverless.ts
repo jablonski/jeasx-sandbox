@@ -31,6 +31,7 @@ declare module "fastify" {
 // Create and export a Fastify app instance
 export default Fastify({
   logger: true,
+  http2: JSON.parse(process.env.FASTIFY_HTTP2 || "false"),
   disableRequestLogging: JSON.parse(
     process.env.FASTIFY_DISABLE_REQUEST_LOGGING || "false"
   ),
