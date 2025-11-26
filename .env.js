@@ -2,6 +2,7 @@ const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 
 export default {
   FASTIFY_SERVER_OPTIONS: {
+    http2: !NODE_ENV_IS_DEVELOPMENT,
     disableRequestLogging: NODE_ENV_IS_DEVELOPMENT,
     bodyLimit: 1024 * 1024,
     rewriteUrl: (/** @type import("fastify").FastifyRequest */ req) =>
