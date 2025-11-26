@@ -1,8 +1,12 @@
-import fastifyCookie from "@fastify/cookie";
-import fastifyFormbody from "@fastify/formbody";
-import fastifyMultipart from "@fastify/multipart";
-import fastifyStatic from "@fastify/static";
-import Fastify, { FastifyReply, FastifyRequest } from "fastify";
+import fastifyCookie, { FastifyCookieOptions } from "@fastify/cookie";
+import fastifyFormbody, { FastifyFormbodyOptions } from "@fastify/formbody";
+import fastifyMultipart, { FastifyMultipartOptions } from "@fastify/multipart";
+import fastifyStatic, { FastifyStaticOptions } from "@fastify/static";
+import Fastify, {
+  FastifyReply,
+  FastifyRequest,
+  FastifyServerOptions,
+} from "fastify";
 import { jsxToString } from "jsx-async-runtime";
 import { stat } from "node:fs/promises";
 import { join } from "node:path";
@@ -31,22 +35,39 @@ declare module "fastify" {
 // Create and export a Fastify app instance
 export default Fastify({
   logger: true,
-  http2: JSON.parse(process.env.FASTIFY_HTTP2 || "false"),
   disableRequestLogging: JSON.parse(
     process.env.FASTIFY_DISABLE_REQUEST_LOGGING || "false"
   ),
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || undefined,
-  trustProxy: JSON.parse(process.env.FASTIFY_TRUST_PROXY || "false"),
+  // trustProxy: JSON.parse(process.env.FASTIFY_TRUST_PROXY || "false"),
   rewriteUrl:
     process.env.FASTIFY_REWRITE_URL &&
     new Function(`return ${process.env.FASTIFY_REWRITE_URL}`)(),
+  ...(jsonToOptions(
+    process.env.FASTIFY_SERVER_OPTIONS,
+    "genReqId",
+    "querystringParser",
+    "rewriteUrl",
+    "serverFactory"
+  ) as FastifyServerOptions),
 })
-  .register(fastifyCookie)
-  .register(fastifyFormbody)
+  .register(fastifyCookie, {
+    ...(jsonToOptions(
+      process.env.FASTIFY_COOKIE_OPTIONS
+    ) as FastifyCookieOptions),
+  })
+  .register(fastifyFormbody, {
+    ...(jsonToOptions(
+      process.env.FASTIFY_FORMBODY_OPTIONS,
+      "parser"
+    ) as FastifyFormbodyOptions),
+  })
   .register(fastifyMultipart, {
-    attachFieldsToBody: JSON.parse(
-      process.env.FASTIFY_MULTIPART_ATTACH_FIELDS_TO_BODY || '"keyValues"'
-    ),
+    attachFieldsToBody: "keyValues",
+    ...(jsonToOptions(
+      process.env.FASTIFY_MULTIPART_OPTIONS,
+      "onFile"
+    ) as FastifyMultipartOptions),
   })
   .register(fastifyStatic, {
     root: ["public", "dist/browser"].map((dir) => join(CWD, dir)),
@@ -67,6 +88,11 @@ export default Fastify({
           }
         }
       : undefined,
+    ...(jsonToOptions(
+      process.env.FASTIFY_STATIC_OPTIONS,
+      "allowedPath",
+      "setHeaders"
+    ) as FastifyStaticOptions),
   })
   .decorateRequest("route", "")
   .decorateRequest("path", "")
@@ -85,6 +111,20 @@ export default Fastify({
       throw error;
     }
   });
+
+/**
+ * Converts stringified into actual functions
+ * for all given keys contained in json string.
+ */
+function jsonToOptions(json: string, ...keys: string[]) {
+  const obj = JSON.parse(json || "{}");
+  for (const key of keys) {
+    if (obj[key]) {
+      obj[key] = new Function(`return ${obj[key]}`)();
+    }
+  }
+  return obj;
+}
 
 // Cache for resolved route modules, 'null' means no module exists.
 const modules = new Map<string, { default: Function }>();

@@ -14,16 +14,33 @@ const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS && JSON.parse(
 const JEASX_ROUTE_CACHE_LIMIT = process.env.JEASX_ROUTE_CACHE_LIMIT && JSON.parse(process.env.JEASX_ROUTE_CACHE_LIMIT);
 var serverless_default = Fastify({
   logger: true,
-  http2: JSON.parse(process.env.FASTIFY_HTTP2 || "false"),
   disableRequestLogging: JSON.parse(
     process.env.FASTIFY_DISABLE_REQUEST_LOGGING || "false"
   ),
   bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || void 0,
-  trustProxy: JSON.parse(process.env.FASTIFY_TRUST_PROXY || "false"),
-  rewriteUrl: process.env.FASTIFY_REWRITE_URL && new Function(`return ${process.env.FASTIFY_REWRITE_URL}`)()
-}).register(fastifyCookie).register(fastifyFormbody).register(fastifyMultipart, {
-  attachFieldsToBody: JSON.parse(
-    process.env.FASTIFY_MULTIPART_ATTACH_FIELDS_TO_BODY || '"keyValues"'
+  // trustProxy: JSON.parse(process.env.FASTIFY_TRUST_PROXY || "false"),
+  rewriteUrl: process.env.FASTIFY_REWRITE_URL && new Function(`return ${process.env.FASTIFY_REWRITE_URL}`)(),
+  ...jsonToOptions(
+    process.env.FASTIFY_SERVER_OPTIONS,
+    "genReqId",
+    "querystringParser",
+    "rewriteUrl",
+    "serverFactory"
+  )
+}).register(fastifyCookie, {
+  ...jsonToOptions(
+    process.env.FASTIFY_COOKIE_OPTIONS
+  )
+}).register(fastifyFormbody, {
+  ...jsonToOptions(
+    process.env.FASTIFY_FORMBODY_OPTIONS,
+    "parser"
+  )
+}).register(fastifyMultipart, {
+  attachFieldsToBody: "keyValues",
+  ...jsonToOptions(
+    process.env.FASTIFY_MULTIPART_OPTIONS,
+    "onFile"
   )
 }).register(fastifyStatic, {
   root: ["public", "dist/browser"].map((dir) => join(CWD, dir)),
@@ -41,7 +58,12 @@ var serverless_default = Fastify({
         }
       }
     }
-  } : void 0
+  } : void 0,
+  ...jsonToOptions(
+    process.env.FASTIFY_STATIC_OPTIONS,
+    "allowedPath",
+    "setHeaders"
+  )
 }).decorateRequest("route", "").decorateRequest("path", "").addHook("onRequest", async (request, reply) => {
   reply.header("Content-Type", "text/html; charset=utf-8");
   const index = request.url.indexOf("?");
@@ -54,6 +76,15 @@ var serverless_default = Fastify({
     throw error;
   }
 });
+function jsonToOptions(json, ...keys) {
+  const obj = JSON.parse(json || "{}");
+  for (const key of keys) {
+    if (obj[key]) {
+      obj[key] = new Function(`return ${obj[key]}`)();
+    }
+  }
+  return obj;
+}
 const modules = /* @__PURE__ */ new Map();
 async function handler(request, reply) {
   let response;
