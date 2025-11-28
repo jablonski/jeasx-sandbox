@@ -1,16 +1,18 @@
 export default {
+  JEASX_ROUTE_CACHE_LIMIT: 10000,
+
+  /** @type import("fastify").FastifyServerOptions */
   FASTIFY_SERVER_OPTIONS: {
+    // @ts-ignore
     http2: process.env.NODE_ENV !== "development",
     disableRequestLogging: process.env.NODE_ENV === "development",
     bodyLimit: 1024 * 1024,
-    rewriteUrl: (/** @type import("fastify").FastifyRequest */ req) =>
-      req.url.replace(/^\/jeasx/, ""),
+    rewriteUrl: (req) => req.url?.replace(/^\/jeasx/, ""),
   },
+
+  /** @type import("@fastify/static").FastifyStaticOptions */
   FASTIFY_STATIC_OPTIONS: {
-    setHeaders: (
-      /** @type import("@fastify/static").SetHeadersResponse */ reply,
-      /** @type string */ path
-    ) => {
+    setHeaders: (reply, path, stats) => {
       reply.setHeader(
         "Cache-Control",
         process.env.NODE_ENV === "development"
@@ -19,5 +21,4 @@ export default {
       );
     },
   },
-  JEASX_ROUTE_CACHE_LIMIT: 10000,
 };
