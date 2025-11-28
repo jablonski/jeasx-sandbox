@@ -35,20 +35,8 @@ declare module "fastify" {
 // Create and export a Fastify app instance
 export default Fastify({
   logger: true,
-  disableRequestLogging: JSON.parse(
-    process.env.FASTIFY_DISABLE_REQUEST_LOGGING || "false"
-  ),
-  bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || undefined,
-  // trustProxy: JSON.parse(process.env.FASTIFY_TRUST_PROXY || "false"),
-  rewriteUrl:
-    process.env.FASTIFY_REWRITE_URL &&
-    new Function(`return ${process.env.FASTIFY_REWRITE_URL}`)(),
   ...(jsonToOptions(
-    process.env.FASTIFY_SERVER_OPTIONS,
-    "genReqId",
-    "querystringParser",
-    "rewriteUrl",
-    "serverFactory"
+    process.env.FASTIFY_SERVER_OPTIONS
   ) as FastifyServerOptions),
 })
   .register(fastifyCookie, {
@@ -58,15 +46,13 @@ export default Fastify({
   })
   .register(fastifyFormbody, {
     ...(jsonToOptions(
-      process.env.FASTIFY_FORMBODY_OPTIONS,
-      "parser"
+      process.env.FASTIFY_FORMBODY_OPTIONS
     ) as FastifyFormbodyOptions),
   })
   .register(fastifyMultipart, {
     attachFieldsToBody: "keyValues",
     ...(jsonToOptions(
-      process.env.FASTIFY_MULTIPART_OPTIONS,
-      "onFile"
+      process.env.FASTIFY_MULTIPART_OPTIONS
     ) as FastifyMultipartOptions),
   })
   .register(fastifyStatic, {
@@ -89,9 +75,7 @@ export default Fastify({
         }
       : undefined,
     ...(jsonToOptions(
-      process.env.FASTIFY_STATIC_OPTIONS,
-      "allowedPath",
-      "setHeaders"
+      process.env.FASTIFY_STATIC_OPTIONS
     ) as FastifyStaticOptions),
   })
   .decorateRequest("route", "")
@@ -113,14 +97,17 @@ export default Fastify({
   });
 
 /**
- * Converts stringified into actual functions
- * for all given keys contained in json string.
+ * Parses JSON and instantiates all stringified functions.
  */
-function jsonToOptions(json: string, ...keys: string[]) {
+function jsonToOptions(json: string) {
   const obj = JSON.parse(json || "{}");
-  for (const key of keys) {
-    if (obj[key]) {
-      obj[key] = new Function(`return ${obj[key]}`)();
+  for (const key in obj) {
+    if (typeof obj[key] === "string" && obj[key].includes("=>")) {
+      try {
+        obj[key] = new Function(`return ${obj[key]}`)();
+      } catch (error) {
+        console.warn("⚠️", error);
+      }
     }
   }
   return obj;

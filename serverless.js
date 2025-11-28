@@ -13,19 +13,9 @@ const CWD = process.cwd();
 const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS && JSON.parse(process.env.FASTIFY_STATIC_HEADERS);
 const JEASX_ROUTE_CACHE_LIMIT = process.env.JEASX_ROUTE_CACHE_LIMIT && JSON.parse(process.env.JEASX_ROUTE_CACHE_LIMIT);
 var serverless_default = Fastify({
-  logger: true,
-  disableRequestLogging: JSON.parse(
-    process.env.FASTIFY_DISABLE_REQUEST_LOGGING || "false"
-  ),
-  bodyLimit: Number(process.env.FASTIFY_BODY_LIMIT) || void 0,
-  // trustProxy: JSON.parse(process.env.FASTIFY_TRUST_PROXY || "false"),
-  rewriteUrl: process.env.FASTIFY_REWRITE_URL && new Function(`return ${process.env.FASTIFY_REWRITE_URL}`)(),
+  // logger: true,
   ...jsonToOptions(
-    process.env.FASTIFY_SERVER_OPTIONS,
-    "genReqId",
-    "querystringParser",
-    "rewriteUrl",
-    "serverFactory"
+    process.env.FASTIFY_SERVER_OPTIONS
   )
 }).register(fastifyCookie, {
   ...jsonToOptions(
@@ -33,14 +23,12 @@ var serverless_default = Fastify({
   )
 }).register(fastifyFormbody, {
   ...jsonToOptions(
-    process.env.FASTIFY_FORMBODY_OPTIONS,
-    "parser"
+    process.env.FASTIFY_FORMBODY_OPTIONS
   )
 }).register(fastifyMultipart, {
   attachFieldsToBody: "keyValues",
   ...jsonToOptions(
-    process.env.FASTIFY_MULTIPART_OPTIONS,
-    "onFile"
+    process.env.FASTIFY_MULTIPART_OPTIONS
   )
 }).register(fastifyStatic, {
   root: ["public", "dist/browser"].map((dir) => join(CWD, dir)),
@@ -60,9 +48,7 @@ var serverless_default = Fastify({
     }
   } : void 0,
   ...jsonToOptions(
-    process.env.FASTIFY_STATIC_OPTIONS,
-    "allowedPath",
-    "setHeaders"
+    process.env.FASTIFY_STATIC_OPTIONS
   )
 }).decorateRequest("route", "").decorateRequest("path", "").addHook("onRequest", async (request, reply) => {
   reply.header("Content-Type", "text/html; charset=utf-8");
@@ -76,11 +62,15 @@ var serverless_default = Fastify({
     throw error;
   }
 });
-function jsonToOptions(json, ...keys) {
+function jsonToOptions(json) {
   const obj = JSON.parse(json || "{}");
-  for (const key of keys) {
-    if (obj[key]) {
-      obj[key] = new Function(`return ${obj[key]}`)();
+  for (const key in obj) {
+    if (typeof obj[key] === "string" && obj[key].includes("=>")) {
+      try {
+        obj[key] = new Function(`return ${obj[key]}`)();
+      } catch (error) {
+        console.warn("\u26A0\uFE0F", error);
+      }
     }
   }
   return obj;
