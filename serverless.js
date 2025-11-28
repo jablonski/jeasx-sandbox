@@ -13,7 +13,7 @@ const CWD = process.cwd();
 const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS && JSON.parse(process.env.FASTIFY_STATIC_HEADERS);
 const JEASX_ROUTE_CACHE_LIMIT = process.env.JEASX_ROUTE_CACHE_LIMIT && JSON.parse(process.env.JEASX_ROUTE_CACHE_LIMIT);
 var serverless_default = Fastify({
-  // logger: true,
+  logger: true,
   ...jsonToOptions(
     process.env.FASTIFY_SERVER_OPTIONS
   )
