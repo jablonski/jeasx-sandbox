@@ -10,7 +10,6 @@ import env from "./env.js";
 await env();
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const CWD = process.cwd();
-const FASTIFY_STATIC_HEADERS = process.env.FASTIFY_STATIC_HEADERS && JSON.parse(process.env.FASTIFY_STATIC_HEADERS);
 const JEASX_ROUTE_CACHE_LIMIT = process.env.JEASX_ROUTE_CACHE_LIMIT && JSON.parse(process.env.JEASX_ROUTE_CACHE_LIMIT);
 var serverless_default = Fastify({
   logger: true,
@@ -34,19 +33,7 @@ var serverless_default = Fastify({
   root: ["public", "dist/browser"].map((dir) => join(CWD, dir)),
   prefix: "/",
   wildcard: false,
-  cacheControl: false,
   preCompressed: true,
-  setHeaders: FASTIFY_STATIC_HEADERS ? (reply, path) => {
-    for (const [suffix, headers] of Object.entries(
-      FASTIFY_STATIC_HEADERS
-    )) {
-      if (path.endsWith(suffix)) {
-        for (const [key, value] of Object.entries(headers)) {
-          reply.setHeader(key, value);
-        }
-      }
-    }
-  } : void 0,
   ...jsonToOptions(
     process.env.FASTIFY_STATIC_OPTIONS
   )
