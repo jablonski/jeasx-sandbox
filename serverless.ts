@@ -82,17 +82,17 @@ export default Fastify({
  * Parses JSON and instantiates all stringified functions.
  */
 function jsonToOptions(json: string) {
-  const obj = JSON.parse(json || "{}");
-  for (const key in obj) {
-    if (typeof obj[key] === "string" && obj[key].includes("=>")) {
+  const options = JSON.parse(json || "{}");
+  for (const key in options) {
+    if (typeof options[key] === "string" && options[key].includes("=>")) {
       try {
-        obj[key] = new Function(`return ${obj[key]}`)();
+        options[key] = new Function(`return ${options[key]}`)();
       } catch (error) {
         console.warn("⚠️", error);
       }
     }
   }
-  return obj;
+  return options;
 }
 
 // Cache for resolved route modules, 'null' means no module exists.
