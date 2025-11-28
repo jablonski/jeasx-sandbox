@@ -1,18 +1,23 @@
-const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
-
 export default {
   FASTIFY_SERVER_OPTIONS: {
-    http2: !NODE_ENV_IS_DEVELOPMENT,
-    disableRequestLogging: NODE_ENV_IS_DEVELOPMENT,
+    http2: process.env.NODE_ENV !== "development",
+    disableRequestLogging: process.env.NODE_ENV === "development",
     bodyLimit: 1024 * 1024,
     rewriteUrl: (/** @type import("fastify").FastifyRequest */ req) =>
       req.url.replace(/^\/jeasx/, ""),
   },
-  FASTIFY_STATIC_HEADERS: NODE_ENV_IS_DEVELOPMENT
-    ? { "": { "Cache-Control": "no-store" } }
-    : {
-        "": { "Cache-Control": "public,max-age=31536000,s-maxage=31536000" },
-        "robots.txt": { "Cache-Control": "public,max-age=100,s-maxage=100" },
-      },
+  FASTIFY_STATIC_OPTIONS: {
+    setHeaders: (
+      /** @type import("@fastify/static").SetHeadersResponse */ reply,
+      /** @type string */ path
+    ) => {
+      reply.setHeader(
+        "Cache-Control",
+        process.env.NODE_ENV === "development"
+          ? "no-store"
+          : "public,max-age=31536000,s-maxage=31536000"
+      );
+    },
+  },
   JEASX_ROUTE_CACHE_LIMIT: 10000,
 };
