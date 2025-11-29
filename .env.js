@@ -20,7 +20,7 @@ export default {
 
   /** @type import("@fastify/static").FastifyStaticOptions */
   FASTIFY_STATIC_OPTIONS: {
-    maxAge:
-      process.env.NODE_ENV === "development" ? 0 : 365 * 24 * 60 * 60 * 1000,
+    immutable: process.env.NODE_ENV !== "development",
+    maxAge: process.env.NODE_ENV === "development" ? "0" : "365d",
   },
 };
