@@ -8,12 +8,6 @@ export default {
     http2: process.env.NODE_ENV !== "development",
   },
 
-  /** @type import("@fastify/static").FastifyStaticOptions */
-  FASTIFY_STATIC_OPTIONS: {
-    maxAge:
-      process.env.NODE_ENV === "development" ? 0 : 365 * 24 * 60 * 60 * 1000,
-  },
-
   /** @type import("@fastify/cookie").FastifyCookieOptions */
   FASTIFY_COOKIE_OPTIONS: {
     parseOptions: {
@@ -22,5 +16,11 @@ export default {
       secure: "auto",
       sameSite: "strict",
     },
+  },
+
+  /** @type import("@fastify/static").FastifyStaticOptions */
+  FASTIFY_STATIC_OPTIONS: {
+    maxAge:
+      process.env.NODE_ENV === "development" ? 0 : 365 * 24 * 60 * 60 * 1000,
   },
 };
