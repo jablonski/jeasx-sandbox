@@ -1,3 +1,5 @@
+import * as os from "os";
+
 /**
  * @param {import("../types").RouteProps} props
  */
@@ -13,5 +15,6 @@ export default function ({ request, reply }) {
     headers,
     body,
     runtime: process.versions,
+    memory: os.totalmem(),
   };
 }
