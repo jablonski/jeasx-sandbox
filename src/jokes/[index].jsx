@@ -9,11 +9,7 @@ export default function ({ request, reply }) {
   const category = body["category"];
   const counter = Number(body["counter"] || request.cookies["counter"] || "3");
   const data = category ? jokes(category, counter) : [];
-  reply.setCookie("counter", String(counter), {
-    path: "/",
-    httpOnly: true,
-    sameSite: "strict",
-  });
+  reply.setCookie("counter", String(counter));
 
   return (
     <Layout title="Jokes" description="Some funny jokes">

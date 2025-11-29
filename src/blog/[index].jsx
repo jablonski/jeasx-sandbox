@@ -8,11 +8,7 @@ export default function ({ request, reply }) {
   const posts = request.cookies["posts"]
     ? JSON.parse(request.cookies["posts"])
     : data;
-  reply.setCookie("posts", JSON.stringify(posts), {
-    path: "/",
-    httpOnly: true,
-    sameSite: "strict",
-  });
+  reply.setCookie("posts", JSON.stringify(posts));
 
   return (
     <Layout title="Blog">

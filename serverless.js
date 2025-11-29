@@ -50,17 +50,17 @@ var serverless_default = Fastify({
   }
 });
 function jsonToOptions(json) {
-  const obj = JSON.parse(json || "{}");
-  for (const key in obj) {
-    if (typeof obj[key] === "string" && obj[key].includes("=>")) {
+  const options = JSON.parse(json || "{}");
+  for (const key in options) {
+    if (typeof options[key] === "string" && options[key].includes("=>")) {
       try {
-        obj[key] = new Function(`return ${obj[key]}`)();
+        options[key] = new Function(`return ${options[key]}`)();
       } catch (error) {
         console.warn("\u26A0\uFE0F", error);
       }
     }
   }
-  return obj;
+  return options;
 }
 const modules = /* @__PURE__ */ new Map();
 async function handler(request, reply) {

@@ -17,11 +17,7 @@ export default function ({ reply, data }) {
       .digest("hex")
       .slice(0, 8)
       .toUpperCase();
-  reply.setCookie(token, compress(data), {
-    path: "/",
-    httpOnly: true,
-    sameSite: "strict",
-  });
+  reply.setCookie(token, compress(data));
   reply.clearCookie("data");
 
   return (

@@ -26,11 +26,7 @@ export default function ({ request, reply }) {
     todos.splice(+body["removeTodo"], 1);
   }
 
-  reply.setCookie("todos", JSON.stringify(todos), {
-    path: "/",
-    httpOnly: true,
-    sameSite: "strict",
-  });
+  reply.setCookie("todos", JSON.stringify(todos));
 
   return {
     todos,

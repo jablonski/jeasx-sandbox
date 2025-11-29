@@ -34,11 +34,7 @@ export default function ({ request, reply }) {
         delete props.data[path];
       }
 
-      reply.setCookie("data", compress({ ...props.data, path }), {
-        path: "/",
-        httpOnly: true,
-        sameSite: "strict",
-      });
+      reply.setCookie("data", compress({ ...props.data, path }));
 
       switch (request.body["$action"] || "") {
         case "":
