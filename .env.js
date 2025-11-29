@@ -5,7 +5,7 @@ export default {
     bodyLimit: 1024 * 1024,
     rewriteUrl: (req) => String(req.url).replace(/^\/foo/, ""),
     // @ts-ignore
-    // http2: process.env.NODE_ENV !== "development",
+    http2: process.env.NODE_ENV !== "development",
   },
 
   /** @type import("@fastify/static").FastifyStaticOptions */
