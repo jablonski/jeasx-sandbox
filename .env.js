@@ -19,6 +19,7 @@ export default {
     parseOptions: {
       path: "/",
       httpOnly: true,
+      secure: "auto",
       sameSite: "strict",
     },
   },
