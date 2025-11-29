@@ -9,17 +9,15 @@ import Fastify, {
 } from "fastify";
 import { jsxToString } from "jsx-async-runtime";
 import { stat } from "node:fs/promises";
+import { totalmem } from "node:os";
 import { join } from "node:path";
 import env from "./env.js";
 
 await env();
 
-const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const CWD = process.cwd();
-
-const JEASX_ROUTE_CACHE_LIMIT =
-  process.env.JEASX_ROUTE_CACHE_LIMIT &&
-  JSON.parse(process.env.JEASX_ROUTE_CACHE_LIMIT);
+const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const JEASX_ROUTE_CACHE_LIMIT = totalmem() / 1024 / 1024;
 
 declare module "fastify" {
   interface FastifyRequest {
@@ -148,10 +146,7 @@ async function handler(request: FastifyRequest, reply: FastifyReply) {
           continue;
         } finally {
           // Remove oldest entry from cache if limit is reached
-          if (
-            typeof JEASX_ROUTE_CACHE_LIMIT === "number" &&
-            modules.size > JEASX_ROUTE_CACHE_LIMIT
-          ) {
+          if (modules.size > JEASX_ROUTE_CACHE_LIMIT) {
             modules.delete(modules.keys().next().value);
           }
         }
