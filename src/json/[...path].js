@@ -15,6 +15,6 @@ export default function ({ request, reply }) {
     headers,
     body,
     runtime: process.versions,
-    memory: os.totalmem(),
+    totalmem: os.totalmem(),
   };
 }
