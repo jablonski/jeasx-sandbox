@@ -17,7 +17,7 @@ await env();
 
 const CWD = process.cwd();
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
-const JEASX_ROUTE_CACHE_LIMIT = freemem() / 1024 / 1024;
+const JEASX_ROUTE_CACHE_LIMIT = Math.floor(freemem() / 1024 / 1024);
 
 declare module "fastify" {
   interface FastifyRequest {
