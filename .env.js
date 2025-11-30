@@ -18,6 +18,12 @@ export default {
     },
   },
 
+  /** @type import("@fastify/formbody").FastifyFormbodyOptions */
+  // FASTIFY_FORMBODY_OPTIONS: {},
+
+  /** @type import("@fastify/multipart").FastifyMultipartOptions */
+  // FASTIFY_MULTIPART_OPTIONS: {},
+
   /** @type import("@fastify/static").FastifyStaticOptions */
   FASTIFY_STATIC_OPTIONS: {
     immutable: process.env.NODE_ENV !== "development",
