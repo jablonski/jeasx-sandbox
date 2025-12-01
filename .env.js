@@ -23,7 +23,7 @@ export default {
   /** @type import("@fastify/static").FastifyStaticOptions */
   FASTIFY_STATIC_OPTIONS: {
     immutable: !NODE_ENV_IS_DEVELOPMENT,
-    maxAge: NODE_ENV_IS_DEVELOPMENT ? "0" : "365d",
+    maxAge: NODE_ENV_IS_DEVELOPMENT ? 0 : "365d",
   },
 
   /** @type import("@fastify/formbody").FastifyFormbodyOptions */
