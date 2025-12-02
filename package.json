@@ -28,7 +28,7 @@
     "htmx.org": "2.0.8",
     "jsx-async-runtime": "2.0.1",
     "lit": "3.3.1",
-    "preact": "10.27.2",
+    "preact": "10.28.0",
     "preact-render-to-string": "6.6.3",
     "prettier": "3.7.3",
     "react": "19.2.0",
