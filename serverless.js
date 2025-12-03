@@ -11,7 +11,7 @@ import env from "./env.js";
 await env();
 const CWD = process.cwd();
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
-const JEASX_ROUTE_CACHE_LIMIT = freemem() / 1024 / 1024;
+const JEASX_ROUTE_CACHE_LIMIT = Math.floor(freemem() / 1024 / 1024);
 var serverless_default = Fastify({
   logger: true,
   ...jsonToOptions(
@@ -75,7 +75,7 @@ async function handler(request, reply) {
       }
       if (module === void 0) {
         try {
-          const modulePath = join(CWD, "dist", `server${route}.js`);
+          const modulePath = join(CWD, "dist", "server", `${route}.js`);
           if (NODE_ENV_IS_DEVELOPMENT) {
             if (typeof require === "function") {
               if (require.cache[modulePath]) {
