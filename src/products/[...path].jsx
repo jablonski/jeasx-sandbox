@@ -7,6 +7,7 @@ import Image from "../sharp/Image";
 export default async function ({ request, reply }) {
   const { id } = new URLPattern({ pathname: "/*/:id" }).exec(request.path)
     .pathname.groups;
+
   const product = await (
     await fetch(`https://dummyjson.com/product/${id}`)
   ).json();
