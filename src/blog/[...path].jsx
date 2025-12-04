@@ -5,7 +5,8 @@ import Layout from "../Layout";
  * @param {import("../types").RouteProps} props
  */
 export default function ({ request, reply }) {
-  const slug = request.path.substring(request.route.lastIndexOf("/") + 1);
+  const { slug } = new URLPattern({ pathname: "/*/:id" }).exec(request.path)
+    .pathname.groups;
   const blog = JSON.parse(request.cookies["posts"] || "[]").find(
     (post) => post.slug === slug
   );

@@ -5,7 +5,8 @@ import Image from "../sharp/Image";
  * @param {import("../types").RouteProps} props
  */
 export default async function ({ request, reply }) {
-  const id = request.path.substring(request.route.lastIndexOf("/") + 1);
+  const { id } = new URLPattern({ pathname: "/*/:id" }).exec(request.path)
+    .pathname.groups;
   const product = await (
     await fetch(`https://dummyjson.com/product/${id}`)
   ).json();
