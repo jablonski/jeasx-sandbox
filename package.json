@@ -27,7 +27,7 @@
     "lit": "3.3.2",
     "preact": "10.28.2",
     "preact-render-to-string": "6.6.5",
-    "prettier": "3.7.4",
+    "prettier": "3.8.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "sharp": "0.34.5"
