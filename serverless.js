@@ -14,9 +14,7 @@ const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const JEASX_ROUTE_CACHE_LIMIT = Math.floor(freemem() / 1024 / 1024);
 var serverless_default = Fastify({
   logger: true,
-  ...jsonToOptions(
-    process.env.FASTIFY_SERVER_OPTIONS
-  )
+  ...jsonToOptions(process.env.FASTIFY_SERVER_OPTIONS)
 }).register(fastifyCookie, {
   ...jsonToOptions(
     process.env.FASTIFY_COOKIE_OPTIONS
@@ -110,7 +108,9 @@ async function handler(request, reply) {
       if (reply.sent) {
         return;
       } else if (route.endsWith("/[404]")) {
-        reply.status(404);
+        if (reply.statusCode === 200 && !request.path.endsWith("/404")) {
+          reply.status(404);
+        }
         break;
       } else if (typeof response === "string" || Buffer.isBuffer(response) || isJSX(response)) {
         break;
