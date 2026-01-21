@@ -15,21 +15,62 @@ const BROWSER_PUBLIC_ENV = Object.keys(process.env)
     { "process.env.BROWSER_PUBLIC_BUILD_TIME": BUILD_TIME }
   );
 
-const ESBUILD_BROWSER_TARGET = process.env.ESBUILD_BROWSER_TARGET
-  ? process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
+const ESBUILD_BROWSER_TARGET =
+  process.env.ESBUILD_BROWSER_TARGET ?
+    process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
   : ["chrome130", "edge130", "firefox130", "safari18"];
+
+const ESBUILD_PLUGINS = [];
+
+try {
+  const ESBUILD_MDX_OPTIONS = JSON.parse(
+    process.env.ESBUILD_MDX_OPTIONS || "{}"
+  );
+  for (const key of ["remarkPlugins", "rehypePlugins", "recmaPlugins"]) {
+    if (key in ESBUILD_MDX_OPTIONS) {
+      const plugins = [];
+      for (const plugin of ESBUILD_MDX_OPTIONS[key]) {
+        try {
+          plugins.push((await import(plugin)).default);
+        } catch (e) {
+          // ignore
+        }
+      }
+      ESBUILD_MDX_OPTIONS[key] = plugins;
+    }
+  }
+
+  ESBUILD_PLUGINS.push(
+    // @ts-ignore
+    (await import("@mdx-js/esbuild")).default({
+      development: process.env.NODE_ENV === "development",
+      jsxImportSource: "jsx-async-runtime",
+      elementAttributeNameCase: "html",
+      stylePropertyNameCase: "css",
+      ...ESBUILD_MDX_OPTIONS
+    })
+  );
+} catch (e) {
+  // ignore
+}
 
 /** @type esbuild.BuildOptions[] */
 const buildOptions = [
   {
-    entryPoints: ["js", "ts", "jsx", "tsx"].map((ext) => `src/**/[*].${ext}`),
+    entryPoints: [
+      "js",
+      "ts",
+      "jsx",
+      "tsx",
+      ...(ESBUILD_PLUGINS.length === 0 ? [] : ["mdx"])
+    ].map((ext) => `src/**/[*].${ext}`),
     define: {
-      "process.env.BUILD_TIME": BUILD_TIME,
+      "process.env.BUILD_TIME": BUILD_TIME
     },
     minify: process.env.NODE_ENV !== "development",
     logLevel: "info",
     logOverride: {
-      "empty-glob": "silent",
+      "empty-glob": "silent"
     },
     color: true,
     bundle: true,
@@ -38,6 +79,7 @@ const buildOptions = [
     outdir: "dist/server",
     platform: "neutral",
     packages: "external",
+    plugins: ESBUILD_PLUGINS
   },
   {
     entryPoints: ["js", "ts", "jsx", "tsx", "css"].map(
@@ -47,7 +89,7 @@ const buildOptions = [
     minify: process.env.NODE_ENV !== "development",
     logLevel: "info",
     logOverride: {
-      "empty-glob": "silent",
+      "empty-glob": "silent"
     },
     color: true,
     bundle: true,
@@ -69,9 +111,9 @@ const buildOptions = [
       "*.ttf",
       "*.otf",
       "*.woff",
-      "*.woff2",
-    ],
-  },
+      "*.woff2"
+    ]
+  }
 ];
 
 buildOptions.forEach(async (options) => {
