@@ -20,7 +20,7 @@ const ESBUILD_BROWSER_TARGET =
     process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
   : ["chrome130", "edge130", "firefox130", "safari18"];
 
-const ESBUILD_PLUGINS = [];
+const ESBUILD_PLUGINS = {};
 
 try {
   const ESBUILD_MDX_OPTIONS = JSON.parse(
@@ -40,7 +40,7 @@ try {
     }
   }
 
-  ESBUILD_PLUGINS.push(
+  ESBUILD_PLUGINS["@mdx-js/esbuild"] =
     // @ts-ignore
     (await import("@mdx-js/esbuild")).default({
       development: process.env.NODE_ENV === "development",
@@ -48,8 +48,7 @@ try {
       elementAttributeNameCase: "html",
       stylePropertyNameCase: "css",
       ...ESBUILD_MDX_OPTIONS
-    })
-  );
+    });
 } catch (e) {
   // ignore
 }
@@ -62,7 +61,7 @@ const buildOptions = [
       "ts",
       "jsx",
       "tsx",
-      ...(ESBUILD_PLUGINS.length === 0 ? [] : ["mdx"])
+      ...(ESBUILD_PLUGINS["@mdx-js/esbuild"] ? ["mdx"] : [])
     ].map((ext) => `src/**/[*].${ext}`),
     define: {
       "process.env.BUILD_TIME": BUILD_TIME
@@ -79,7 +78,7 @@ const buildOptions = [
     outdir: "dist/server",
     platform: "neutral",
     packages: "external",
-    plugins: ESBUILD_PLUGINS
+    plugins: [ESBUILD_PLUGINS["@mdx-js/esbuild"]]
   },
   {
     entryPoints: ["js", "ts", "jsx", "tsx", "css"].map(
@@ -112,7 +111,8 @@ const buildOptions = [
       "*.otf",
       "*.woff",
       "*.woff2"
-    ]
+    ],
+    plugins: [ESBUILD_PLUGINS["@mdx-js/esbuild"]]
   }
 ];
 
