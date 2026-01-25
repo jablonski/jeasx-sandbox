@@ -24,18 +24,13 @@ const ESBUILD_BROWSER_TARGET =
 const ESBUILD_MDX_OPTIONS = JSON.parse(process.env.ESBUILD_MDX_OPTIONS || "{}");
 for (const key of ["remarkPlugins", "rehypePlugins", "recmaPlugins"]) {
   if (key in ESBUILD_MDX_OPTIONS) {
-    const plugins = [];
-    for (const config of ESBUILD_MDX_OPTIONS[key]) {
-      const plugin = [];
-      plugin.push(
-        (await import(Array.isArray(config) ? config[0] : config)).default
-      );
-      if (config.length === 2) {
-        plugin.push(config[1]);
-      }
-      plugins.push(plugin);
-    }
-    ESBUILD_MDX_OPTIONS[key] = plugins;
+    ESBUILD_MDX_OPTIONS[key] = await Promise.all(
+      ESBUILD_MDX_OPTIONS[key].map(async (config) => {
+        const [plugin, options] = Array.isArray(config) ? config : [config];
+        const module = (await import(plugin)).default;
+        return options ? [module, options] : [module];
+      })
+    );
   }
 }
 
