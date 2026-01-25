@@ -1,3 +1,4 @@
+import mdx from "@mdx-js/esbuild";
 import * as esbuild from "esbuild";
 import env from "./env.js";
 
@@ -20,49 +21,38 @@ const ESBUILD_BROWSER_TARGET =
     process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
   : ["chrome130", "edge130", "firefox130", "safari18"];
 
-const ESBUILD_PLUGINS = {};
-
-try {
-  const ESBUILD_MDX_OPTIONS = JSON.parse(
-    process.env.ESBUILD_MDX_OPTIONS || "{}"
-  );
-  for (const key of ["remarkPlugins", "rehypePlugins", "recmaPlugins"]) {
-    if (key in ESBUILD_MDX_OPTIONS) {
-      const plugins = [];
-      for (const plugin of ESBUILD_MDX_OPTIONS[key]) {
-        try {
-          plugins.push((await import(plugin)).default);
-        } catch (e) {
-          // ignore
-        }
+const ESBUILD_MDX_OPTIONS = JSON.parse(process.env.ESBUILD_MDX_OPTIONS || "{}");
+for (const key of ["remarkPlugins", "rehypePlugins", "recmaPlugins"]) {
+  if (key in ESBUILD_MDX_OPTIONS) {
+    const plugins = [];
+    for (const config of ESBUILD_MDX_OPTIONS[key]) {
+      const plugin = [];
+      plugin.push(
+        (await import(Array.isArray(config) ? config[0] : config)).default
+      );
+      if (config.length === 2) {
+        plugin.push(config[1]);
       }
-      ESBUILD_MDX_OPTIONS[key] = plugins;
+      plugins.push(plugin);
     }
+    ESBUILD_MDX_OPTIONS[key] = plugins;
   }
-
-  ESBUILD_PLUGINS["@mdx-js/esbuild"] =
-    // @ts-ignore
-    (await import("@mdx-js/esbuild")).default({
-      development: process.env.NODE_ENV === "development",
-      jsxImportSource: "jsx-async-runtime",
-      elementAttributeNameCase: "html",
-      stylePropertyNameCase: "css",
-      ...ESBUILD_MDX_OPTIONS
-    });
-} catch (e) {
-  // ignore
 }
+
+const ESBUILD_MDX_PLUGIN = mdx({
+  development: process.env.NODE_ENV === "development",
+  jsxImportSource: "jsx-async-runtime",
+  elementAttributeNameCase: "html",
+  stylePropertyNameCase: "css",
+  ...ESBUILD_MDX_OPTIONS
+});
 
 /** @type esbuild.BuildOptions[] */
 const buildOptions = [
   {
-    entryPoints: [
-      "js",
-      "ts",
-      "jsx",
-      "tsx",
-      ...(ESBUILD_PLUGINS["@mdx-js/esbuild"] ? ["mdx"] : [])
-    ].map((ext) => `src/**/[*].${ext}`),
+    entryPoints: ["js", "ts", "jsx", "tsx", "mdx"].map(
+      (ext) => `src/**/[*].${ext}`
+    ),
     define: {
       "process.env.BUILD_TIME": BUILD_TIME
     },
@@ -78,7 +68,7 @@ const buildOptions = [
     outdir: "dist/server",
     platform: "neutral",
     packages: "external",
-    plugins: [ESBUILD_PLUGINS["@mdx-js/esbuild"]]
+    plugins: [ESBUILD_MDX_PLUGIN]
   },
   {
     entryPoints: ["js", "ts", "jsx", "tsx", "css"].map(
@@ -112,7 +102,7 @@ const buildOptions = [
       "*.woff",
       "*.woff2"
     ],
-    plugins: [ESBUILD_PLUGINS["@mdx-js/esbuild"]]
+    plugins: [ESBUILD_MDX_PLUGIN]
   }
 ];
 
