@@ -2,7 +2,7 @@ import mdx from "@mdx-js/esbuild";
 import * as esbuild from "esbuild";
 import env from "./env.js";
 
-await env();
+const ENV = await env();
 
 const BUILD_TIME = `"${Date.now().toString(36)}"`;
 
@@ -21,25 +21,12 @@ const ESBUILD_BROWSER_TARGET =
     process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
   : ["chrome130", "edge130", "firefox130", "safari18"];
 
-const ESBUILD_MDX_OPTIONS = JSON.parse(process.env.ESBUILD_MDX_OPTIONS || "{}");
-for (const key of ["remarkPlugins", "rehypePlugins", "recmaPlugins"]) {
-  if (key in ESBUILD_MDX_OPTIONS) {
-    ESBUILD_MDX_OPTIONS[key] = await Promise.all(
-      ESBUILD_MDX_OPTIONS[key].map(async (config) => {
-        const [plugin, options] = Array.isArray(config) ? config : [config];
-        const module = (await import(plugin)).default;
-        return options ? [module, options] : [module];
-      })
-    );
-  }
-}
-
 const ESBUILD_MDX_PLUGIN = mdx({
   development: process.env.NODE_ENV === "development",
   jsxImportSource: "jsx-async-runtime",
   elementAttributeNameCase: "html",
   stylePropertyNameCase: "css",
-  ...ESBUILD_MDX_OPTIONS
+  ...(ENV.ESBUILD_MDX_OPTIONS || {})
 });
 
 /** @type esbuild.BuildOptions[] */

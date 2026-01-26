@@ -1,9 +1,14 @@
+import rehypePrismPlus from "rehype-prism-plus";
+import rehypeSlug from "rehype-slug";
+import remarkGFM from "remark-gfm";
+
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 
 export default {
-  ESBUILD_MDX_OPTIONS: {
-    remarkPlugins: [["remark-gfm", { singleTilde: false }]],
-    rehypePlugins: ["rehype-prism-plus"]
+  /** @type import("@mdx-js/esbuild").Options */
+  ESBUILD_MDX_OPTIONS1: {
+    remarkPlugins: [[remarkGFM, { singleTilde: false }]],
+    rehypePlugins: [rehypePrismPlus, [rehypeSlug, { prefix: "jeasx-" }]]
   },
 
   /** @type import("fastify").FastifyServerOptions */
