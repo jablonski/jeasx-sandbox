@@ -17,16 +17,19 @@ const BROWSER_PUBLIC_ENV = Object.keys(process.env)
   );
 
 const ESBUILD_BROWSER_TARGET =
-  process.env.ESBUILD_BROWSER_TARGET ?
-    process.env.ESBUILD_BROWSER_TARGET.replace(/\s/g, "").split(",")
-  : ["chrome130", "edge130", "firefox130", "safari18"];
+  ENV.ESBUILD_BROWSER_TARGET ||
+  JSON.parse(
+    process.env.ESBUILD_BROWSER_TARGET ||
+      '["chrome130","edge130","firefox130","safari18"]'
+  );
 
 const ESBUILD_MDX_PLUGIN = mdx({
   development: process.env.NODE_ENV === "development",
   jsxImportSource: "jsx-async-runtime",
   elementAttributeNameCase: "html",
   stylePropertyNameCase: "css",
-  ...(ENV?.ESBUILD_MDX_OPTIONS || {})
+  ...(ENV?.ESBUILD_MDX_OPTIONS ||
+    JSON.parse(process.env.ESBUILD_MDX_OPTIONS || "{}"))
 });
 
 /** @type esbuild.BuildOptions[] */

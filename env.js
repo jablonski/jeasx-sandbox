@@ -34,11 +34,15 @@ export default async function env() {
     Object.entries(envObject)
       .filter(([key]) => !(key in process.env))
       .forEach(([key, value]) => {
-        process.env[key] =
-          typeof value === "string" ? value : JSON.stringify(value);
+        try {
+          process.env[key] =
+            typeof value === "string" ? value : JSON.stringify(value);
+        } catch {
+          // JSON.stringify throws TypeError for circular references or BigInts.
+        }
       });
     return envObject;
-  } catch (e) {
+  } catch {
     // ERR_MODULE_NOT_FOUND
   }
 }

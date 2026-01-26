@@ -5,6 +5,9 @@ import remarkGFM from "remark-gfm";
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 
 export default {
+  /** @type import("esbuild").BuildOptions["target"] */
+  //ESBUILD_BROWSER_TARGET: ["chrome131", "edge130", "firefox130", "safari18"],
+
   /** @type import("@mdx-js/esbuild").Options */
   ESBUILD_MDX_OPTIONS: {
     remarkPlugins: [[remarkGFM, { singleTilde: false }]],
