@@ -6,7 +6,7 @@ const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 
 export default {
   /** @type import("@mdx-js/esbuild").Options */
-  ESBUILD_MDX_OPTIONS1: {
+  ESBUILD_MDX_OPTIONS: {
     remarkPlugins: [[remarkGFM, { singleTilde: false }]],
     rehypePlugins: [rehypePrismPlus, [rehypeSlug, { prefix: "jeasx-" }]]
   },
