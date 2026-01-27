@@ -17,7 +17,7 @@ const BROWSER_PUBLIC_ENV = Object.keys(process.env)
   );
 
 const ESBUILD_BROWSER_TARGET =
-  ENV.ESBUILD_BROWSER_TARGET ||
+  ENV?.ESBUILD_BROWSER_TARGET ||
   JSON.parse(
     process.env.ESBUILD_BROWSER_TARGET ||
       '["chrome130","edge130","firefox130","safari18"]'

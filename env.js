@@ -37,8 +37,9 @@ export default async function env() {
         try {
           process.env[key] =
             typeof value === "string" ? value : JSON.stringify(value);
-        } catch {
+        } catch (error) {
           // JSON.stringify throws TypeError for circular references or BigInts.
+          console.error("❌", `"${key}" in .env.js throws`, error);
         }
       });
     return envObject;
