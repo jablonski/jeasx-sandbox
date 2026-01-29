@@ -18,7 +18,7 @@ export default {
   FASTIFY_SERVER_OPTIONS: {
     disableRequestLogging: NODE_ENV_IS_DEVELOPMENT,
     bodyLimit: 1024 * 1024,
-    rewriteUrl: (req) => String(req.url).replace(".html", ""),
+    rewriteUrl: (req) => String(req.url).replace(/\.html(?=\?|$)/, ""),
     // @ts-ignore
     http2: !NODE_ENV_IS_DEVELOPMENT
   },
