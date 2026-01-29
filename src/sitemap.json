@@ -5,7 +5,8 @@
     "links": [
       { "path": "/blog", "title": "Blog" },
       { "path": "/products", "title": "Products" },
-      { "path": "/repositories", "title": "GitHub Repos" }
+      { "path": "/repositories", "title": "GitHub Repos" },
+      { "path": "/mdx", "title": "MDX support" }
     ]
   },
   {
