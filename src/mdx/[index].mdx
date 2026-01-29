@@ -20,13 +20,13 @@ export async function Recipes() {
 
 ---
 
-<Hello name="Jeasx" />
+### Accessing props in MDX
+
+The current url is **{props.request.url}**. In MDX all props can be accessed via `props`.
 
 ---
 
-### Accessing props in MDX
-
-The current url is ({props.request.url}). In MDX all props can be accessed via `props`.
+<Hello name={props.request.query["name"] || "Jeasx"} />
 
 ---
 
@@ -40,7 +40,7 @@ The current url is ({props.request.url}). In MDX all props can be accessed via `
 
 ### GitHub-Markdown
 
-> Jeasx supports plain MDX by default, but you can enable GitHub Markdown via plugins.
+> Jeasx supports plain MDX by default, but you can enable GitHub-Markdown via plugins.
 
 * [ ] to do
 * [x] done
