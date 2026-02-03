@@ -20,8 +20,8 @@ export default function ({ request, reply }) {
         <a href="https://htmx.org/" target="_blank">
           HTMX
         </a>{" "}
-        because it makes it easy to create routes that emit HTML fragments. This
-        example works even without JavaScript.
+        because it makes it easy to create routes that emit HTML fragments. This example works even
+        without JavaScript.
       </p>
       {body["action"] === "edit" ? (
         <Edit request={request} reply={reply} />

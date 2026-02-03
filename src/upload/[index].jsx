@@ -1,9 +1,6 @@
 import Layout from "../Layout";
 
-/**
- * @param {import("../types").RouteProps} props
- */
-export default async function ({}) {
+export default async function () {
   return (
     <Layout title="Upload and image scaling">
       <form action="./image" method="post" enctype="multipart/form-data">

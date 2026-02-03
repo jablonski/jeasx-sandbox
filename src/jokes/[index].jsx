@@ -16,20 +16,10 @@ export default function ({ request, reply }) {
       <h1 class="center">Jokes</h1>
       <form method="post">
         <fieldset class="grid">
-          <button
-            class="secondary"
-            name="counter"
-            value={counter - 1}
-            disabled={counter === 1}
-          >
+          <button class="secondary" name="counter" value={counter - 1} disabled={counter === 1}>
             -
           </button>
-          <button
-            class="secondary"
-            name="counter"
-            value={counter + 1}
-            disabled={counter === 5}
-          >
+          <button class="secondary" name="counter" value={counter + 1} disabled={counter === 5}>
             +
           </button>
         </fieldset>

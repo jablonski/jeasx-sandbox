@@ -4,7 +4,7 @@ import { classMap } from "lit/directives/class-map.js";
 import { repeat } from "lit/directives/repeat.js";
 
 export const styles = [
-  css/*css*/ `
+  css /*css*/ `
     :host {
       display: flex;
       height: 100%;
@@ -82,14 +82,11 @@ class MotionList extends LitElement {
                 },
                 in: fadeIn,
                 out: flyBelow,
-                onComplete:
-                  i === this.list.length - 1
-                    ? () => this.changeLayout()
-                    : undefined,
+                onComplete: i === this.list.length - 1 ? () => this.changeLayout() : undefined,
               })}
             >
               ${item.value}
-            </li>`
+            </li>`,
         )}
       </ul>
     `;

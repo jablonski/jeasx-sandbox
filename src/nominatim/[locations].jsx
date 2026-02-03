@@ -1,10 +1,10 @@
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function ({ request, reply }) {
+export default async function ({ request }) {
   const json = await (
     await fetch(
-      `https://nominatim.openstreetmap.org/search?q=${request.body["search"]}&addressdetails=1&format=jsonv2`
+      `https://nominatim.openstreetmap.org/search?q=${request.body["search"]}&addressdetails=1&format=jsonv2`,
     )
   ).json();
 

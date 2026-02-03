@@ -7,19 +7,12 @@ export default function ({ request }) {
   this.theme = request.query["theme"] || "light";
 
   return (
-    <Layout
-      title="ThisContext object"
-      description="Use 'this' to avoid prop drilling"
-    >
+    <Layout title="ThisContext object" description="Use 'this' to avoid prop drilling">
       <section class="center">
         <h1>Avoid prop drilling via 'this'</h1>
+        <p>In Jeasx you can use 'this' to provide data to subcomponents without prop drilling.</p>
         <p>
-          In Jeasx you can use 'this' to provide data to subcomponents without
-          prop drilling.
-        </p>
-        <p>
-          You should use this with care, but it is a handy feature for global
-          state like themes.
+          You should use this with care, but it is a handy feature for global state like themes.
         </p>
         <p>Have a look at the source to see how it works.</p>
       </section>

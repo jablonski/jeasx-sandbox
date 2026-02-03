@@ -2,10 +2,7 @@ import Layout from "../Layout";
 
 export default function () {
   return (
-    <Layout
-      title="Asynchronous JSX components in the browser"
-      script="./index.js"
-    >
+    <Layout title="Asynchronous JSX components in the browser" script="./index.js">
       <h1 class="center">(Asynchronous) JSX components in the browser</h1>
       <p class="center">
         You can use JSX components built with{" "}

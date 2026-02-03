@@ -2,11 +2,7 @@ import Layout from "../Layout";
 
 export default function ({ number, delta, numbers, submit }) {
   return (
-    <Layout
-      title={`Lottery ${numbers.join(", ")}`}
-      description="A fake lottery"
-      css="./index.css"
-    >
+    <Layout title={`Lottery ${numbers.join(", ")}`} description="A fake lottery" css="./index.css">
       <main class="lottery">
         <h1>Lottery (6 out of 49)</h1>
         <form method="post">
@@ -37,12 +33,7 @@ export default function ({ number, delta, numbers, submit }) {
           </div>
           <div>
             {numbers.length === 6 && (
-              <button
-                type="submit"
-                name="submit"
-                value="submit"
-                disabled={numbers.length < 6}
-              >
+              <button type="submit" name="submit" value="submit" disabled={numbers.length < 6}>
                 Reveal results
               </button>
             )}

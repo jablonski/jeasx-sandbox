@@ -11,7 +11,7 @@ export default {
   /** @type import("@mdx-js/esbuild").Options */
   ESBUILD_MDX_OPTIONS: {
     remarkPlugins: [[remarkGFM, { singleTilde: false }]],
-    rehypePlugins: [rehypePrismPlus, [rehypeSlug, { prefix: "jeasx-" }]]
+    rehypePlugins: [rehypePrismPlus, [rehypeSlug, { prefix: "jeasx-" }]],
   },
 
   /** @type import("fastify").FastifyServerOptions */
@@ -20,7 +20,7 @@ export default {
     bodyLimit: 1024 * 1024,
     rewriteUrl: (req) => String(req.url).replace(/\.html(?=\?|$)/, ""),
     // @ts-ignore
-    http2: !NODE_ENV_IS_DEVELOPMENT
+    http2: !NODE_ENV_IS_DEVELOPMENT,
   },
 
   /** @type import("@fastify/cookie").FastifyCookieOptions */
@@ -29,15 +29,15 @@ export default {
       path: "/",
       httpOnly: true,
       secure: "auto",
-      sameSite: "strict"
-    }
+      sameSite: "strict",
+    },
   },
 
   /** @type import("@fastify/static").FastifyStaticOptions */
   FASTIFY_STATIC_OPTIONS: {
     immutable: !NODE_ENV_IS_DEVELOPMENT,
-    maxAge: NODE_ENV_IS_DEVELOPMENT ? 0 : "365d"
-  }
+    maxAge: NODE_ENV_IS_DEVELOPMENT ? 0 : "365d",
+  },
 
   /** @type import("@fastify/formbody").FastifyFormbodyOptions */
   // FASTIFY_FORMBODY_OPTIONS: {},

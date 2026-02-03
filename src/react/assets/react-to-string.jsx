@@ -10,6 +10,6 @@ export default function reactToString(component, props = {}) {
   return renderToString(
     <div data-component={component} data-props={JSON.stringify(props)}>
       <Component {...props} />
-    </div>
+    </div>,
   );
 }

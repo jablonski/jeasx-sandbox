@@ -9,10 +9,7 @@ export default function ({ data, form, errors }) {
   return (
     <Layout title="Damage Types" data={data}>
       <Form>
-        <Legend>
-          Please select from the following options (multiple selections
-          possible):
-        </Legend>
+        <Legend>Please select from the following options (multiple selections possible):</Legend>
         {[
           "I had a traffic accident with another person, who is known to me",
           "I had a traffic accident with or caused by an animal",

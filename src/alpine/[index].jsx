@@ -12,9 +12,8 @@ export default async function () {
         <a href="https://alpinejs.dev" target="_blank">
           Alpine.js
         </a>{" "}
-        is a rugged, minimal tool for composing behavior directly in your
-        markup. Jeasx allows to use Alpine.js by simply importing it as browser
-        bundle.
+        is a rugged, minimal tool for composing behavior directly in your markup. Jeasx allows to
+        use Alpine.js by simply importing it as browser bundle.
       </p>
       <form
         method="post"
@@ -47,19 +46,13 @@ export default async function () {
           </button>
         </div>
         <div class="grid">
-          <button
-            type="button"
-            name="category"
-            x-on:click="load('programming')"
-          >
-            Tell me{" "}
-            <span x-text="counter === 1 ? `a joke` : `${counter} jokes`" />
+          <button type="button" name="category" x-on:click="load('programming')">
+            Tell me <span x-text="counter === 1 ? `a joke` : `${counter} jokes`" />
           </button>
         </div>
         <div class="grid">
           <button type="button" name="category" x-on:click="load('general')">
-            Tell me{" "}
-            <span x-text="counter === 1 ? `a pun` : `${counter} puns`" />
+            Tell me <span x-text="counter === 1 ? `a pun` : `${counter} puns`" />
           </button>
         </div>
         <template x-if="jokes.length">

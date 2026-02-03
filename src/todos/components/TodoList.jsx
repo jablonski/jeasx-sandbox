@@ -18,17 +18,8 @@ export default function ({ todos, status }) {
                   [{todo.status}]
                 </button>
                 <label>{todo.label}</label>
-                <button
-                  class="destroy"
-                  name="removeTodo"
-                  value={todos.indexOf(todo)}
-                >
-                  <img
-                    src="/icons/trash.svg"
-                    alt="Delete"
-                    width={24}
-                    height={24}
-                  />
+                <button class="destroy" name="removeTodo" value={todos.indexOf(todo)}>
+                  <img src="/icons/trash.svg" alt="Delete" width={24} height={24} />
                 </button>
               </div>
             </li>

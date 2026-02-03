@@ -1,9 +1,7 @@
 import Image from "../sharp/Image";
 
 export async function Product({ id }) {
-  const product = await (
-    await fetch(`https://dummyjson.com/products/${id}`)
-  ).json();
+  const product = await (await fetch(`https://dummyjson.com/products/${id}`)).json();
 
   return (
     <article>

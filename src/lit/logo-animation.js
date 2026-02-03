@@ -2,7 +2,7 @@ import { AnimateController, animate, fade, flyBelow } from "@lit-labs/motion";
 import { LitElement, css, html } from "lit";
 
 export const styles = [
-  css/*css*/ `
+  css /*css*/ `
     :host {
       display: flex;
       height: 100%;
@@ -76,7 +76,7 @@ class MotionLit extends LitElement {
               out: flyBelow,
             })}
             >${letter}</span
-          >`
+          >`,
       )}
     `;
   }

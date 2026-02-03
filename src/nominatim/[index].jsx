@@ -1,9 +1,6 @@
 import Layout from "../Layout";
 
-/**
- * @param {import("../types").RouteProps} props
- */
-export default function ({ request, reply }) {
+export default function () {
   return (
     <Layout
       title="HTMX Active Search"
@@ -17,10 +14,7 @@ export default function ({ request, reply }) {
           Active Search
         </a>{" "}
         with HTMX and Jeasx is straightforward. This example uses{" "}
-        <a
-          href="https://nominatim.org/release-docs/latest/api/Search/"
-          target="_blank"
-        >
+        <a href="https://nominatim.org/release-docs/latest/api/Search/" target="_blank">
           Nominatim
         </a>{" "}
         from OpenStreetMap to provide addresses for a search query.

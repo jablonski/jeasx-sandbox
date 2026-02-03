@@ -11,18 +11,10 @@ export default function Jokes({ initial, api }) {
   return (
     <>
       <fieldset class="grid">
-        <button
-          class="secondary"
-          onClick={() => setCounter(counter - 1)}
-          disabled={counter === 1}
-        >
+        <button class="secondary" onClick={() => setCounter(counter - 1)} disabled={counter === 1}>
           -
         </button>
-        <button
-          class="secondary"
-          onClick={() => setCounter(counter + 1)}
-          disabled={counter === 5}
-        >
+        <button class="secondary" onClick={() => setCounter(counter + 1)} disabled={counter === 5}>
           +
         </button>
       </fieldset>

@@ -11,8 +11,7 @@ export default function ({ data, form, errors }) {
     <Layout title="Damage Details for Other Vehicle" data={data}>
       <Form>
         <Legend>
-          You have indicated that another vehicle was damaged. Do you have any
-          additional details?
+          You have indicated that another vehicle was damaged. Do you have any additional details?
         </Legend>
         <Input
           name="license_plate"

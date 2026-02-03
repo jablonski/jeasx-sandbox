@@ -22,9 +22,7 @@ export default function Lottery({ title }) {
         {Array.from({ length: 49 }, (_, index) => index + 1).map((number) => (
           <div
             key={number}
-            className={`number ${
-              selectedNumbers.includes(number) ? "selected" : ""
-            }`}
+            className={`number ${selectedNumbers.includes(number) ? "selected" : ""}`}
             onClick={() => handleNumberClick(number)}
           >
             {number}

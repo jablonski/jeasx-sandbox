@@ -16,7 +16,7 @@ export default function ({ reply }) {
               <url>
                 <loc>https://expo.jeasx.dev{path}</loc>
               </url>
-            ))
+            )),
         )}
       </urlset>
     </>

@@ -133,9 +133,7 @@ function generateEdges(path) {
   const edges = [];
   if (path) {
     const lastSegment = path.lastIndexOf("/") + 1;
-    edges.push(
-      `${path.substring(0, lastSegment)}[${path.substring(lastSegment)}]`
-    );
+    edges.push(`${path.substring(0, lastSegment)}[${path.substring(lastSegment)}]`);
   }
   edges.push(`${path}/[index]`);
   return edges;

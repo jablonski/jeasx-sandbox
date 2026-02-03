@@ -11,12 +11,7 @@ import { compress } from "./utils/zip";
  */
 export default function ({ reply, data }) {
   const token =
-    "ID-" +
-    createHash("sha1")
-      .update(JSON.stringify(data))
-      .digest("hex")
-      .slice(0, 8)
-      .toUpperCase();
+    "ID-" + createHash("sha1").update(JSON.stringify(data)).digest("hex").slice(0, 8).toUpperCase();
   reply.setCookie(token, compress(data));
   reply.clearCookie("data");
 

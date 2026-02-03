@@ -20,7 +20,7 @@ export default function extractStyles(html) {
           .trim()
           .split(":", 2)
           .map((item) => item.trim())
-          .join(":")
+          .join(":"),
       )) {
       if (!declaration) {
         continue;
@@ -39,8 +39,6 @@ export default function extractStyles(html) {
       return `.c${v} {${k}}`;
     })
     .toArray();
-  $("head").append(
-    `<style>${Array.from(styles).join("\n")}${classes.join("\n")}</style>`
-  );
+  $("head").append(`<style>${Array.from(styles).join("\n")}${classes.join("\n")}</style>`);
   return $.html();
 }

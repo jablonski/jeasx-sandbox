@@ -1,16 +1,9 @@
 import Layout from "../Layout";
 import React from "./assets/React";
 
-/**
- * @param {import("../types").RouteProps} props
- */
-export default function ({}) {
+export default function () {
   return (
-    <Layout
-      title="React example"
-      css="./assets/index.css"
-      script="./assets/index.js"
-    >
+    <Layout title="React example" css="./assets/index.css" script="./assets/index.js">
       <div class="App">
         <React component="Lottery" title="Lottery 6 from 49" />
       </div>

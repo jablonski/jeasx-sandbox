@@ -16,7 +16,7 @@ export default function ({ request, reply }) {
           request.query["source"] === "raw" ? payload : extractStyles(payload),
           {
             parser: "html",
-          }
+          },
         )
       : payload;
   };
@@ -27,9 +27,8 @@ export default function ({ request, reply }) {
         <h1 class="headline">Extract inline styles with cheerio.js</h1>
       </div>
       <p style="color:green; text-align:center">
-        Jeasx allows you to post-process the resulting HTML output via a
-        response-handler. Have a look at the source to see how things are wired
-        up. This is an example for how to use{" "}
+        Jeasx allows you to post-process the resulting HTML output via a response-handler. Have a
+        look at the source to see how things are wired up. This is an example for how to use{" "}
         <a href="https://cheerio.js.org" target="_blank">
           cheerio.js
         </a>{" "}
@@ -55,10 +54,7 @@ function IFrame({ title, src }) {
       }</style>
       <div class="iframe-wrapper">
         <h3 style="text-align:center">{title}</h3>
-        <iframe
-          src={src}
-          style="width: 100%; height: 300px; border: 1px solid lightgray;"
-        ></iframe>
+        <iframe src={src} style="width: 100%; height: 300px; border: 1px solid lightgray;"></iframe>
       </div>
     </>
   );

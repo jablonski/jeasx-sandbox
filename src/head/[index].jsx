@@ -1,24 +1,18 @@
 import Layout from "../Layout";
 
-/**
- * @param {import("../types").RouteProps} props
- */
-export default function ({}) {
+export default function () {
   return (
-    <Layout
-      title="Head demo"
-      description="Use head-tags everywhere in your JSX"
-    >
+    <Layout title="Head demo" description="Use head-tags everywhere in your JSX">
       <section class="center">
         <h1>A Helmet for the HTML-Head</h1>
         <p>
-          In Jeasx you can easily implement a helmet like functionality: use
-          head-tags in any sub-component and beam the title, meta tags, styles
-          and scripts into the head of your document.
+          In Jeasx you can easily implement a helmet like functionality: use head-tags in any
+          sub-component and beam the title, meta tags, styles and scripts into the head of your
+          document.
         </p>
         <p>
-          You only have to wire up a simple guard which takes care of the
-          process. Have a look at the source to see how it works.
+          You only have to wire up a simple guard which takes care of the process. Have a look at
+          the source to see how it works.
         </p>
         <Subcomponent />
       </section>

@@ -23,9 +23,7 @@ export default function validator(path, form) {
 
   if (
     form?.["phone"] &&
-    !/^(\(?([\d \-\)\–\+\(]+\/?){6,}\)?([ .\-–\/]?)([\d]+))$/im.test(
-      form?.["phone"]
-    )
+    !/^(\(?([\d \-\)\–\+\(]+\/?){6,}\)?([ .\-–\/]?)([\d]+))$/im.test(form?.["phone"])
   ) {
     errors["phone"] = "Please enter a valid phone number.";
   }

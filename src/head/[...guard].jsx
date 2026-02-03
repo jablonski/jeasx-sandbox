@@ -21,10 +21,7 @@ export default async function () {
 
   // Use response handler to replace HEAD_MARK with unified head.
   this.responseHandler = async (payload) => {
-    const htmlHead = await $jsxToString.call(
-      this,
-      <head>{unifyHead(headTags.flat())}</head>
-    );
+    const htmlHead = await $jsxToString.call(this, <head>{unifyHead(headTags.flat())}</head>);
     return payload.replace(HEAD_MARK, htmlHead);
   };
 }

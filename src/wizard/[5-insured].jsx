@@ -23,11 +23,7 @@ export default function ({ data, form, errors }) {
         )}
         <Input name="firstname" label="First Name" value={form.firstname} />
         <Input name="lastname" label="Last Name" value={form.lastname} />
-        <Input
-          name="license_plate"
-          label="Official License Plate"
-          value={form.license_plate}
-        />
+        <Input name="license_plate" label="Official License Plate" value={form.license_plate} />
         <Actions />
         <Error message={errors} />
       </Form>

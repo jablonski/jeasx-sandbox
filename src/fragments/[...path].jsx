@@ -22,8 +22,8 @@ export default function ({ request }) {
       <Fragment>
         <h1>Template Fragments</h1>
         <p>
-          Creating routes that emit HTML fragments is straightforward in Jeasx
-          which makes it a perfect match for{" "}
+          Creating routes that emit HTML fragments is straightforward in Jeasx which makes it a
+          perfect match for{" "}
           <a href="https://htmx.org/" target="_blank">
             HTMX
           </a>
@@ -31,10 +31,9 @@ export default function ({ request }) {
           <a href="https://htmx.org/essays/template-fragments/" target="_blank">
             Template fragments
           </a>{" "}
-          allow you to render a fragment or partial bit of the content within a
-          template, rather than the entire template. In Jeasx you can implement
-          this feature in userland with just a few lines of code bundled in two
-          simple components.
+          allow you to render a fragment or partial bit of the content within a template, rather
+          than the entire template. In Jeasx you can implement this feature in userland with just a
+          few lines of code bundled in two simple components.
         </p>
       </Fragment>
       <Fragment name="product">
@@ -79,10 +78,7 @@ function Fragments({ container, children = undefined }) {
  * @this {import("../types").ThisContext}
  */
 function Fragment({ name = undefined, children = undefined }) {
-  if (
-    !this.request.path.includes("~") ||
-    (name && this.request.path.endsWith(name))
-  ) {
+  if (!this.request.path.includes("~") || (name && this.request.path.endsWith(name))) {
     return <>{children}</>;
   }
 }

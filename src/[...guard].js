@@ -10,10 +10,7 @@ export default function ({ request, reply }) {
   this.reply = reply;
 
   this.responseHandler = (payload) => {
-    if (
-      typeof payload === "string" &&
-      request.headers["accept-encoding"]?.includes("gzip")
-    ) {
+    if (typeof payload === "string" && request.headers["accept-encoding"]?.includes("gzip")) {
       reply.header("content-encoding", "gzip");
       return promisify(gzip)(payload);
     } else {

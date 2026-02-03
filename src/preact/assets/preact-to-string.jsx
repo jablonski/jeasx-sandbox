@@ -10,6 +10,6 @@ export default function preactToString(component, props = {}) {
   return render(
     <div data-component={component} data-props={JSON.stringify(props)}>
       <Component {...props} />
-    </div>
+    </div>,
   );
 }

@@ -10,13 +10,7 @@ export default function Input({
   return (
     <label>
       {!labelAfter && label}
-      <input
-        type={type || "text"}
-        name={name}
-        value={value}
-        required={required}
-        {...rest}
-      />
+      <input type={type || "text"} name={name} value={value} required={required} {...rest} />
       {labelAfter && label}
     </label>
   );

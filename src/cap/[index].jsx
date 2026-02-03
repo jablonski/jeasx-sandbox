@@ -4,7 +4,7 @@ import cap from "./cap";
 /**
  * @param {import("../types").RouteProps} props
  */
-export default async function ({ request, reply }) {
+export default async function ({ request }) {
   if (request.method === "POST") {
     const token = request.body?.["cap-token"];
     if (token) {
@@ -14,9 +14,7 @@ export default async function ({ request, reply }) {
         return (
           <Layout>
             <h1>Thank you, {name}!</h1>
-            <p>
-              Simply reload this page to simulate an invalid captcha process.
-            </p>
+            <p>Simply reload this page to simulate an invalid captcha process.</p>
             <hr />
             <a href={request.path}>Start again</a>
           </Layout>
@@ -40,8 +38,8 @@ export default async function ({ request, reply }) {
     >
       <h1 class="center">Cap.js</h1>
       <p class="center">
-        A modern, lightning-quick PoW captcha Cap is a lightweight, modern
-        open-source CAPTCHA alternative using proof-of-work.
+        A modern, lightning-quick PoW captcha Cap is a lightweight, modern open-source CAPTCHA
+        alternative using proof-of-work.
         <br />
         <a href="https://capjs.js.org" target="_blank">
           Learn more...

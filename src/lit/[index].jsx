@@ -1,9 +1,6 @@
 import Layout from "../Layout";
 
-/**
- * @param {import("../types").RouteProps} props
- */
-export default function ({}) {
+export default function () {
   return (
     <Layout
       title="Jeasx with Lit"

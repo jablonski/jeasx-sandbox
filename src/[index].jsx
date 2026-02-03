@@ -1,10 +1,7 @@
 import Layout from "./Layout";
 import sitemap from "./sitemap.json";
 
-/**
- * @param {import("./types").RouteProps} props
- */
-export default function ({}) {
+export default function () {
   return (
     <Layout title="Jeasx-Expo" description="Welcome to Jeasx - JSX with Ease">
       <section class="center">
@@ -18,9 +15,9 @@ export default function ({}) {
           <a href="https://picocss.com" target="_blank">
             Pico CSS
           </a>{" "}
-          (mostly classless), so they are easier to read in source code. The
-          code is also optimized for readability: no unnecessary abstractions,
-          no fancy stuff, just simple and clean code to get you started quickly.
+          (mostly classless), so they are easier to read in source code. The code is also optimized
+          for readability: no unnecessary abstractions, no fancy stuff, just simple and clean code
+          to get you started quickly.
         </p>
       </section>
       {sitemap.map(({ title, description, links }) => (

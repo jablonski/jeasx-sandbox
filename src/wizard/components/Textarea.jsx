@@ -9,12 +9,7 @@ export default function Textarea({
   return (
     <label>
       {label}
-      <textarea
-        name={name}
-        rows={rows}
-        placeholder={placeholder}
-        required={required}
-      >
+      <textarea name={name} rows={rows} placeholder={placeholder} required={required}>
         {value}
       </textarea>
     </label>

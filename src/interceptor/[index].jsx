@@ -19,8 +19,8 @@ export default function ({ request }) {
           <a href="https://github.com/jeasx/jsx-async-runtime" target="_blank">
             jsx-async-runtime
           </a>{" "}
-          allows you to intercept the rendering of jsx elements. This allows you
-          to modify or replace existing markup.
+          allows you to intercept the rendering of jsx elements. This allows you to modify or
+          replace existing markup.
         </p>
       </section>
       <section class="center">
@@ -58,10 +58,7 @@ function HouseKeeper({ children = undefined }) {
 
 function ThirdPartyComponent() {
   return (
-    <div
-      className={{ third: true, party: false }}
-      style="border: 4px dashed black;"
-    >
+    <div className={{ third: true, party: false }} style="border: 4px dashed black;">
       {["red", "green", "blue", "orange"].map((color) => (
         <>
           <span style={`background-color: ${color}`}>{color}</span>

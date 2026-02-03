@@ -12,8 +12,7 @@ export default function ({ data, form, errors }) {
     <Layout title="Damage Details for Person" data={data}>
       <Form>
         <Legend>
-          You have indicated that a person was damaged. Do you have any
-          additional details?
+          You have indicated that a person was damaged. Do you have any additional details?
         </Legend>
         <RadioGroup
           label="Is the person who was damaged the same as the person you already entered?"

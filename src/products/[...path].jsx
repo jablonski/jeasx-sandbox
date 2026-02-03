@@ -6,12 +6,10 @@ import Image from "../sharp/Image";
  */
 export default async function ({ request, reply }) {
   const { id } = new URLPattern({ pathname: "/*/:id" }).exec(
-    `${request.protocol}://${request.host}${request.path}`
+    `${request.protocol}://${request.host}${request.path}`,
   ).pathname.groups;
 
-  const product = await (
-    await fetch(`https://dummyjson.com/product/${id}`)
-  ).json();
+  const product = await (await fetch(`https://dummyjson.com/product/${id}`)).json();
 
   if (product.message) {
     reply.status(404);
@@ -19,11 +17,7 @@ export default async function ({ request, reply }) {
   }
 
   return (
-    <Layout
-      title={product.title}
-      description={product.description}
-      robots="noindex,nofollow"
-    >
+    <Layout title={product.title} description={product.description} robots="noindex,nofollow">
       <article class="center">
         <h1>{product.title}</h1>
         <p>{product.description}</p>

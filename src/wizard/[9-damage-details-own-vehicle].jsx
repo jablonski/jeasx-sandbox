@@ -11,8 +11,7 @@ export default function ({ data, form, errors }) {
     <Layout title="Damage Details for your own Vehicle" data={data}>
       <Form>
         <Legend>
-          You have indicated that your own vehicle was damaged. Do you have any
-          additional details?
+          You have indicated that your own vehicle was damaged. Do you have any additional details?
         </Legend>
         <Textarea
           name="description"

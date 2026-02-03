@@ -25,15 +25,12 @@ export default async function ({ request, reply }) {
       : "jpg";
 
   reply.header("content-type", `image/${format}`);
-  reply.header(
-    "cache-control",
-    "public, max-age=31536000, s-maxage=31536000, immutable"
-  );
+  reply.header("cache-control", "public, max-age=31536000, s-maxage=31536000, immutable");
 
   return await sharp(
     src.startsWith("http")
       ? await (await fetch(decodeURIComponent(src))).arrayBuffer()
-      : `./public/${src}`
+      : `./public/${src}`,
   )
     .resize({
       width: width || undefined,
