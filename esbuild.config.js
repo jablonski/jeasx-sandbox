@@ -28,7 +28,7 @@ const ESBUILD_MDX_PLUGIN = mdx({
   jsxImportSource: "jsx-async-runtime",
   elementAttributeNameCase: "html",
   stylePropertyNameCase: "css",
-  ...(ENV.ESBUILD_MDX_OPTIONS || {}),
+  ...ENV.ESBUILD_MDX_OPTIONS,
 });
 
 /** @type esbuild.BuildOptions[] */
