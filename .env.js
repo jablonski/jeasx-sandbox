@@ -1,3 +1,4 @@
+import mdx from "@mdx-js/esbuild";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGFM from "remark-gfm";
@@ -5,13 +6,23 @@ import remarkGFM from "remark-gfm";
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 
 export default {
-  /** @type import("esbuild").BuildOptions["target"] */
-  //ESBUILD_BROWSER_TARGET: ["chrome130", "edge130", "firefox130", "safari18"],
+  /** @type import("esbuild").BuildOptions */
+  ESBUILD_SERVER_OPTIONS: {
+    plugins: [
+      mdx({
+        development: process.env.NODE_ENV === "development",
+        jsxImportSource: "jsx-async-runtime",
+        elementAttributeNameCase: "html",
+        stylePropertyNameCase: "css",
+        remarkPlugins: [[remarkGFM, { singleTilde: false }]],
+        rehypePlugins: [rehypePrismPlus, [rehypeSlug, { prefix: "jeasx-" }]],
+      }),
+    ],
+  },
 
-  /** @type import("@mdx-js/esbuild").Options */
-  ESBUILD_MDX_OPTIONS: {
-    remarkPlugins: [[remarkGFM, { singleTilde: false }]],
-    rehypePlugins: [rehypePrismPlus, [rehypeSlug, { prefix: "jeasx-" }]],
+  /** @type import("esbuild").BuildOptions */
+  ESBUILD_BROWSER_OPTIONS: {
+    target: ["chrome130", "edge130", "firefox130", "safari18"],
   },
 
   /** @type import("fastify").FastifyServerOptions */
