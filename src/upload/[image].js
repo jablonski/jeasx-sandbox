@@ -10,7 +10,7 @@ export default async function ({ request, reply }) {
     const format = body["format"];
     const size = Number(body["size"]);
     const rotate = Number(body["rotate"]);
-    reply.header("Content-Type", `image/${format}`);
+    reply.type(`image/${format}`);
     return await sharp(upload)
       .resize({
         width: size,

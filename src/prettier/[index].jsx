@@ -9,7 +9,7 @@ export default function ({ request, reply }) {
 
   if (request.query["printWidth"] && request.query["tabWidth"]) {
     this.responseHandler = async (payload) => {
-      reply.header("content-type", "text/plain; charset=utf-8");
+      reply.type("text/plain; charset=utf-8");
       return typeof payload === "string"
         ? await prettier.format(payload, {
             parser: "html",

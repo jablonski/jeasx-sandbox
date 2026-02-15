@@ -7,8 +7,6 @@ export default async function ({ request, reply }) {
   const token = request.body?.["token"];
   const solutions = request.body?.["solutions"];
 
-  reply.type("application/json");
-
   if (!token || !solutions) {
     return reply.code(400).send({ success: false });
   }

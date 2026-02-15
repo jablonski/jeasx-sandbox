@@ -7,7 +7,7 @@ import extractStyles from "./extractStyles";
  */
 export default function ({ request, reply }) {
   if (request.query["text"] === "plain") {
-    reply.header("content-type", "text/plain; charset=utf-8");
+    reply.type("text/plain; charset=utf-8");
   }
 
   this.responseHandler = async (payload) => {

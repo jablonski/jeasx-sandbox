@@ -4,7 +4,7 @@ import sitemap from "./sitemap.json";
  * @param {import("./types").RouteProps} props
  */
 export default function ({ reply }) {
-  reply.header("content-type", "text/xml; charset=utf-8");
+  reply.type("text/xml; charset=utf-8");
   return (
     <>
       {{ html: /* xml */ `<?xml version="1.0" encoding="UTF-8"?>` }}
