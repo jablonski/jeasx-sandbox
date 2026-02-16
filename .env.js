@@ -10,7 +10,7 @@ export default {
   ESBUILD_SERVER_OPTIONS: {
     plugins: [
       mdx({
-        development: process.env.NODE_ENV === "development",
+        development: NODE_ENV_IS_DEVELOPMENT,
         jsxImportSource: "jsx-async-runtime",
         elementAttributeNameCase: "html",
         stylePropertyNameCase: "css",
