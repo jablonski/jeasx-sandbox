@@ -12,22 +12,25 @@ const ENV = await env();
 const CWD = process.cwd();
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const JEASX_ROUTE_CACHE_LIMIT = Math.floor(freemem() / 1024 / 1024);
-var serverless_default = (ENV.FASTIFY_SERVER ?? fastify({
-  logger: true,
-  ...ENV.FASTIFY_SERVER_OPTIONS
-})).register((fastifyInstance) => {
-  fastifyInstance.register(fastifyCookie, {
-    ...ENV.FASTIFY_COOKIE_OPTIONS
+const FASTIFY_SERVER = ENV.FASTIFY_SERVER ?? ((fastify2) => fastify2);
+var serverless_default = FASTIFY_SERVER(
+  fastify({
+    logger: true,
+    ...ENV.FASTIFY_SERVER_OPTIONS?.()
+  })
+).register((fastify2) => {
+  fastify2.register(fastifyCookie, {
+    ...ENV.FASTIFY_COOKIE_OPTIONS?.()
   }).register(fastifyFormbody, {
-    ...ENV.FASTIFY_FORMBODY_OPTIONS
+    ...ENV.FASTIFY_FORMBODY_OPTIONS?.()
   }).register(fastifyMultipart, {
     attachFieldsToBody: "keyValues",
-    ...ENV.FASTIFY_MULTIPART_OPTIONS
+    ...ENV.FASTIFY_MULTIPART_OPTIONS?.()
   }).register(fastifyStatic, {
     root: [["public"], ["dist", "browser"]].map((dir) => join(CWD, ...dir)),
     prefix: "/",
     wildcard: false,
-    ...ENV.FASTIFY_STATIC_OPTIONS
+    ...ENV.FASTIFY_STATIC_OPTIONS?.()
   }).decorateRequest("route", "").decorateRequest("path", "").addHook("onRequest", async (request) => {
     const index = request.url.indexOf("?");
     request.path = index === -1 ? request.url : request.url.slice(0, index);

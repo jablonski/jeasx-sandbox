@@ -27,32 +27,36 @@ declare module "fastify" {
   }
 }
 
+// Enhance Fastify server from userland
+const FASTIFY_SERVER = (ENV.FASTIFY_SERVER ?? ((fastify) => fastify)) as (
+  fastify: FastifyInstance,
+) => FastifyInstance;
+
 // Create and export a Fastify instance
-export default (
-  (ENV.FASTIFY_SERVER as FastifyInstance) ??
+export default FASTIFY_SERVER(
   fastify({
     logger: true,
-    ...(ENV.FASTIFY_SERVER_OPTIONS as FastifyServerOptions),
-  })
+    ...(ENV.FASTIFY_SERVER_OPTIONS?.() as FastifyServerOptions),
+  }),
 )
   // Create encapsulation context
-  .register((fastifyInstance) => {
-    fastifyInstance
+  .register((fastify) => {
+    fastify
       .register(fastifyCookie, {
-        ...(ENV.FASTIFY_COOKIE_OPTIONS as FastifyCookieOptions),
+        ...(ENV.FASTIFY_COOKIE_OPTIONS?.() as FastifyCookieOptions),
       })
       .register(fastifyFormbody, {
-        ...(ENV.FASTIFY_FORMBODY_OPTIONS as FastifyFormbodyOptions),
+        ...(ENV.FASTIFY_FORMBODY_OPTIONS?.() as FastifyFormbodyOptions),
       })
       .register(fastifyMultipart, {
         attachFieldsToBody: "keyValues",
-        ...(ENV.FASTIFY_MULTIPART_OPTIONS as FastifyMultipartOptions),
+        ...(ENV.FASTIFY_MULTIPART_OPTIONS?.() as FastifyMultipartOptions),
       })
       .register(fastifyStatic, {
         root: [["public"], ["dist", "browser"]].map((dir) => join(CWD, ...dir)),
         prefix: "/",
         wildcard: false,
-        ...(ENV.FASTIFY_STATIC_OPTIONS as FastifyStaticOptions),
+        ...(ENV.FASTIFY_STATIC_OPTIONS?.() as FastifyStaticOptions),
       })
       .decorateRequest("route", "")
       .decorateRequest("path", "")
