@@ -55,4 +55,10 @@ export default {
 
   /** @type import("@fastify/multipart").FastifyMultipartOptions */
   // FASTIFY_MULTIPART_OPTIONS: {},
+
+  /** @type (fastify: import("fastify").FastifyInstance) => import("fastify").FastifyInstance */
+  FASTIFY_INSTANCE_SETUP: (fastify) =>
+    fastify.addHook("onSend", async (request, reply) => {
+      console.info(new Date(), request.url, reply.getHeader("content-type"));
+    }),
 };
