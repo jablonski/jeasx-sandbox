@@ -11,6 +11,7 @@
   "dependencies": {
     "@cap.js/server": "4.0.5",
     "@cap.js/widget": "0.1.34",
+    "@fastify/compress": "8.3.1",
     "@fastify/cookie": "11.0.2",
     "@fastify/formbody": "8.0.2",
     "@fastify/multipart": "9.4.0",
@@ -26,7 +27,7 @@
     "htmx.org": "2.0.8",
     "jsx-async-runtime": "2.0.2",
     "lit": "3.3.2",
-    "preact": "10.28.3",
+    "preact": "10.28.4",
     "preact-render-to-string": "6.6.5",
     "prettier": "3.8.1",
     "react": "19.2.4",

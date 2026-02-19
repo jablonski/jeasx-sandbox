@@ -27,17 +27,19 @@ declare module "fastify" {
   }
 }
 
-// Function to enhance Fastify instance from userland
-const FASTIFY_INSTANCE_SETUP = (ENV.FASTIFY_INSTANCE_SETUP ?? ((fastify) => fastify)) as (
+// Enhance given Fastify from userland
+const FASTIFY_SETUP = (ENV.FASTIFY_SETUP ?? ((fastify) => fastify)) as (
   fastify: FastifyInstance,
 ) => FastifyInstance;
 
 // Create and export a Fastify instance
-export default FASTIFY_INSTANCE_SETUP(
+export default FASTIFY_SETUP(
   Fastify({
     logger: true,
     ...(ENV.FASTIFY_SERVER_OPTIONS as FastifyServerOptions),
-  })
+  }),
+).register((fastify) => {
+  fastify
     .register(fastifyCookie, {
       ...(ENV.FASTIFY_COOKIE_OPTIONS as FastifyCookieOptions),
     })
@@ -52,7 +54,6 @@ export default FASTIFY_INSTANCE_SETUP(
       root: [["public"], ["dist", "browser"]].map((dir) => join(CWD, ...dir)),
       prefix: "/",
       wildcard: false,
-      preCompressed: true,
       ...(ENV.FASTIFY_STATIC_OPTIONS as FastifyStaticOptions),
     })
     .decorateRequest("route", "")
@@ -76,8 +77,8 @@ export default FASTIFY_INSTANCE_SETUP(
         console.error("❌", error);
         throw error;
       }
-    }),
-);
+    });
+});
 
 // Cache for resolved route modules, 'null' means no module exists.
 const modules = new Map<string, { default: Function }>();

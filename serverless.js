@@ -12,12 +12,14 @@ const ENV = await env();
 const CWD = process.cwd();
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const JEASX_ROUTE_CACHE_LIMIT = Math.floor(freemem() / 1024 / 1024);
-const FASTIFY_INSTANCE_SETUP = ENV.FASTIFY_INSTANCE_SETUP ?? ((fastify) => fastify);
-var serverless_default = FASTIFY_INSTANCE_SETUP(
+const FASTIFY_SETUP = ENV.FASTIFY_SETUP ?? ((fastify) => fastify);
+var serverless_default = FASTIFY_SETUP(
   Fastify({
     logger: true,
     ...ENV.FASTIFY_SERVER_OPTIONS
-  }).register(fastifyCookie, {
+  })
+).register((fastify) => {
+  fastify.register(fastifyCookie, {
     ...ENV.FASTIFY_COOKIE_OPTIONS
   }).register(fastifyFormbody, {
     ...ENV.FASTIFY_FORMBODY_OPTIONS
@@ -28,7 +30,6 @@ var serverless_default = FASTIFY_INSTANCE_SETUP(
     root: [["public"], ["dist", "browser"]].map((dir) => join(CWD, ...dir)),
     prefix: "/",
     wildcard: false,
-    preCompressed: true,
     ...ENV.FASTIFY_STATIC_OPTIONS
   }).decorateRequest("route", "").decorateRequest("path", "").addHook("onRequest", async (request) => {
     const index = request.url.indexOf("?");
@@ -44,8 +45,8 @@ var serverless_default = FASTIFY_INSTANCE_SETUP(
       console.error("\u274C", error);
       throw error;
     }
-  })
-);
+  });
+});
 const modules = /* @__PURE__ */ new Map();
 async function handler(request, reply) {
   let response;

@@ -1,3 +1,4 @@
+import fastifyCompress from "@fastify/compress";
 import mdx from "@mdx-js/esbuild";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
@@ -24,6 +25,9 @@ export default {
   ESBUILD_BROWSER_OPTIONS: {
     target: ["chrome130", "edge130", "firefox130", "safari18"],
   },
+
+  /** @type (fastify: import("fastify").FastifyInstance) => import("fastify").FastifyInstance */
+  FASTIFY_SETUP: (fastify) => fastify.register(fastifyCompress),
 
   /** @type import("fastify").FastifyServerOptions */
   FASTIFY_SERVER_OPTIONS: {
@@ -55,10 +59,4 @@ export default {
 
   /** @type import("@fastify/multipart").FastifyMultipartOptions */
   // FASTIFY_MULTIPART_OPTIONS: {},
-
-  /** @type (fastify: import("fastify").FastifyInstance) => import("fastify").FastifyInstance */
-  FASTIFY_INSTANCE_SETUP: (fastify) =>
-    fastify.addHook("onSend", async (request, reply) => {
-      console.info(new Date(), request.url, reply.getHeader("content-type"));
-    }),
 };
