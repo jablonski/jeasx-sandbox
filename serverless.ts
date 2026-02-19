@@ -2,7 +2,7 @@ import fastifyCookie, { FastifyCookieOptions } from "@fastify/cookie";
 import fastifyFormbody, { FastifyFormbodyOptions } from "@fastify/formbody";
 import fastifyMultipart, { FastifyMultipartOptions } from "@fastify/multipart";
 import fastifyStatic, { FastifyStaticOptions } from "@fastify/static";
-import Fastify, {
+import fastify, {
   FastifyInstance,
   FastifyReply,
   FastifyRequest,
@@ -27,58 +27,56 @@ declare module "fastify" {
   }
 }
 
-// Enhance given Fastify from userland
-const FASTIFY_SETUP = (ENV.FASTIFY_SETUP ?? ((fastify) => fastify)) as (
-  fastify: FastifyInstance,
-) => FastifyInstance;
-
 // Create and export a Fastify instance
-export default FASTIFY_SETUP(
-  Fastify({
+export default (
+  (ENV.FASTIFY_SERVER as FastifyInstance) ??
+  fastify({
     logger: true,
     ...(ENV.FASTIFY_SERVER_OPTIONS as FastifyServerOptions),
-  }),
-).register((fastify) => {
-  fastify
-    .register(fastifyCookie, {
-      ...(ENV.FASTIFY_COOKIE_OPTIONS as FastifyCookieOptions),
-    })
-    .register(fastifyFormbody, {
-      ...(ENV.FASTIFY_FORMBODY_OPTIONS as FastifyFormbodyOptions),
-    })
-    .register(fastifyMultipart, {
-      attachFieldsToBody: "keyValues",
-      ...(ENV.FASTIFY_MULTIPART_OPTIONS as FastifyMultipartOptions),
-    })
-    .register(fastifyStatic, {
-      root: [["public"], ["dist", "browser"]].map((dir) => join(CWD, ...dir)),
-      prefix: "/",
-      wildcard: false,
-      ...(ENV.FASTIFY_STATIC_OPTIONS as FastifyStaticOptions),
-    })
-    .decorateRequest("route", "")
-    .decorateRequest("path", "")
-    .addHook("onRequest", async (request) => {
-      // Extract path from url
-      const index = request.url.indexOf("?");
-      request.path = index === -1 ? request.url : request.url.slice(0, index);
-    })
-    .all("*", async (request: FastifyRequest, reply: FastifyReply) => {
-      try {
-        const payload = await handler(request, reply);
-        if (
-          reply.getHeader("content-type") === undefined &&
-          (typeof payload === "string" || Buffer.isBuffer(payload))
-        ) {
-          reply.type("text/html; charset=utf-8");
+  })
+)
+  // Create encapsulation context
+  .register((fastifyInstance) => {
+    fastifyInstance
+      .register(fastifyCookie, {
+        ...(ENV.FASTIFY_COOKIE_OPTIONS as FastifyCookieOptions),
+      })
+      .register(fastifyFormbody, {
+        ...(ENV.FASTIFY_FORMBODY_OPTIONS as FastifyFormbodyOptions),
+      })
+      .register(fastifyMultipart, {
+        attachFieldsToBody: "keyValues",
+        ...(ENV.FASTIFY_MULTIPART_OPTIONS as FastifyMultipartOptions),
+      })
+      .register(fastifyStatic, {
+        root: [["public"], ["dist", "browser"]].map((dir) => join(CWD, ...dir)),
+        prefix: "/",
+        wildcard: false,
+        ...(ENV.FASTIFY_STATIC_OPTIONS as FastifyStaticOptions),
+      })
+      .decorateRequest("route", "")
+      .decorateRequest("path", "")
+      .addHook("onRequest", async (request) => {
+        // Extract path from url
+        const index = request.url.indexOf("?");
+        request.path = index === -1 ? request.url : request.url.slice(0, index);
+      })
+      .all("*", async (request: FastifyRequest, reply: FastifyReply) => {
+        try {
+          const payload = await handler(request, reply);
+          if (
+            reply.getHeader("content-type") === undefined &&
+            (typeof payload === "string" || Buffer.isBuffer(payload))
+          ) {
+            reply.type("text/html; charset=utf-8");
+          }
+          return payload;
+        } catch (error) {
+          console.error("❌", error);
+          throw error;
         }
-        return payload;
-      } catch (error) {
-        console.error("❌", error);
-        throw error;
-      }
-    });
-});
+      });
+  });
 
 // Cache for resolved route modules, 'null' means no module exists.
 const modules = new Map<string, { default: Function }>();

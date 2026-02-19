@@ -2,7 +2,7 @@ import fastifyCookie from "@fastify/cookie";
 import fastifyFormbody from "@fastify/formbody";
 import fastifyMultipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
-import Fastify from "fastify";
+import fastify from "fastify";
 import { jsxToString } from "jsx-async-runtime";
 import { stat } from "node:fs/promises";
 import { freemem } from "node:os";
@@ -12,14 +12,11 @@ const ENV = await env();
 const CWD = process.cwd();
 const NODE_ENV_IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 const JEASX_ROUTE_CACHE_LIMIT = Math.floor(freemem() / 1024 / 1024);
-const FASTIFY_SETUP = ENV.FASTIFY_SETUP ?? ((fastify) => fastify);
-var serverless_default = FASTIFY_SETUP(
-  Fastify({
-    logger: true,
-    ...ENV.FASTIFY_SERVER_OPTIONS
-  })
-).register((fastify) => {
-  fastify.register(fastifyCookie, {
+var serverless_default = (ENV.FASTIFY_SERVER ?? fastify({
+  logger: true,
+  ...ENV.FASTIFY_SERVER_OPTIONS
+})).register((fastifyInstance) => {
+  fastifyInstance.register(fastifyCookie, {
     ...ENV.FASTIFY_COOKIE_OPTIONS
   }).register(fastifyFormbody, {
     ...ENV.FASTIFY_FORMBODY_OPTIONS
