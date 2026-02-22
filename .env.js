@@ -11,6 +11,7 @@ export default {
   /** @type {() => import("esbuild").BuildOptions} */
   ESBUILD_SERVER_OPTIONS: () => ({
     plugins: [
+      sveltePlugin({ compilerOptions: { generate: "server", css: "injected" } }),
       mdx({
         development: NODE_ENV_IS_DEVELOPMENT,
         jsxImportSource: "jsx-async-runtime",
@@ -24,7 +25,7 @@ export default {
 
   /** @type {() => import("esbuild").BuildOptions} */
   ESBUILD_BROWSER_OPTIONS: () => ({
-    plugins: [sveltePlugin({ compilerOptions: { css: "injected" } })],
+    plugins: [sveltePlugin({ compilerOptions: { generate: "client", css: "injected" } })],
     target: ["chrome130", "edge130", "firefox130", "safari18"],
   }),
 
