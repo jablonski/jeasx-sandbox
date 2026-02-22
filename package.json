@@ -23,6 +23,7 @@
     "alpinejs": "3.15.8",
     "cheerio": "1.2.0",
     "esbuild": "0.27.3",
+    "esbuild-svelte": "0.9.4",
     "fastify": "5.7.4",
     "htmx.org": "2.0.8",
     "jsx-async-runtime": "2.0.2",
@@ -35,7 +36,8 @@
     "rehype-prism-plus": "2.0.2",
     "rehype-slug": "6.0.0",
     "remark-gfm": "4.0.1",
-    "sharp": "0.34.5"
+    "sharp": "0.34.5",
+    "svelte": "5.53.2"
   },
   "devDependencies": {
     "@types/node": "25.3.0",

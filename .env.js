@@ -1,5 +1,6 @@
 import fastifyCompress from "@fastify/compress";
 import mdx from "@mdx-js/esbuild";
+import sveltePlugin from "esbuild-svelte";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGFM from "remark-gfm";
@@ -23,6 +24,7 @@ export default {
 
   /** @type {() => import("esbuild").BuildOptions} */
   ESBUILD_BROWSER_OPTIONS: () => ({
+    plugins: [sveltePlugin()],
     target: ["chrome130", "edge130", "firefox130", "safari18"],
   }),
 

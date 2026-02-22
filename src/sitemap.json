@@ -34,6 +34,7 @@
     "links": [
       { "path": "/alpine", "title": "Alpine.js" },
       { "path": "/lit", "title": "Lit" },
+      { "path": "/svelte", "title": "Svelte" },
       { "path": "/preact", "title": "Preact" },
       { "path": "/react", "title": "React" },
       { "path": "/cap", "title": "Cap.js" }
