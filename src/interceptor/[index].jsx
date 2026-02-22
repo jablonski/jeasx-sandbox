@@ -40,7 +40,7 @@ export default function ({ request }) {
   );
 }
 
-function HouseKeeper({ children = undefined }) {
+function HouseKeeper({ children }) {
   this.jsxToString = (jsxElement) => {
     // Rewrite className to class
     if (jsxElement?.props?.className) {

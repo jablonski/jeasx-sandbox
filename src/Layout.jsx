@@ -7,7 +7,7 @@ export default function Layout({
   css = "/index.css",
   script = undefined,
   robots = undefined,
-  children = undefined,
+  children,
 }) {
   const path = this.request.path;
   return (

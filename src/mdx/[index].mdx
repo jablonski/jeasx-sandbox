@@ -51,18 +51,5 @@ The current url is **{props.request.url}**. In MDX all props can be accessed via
 ~one~ or ~~two~~ tildes.
 
 www.example.com
-
-### How to enable MDX plugins via `.env.js`?
-
-```js
-import remarkGFM from "remark-gfm";
-
-export default {
-  /** @type import("@mdx-js/esbuild").Options */
-  ESBUILD_MDX_OPTIONS: {
-    remarkPlugins: [[remarkGFM, { singleTilde: false }]],
-  }
-};
-```
 </section>
 </Layout>
