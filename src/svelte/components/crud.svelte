@@ -69,23 +69,11 @@
 </div>
 
 <style>
-	* {
-		font-size: inherit;
-		font-family: inherit;
-	}
-
 	input {
 		display: block;
-		margin: 0 0 0.5em 0;
 	}
 
 	select {
 		float: left;
-		margin: 0 1em 1em 0;
-		width: 14em;
-	}
-
-	.buttons {
-		clear: both;
 	}
 </style>

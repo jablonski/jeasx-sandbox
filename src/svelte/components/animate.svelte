@@ -1,7 +1,7 @@
 <script>
+    import { flip } from "svelte/animate";
     import { quintOut } from "svelte/easing";
     import { crossfade } from "svelte/transition";
-    import { flip } from "svelte/animate";
 
     const [send, receive] = crossfade({
         fallback(node, params) {
@@ -115,14 +115,15 @@
         display: block;
         top: 0;
         left: 0;
-        margin: 0 auto 0.5em auto;
+        margin: 0 0 0.5em 0;
         border-radius: 2px;
         background-color: #eee;
         padding: 0.5em;
+        width: 100%;
         color: black;
         font-size: 1em;
         line-height: 1;
-        user-select: none;
+        text-align: left;
     }
 
     input {
