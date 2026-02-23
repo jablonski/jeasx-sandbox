@@ -1,9 +1,5 @@
 import { hydrate } from "svelte";
-import Animate from "./animate.svelte";
-import Counter from "./counter.svelte";
-import Crud from "./crud.svelte";
-
-const COMPONENTS = { Counter, Crud, Animate };
+import COMPONENTS from "./components/$index";
 
 document.querySelectorAll("[data-component]").forEach((target) => {
   if (target instanceof HTMLElement) {

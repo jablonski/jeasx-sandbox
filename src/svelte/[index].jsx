@@ -1,7 +1,4 @@
 import Layout from "../Layout";
-import Animate from "./animate.svelte";
-import Counter from "./counter.svelte";
-import Crud from "./crud.svelte";
 import Svelte from "./Svelte";
 
 export default function () {
@@ -20,11 +17,11 @@ export default function () {
           </p>
         </section>
         <h2>Counter example</h2>
-        <Svelte component={Counter} init={5} />
+        <Svelte component="Counter" init={5} />
         <hr />
         <h2>Crud example</h2>
         <Svelte
-          component={Crud}
+          component="Crud"
           data={[
             { first: "Hans", last: "Emil" },
             { first: "Max", last: "Mustermann" },
@@ -33,7 +30,7 @@ export default function () {
         />
         <hr />
         <h3>Animation example</h3>
-        <Svelte component={Animate} />
+        <Svelte component="Animate" />
       </div>
     </Layout>
   );
