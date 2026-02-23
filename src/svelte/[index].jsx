@@ -1,6 +1,8 @@
-import { render } from "svelte/server";
 import Layout from "../Layout";
-import App from "./app.svelte";
+import Animate from "./animate.svelte";
+import Counter from "./counter.svelte";
+import Crud from "./crud.svelte";
+import Svelte from "./Svelte";
 
 export default function () {
   return (
@@ -16,8 +18,22 @@ export default function () {
             components that do minimal work in the browser, using languages you already know — HTML,
             CSS and JavaScript. It’s a love letter to web development.
           </p>
-          <div id="app">{render(App)}</div>
         </section>
+        <h2>Counter example</h2>
+        <Svelte component={Counter} init={5} />
+        <hr />
+        <h2>Crud example</h2>
+        <Svelte
+          component={Crud}
+          data={[
+            { first: "Hans", last: "Emil" },
+            { first: "Max", last: "Mustermann" },
+            { first: "Roman", last: "Tisch" },
+          ]}
+        />
+        <hr />
+        <h3>Animation example</h3>
+        <Svelte component={Animate} />
       </div>
     </Layout>
   );
