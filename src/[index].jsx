@@ -11,13 +11,15 @@ export default function () {
           <a href="https://www.jeasx.dev">Jeasx</a>.
         </p>
         <p>
-          The examples are styled with{" "}
-          <a href="https://picocss.com" target="_blank">
-            Pico CSS
-          </a>{" "}
-          (mostly classless), so they are easier to read in source code. The code is also optimized
-          for readability: no unnecessary abstractions, no fancy stuff, just simple and clean code
-          to get you started quickly.
+          The examples are styled with <a href="https://picocss.com">Pico CSS</a> (mostly
+          classless), so they are easier to read in source code. The code is also optimized for
+          readability: no unnecessary abstractions, no fancy stuff, just simple and clean code to
+          get you started quickly.
+        </p>
+        <p>
+          You can find the complete repository on{" "}
+          <a href="https://github.com/jeasx/jeasx-expo">GitHub</a> to start experimenting with Jeasx
+          right on your computer.
         </p>
       </section>
       {sitemap.map(({ title, description, links }) => (

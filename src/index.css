@@ -1,9 +1,19 @@
 @import "../node_modules/@picocss/pico/css/pico.css";
-
+@import "../node_modules/prismjs/themes/prism.css";
 @view-transition {
   navigation: auto;
 }
 
+h1,
+h2 {
+  text-align: center;
+}
+
 .center {
   text-align: center;
+}
+
+details {
+  background-color: var(--pico-mark-background-color);
+  padding: 1rem;
 }

@@ -41,9 +41,7 @@ export default async function ({ request }) {
         A modern, lightning-quick PoW captcha Cap is a lightweight, modern open-source CAPTCHA
         alternative using proof-of-work.
         <br />
-        <a href="https://capjs.js.org" target="_blank">
-          Learn more...
-        </a>
+        <a href="https://capjs.js.org">Learn more...</a>
       </p>
       <form action="" method="post">
         <label>

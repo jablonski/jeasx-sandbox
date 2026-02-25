@@ -16,12 +16,8 @@ export default function ({ request, reply }) {
     >
       <h1 class="center">HTMX example</h1>
       <p>
-        Jeasx is the perfect match for{" "}
-        <a href="https://htmx.org/" target="_blank">
-          HTMX
-        </a>{" "}
-        because it makes it easy to create routes that emit HTML fragments. This example works even
-        without JavaScript.
+        Jeasx is the perfect match for <a href="https://htmx.org">HTMX</a> because it makes it easy
+        to create routes that emit HTML fragments. This example works even without JavaScript.
       </p>
       {body["action"] === "edit" ? (
         <Edit request={request} reply={reply} />

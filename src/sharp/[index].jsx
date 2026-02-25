@@ -8,12 +8,9 @@ export default function () {
         <h1>Image transformation</h1>
         <p>
           Jeasx allows to easily create a image component and converter in userland based on the
-          fantastic{" "}
-          <a href="https://sharp.pixelplumbing.com/" target="_blank">
-            sharp
-          </a>{" "}
-          library. Here you see a simple example with static images. The image converter is also
-          used in the <a href="/products">products</a> example.
+          fantastic <a href="https://sharp.pixelplumbing.com">sharp</a> library. Here you see a
+          simple example with static images. The image converter is also used in the{" "}
+          <a href="/products">products</a> example.
         </p>
         {[1, 2, 3].map((idx) => (
           <Image

@@ -87,14 +87,13 @@
 
 <style>
     .new-todo {
-        margin: 2em 0 1em 0;
+        margin: 0.5em 0;
         width: 100%;
         font-size: 1.4em;
     }
 
     .board {
         margin: 0 auto;
-        max-width: 36em;
     }
 
     .left,

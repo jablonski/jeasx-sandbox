@@ -12,7 +12,7 @@ export async function Recipes() {
   return (await (await fetch(`https://dummyjson.com/recipes`)).json()).recipes;
 }
 
-<Layout title="MDX - Markdown for the component era" css="/mdx/index.css">
+<Layout title="MDX - Markdown for the component era">
 <section>
 # MDX - Markdown for the component era
 
@@ -36,20 +36,5 @@ The current url is **{props.request.url}**. In MDX all props can be accessed via
 {(await Recipes()).slice(0, 5).map(({name}) => <li>{name}</li>)}
 </ul>
 
----
-
-### GitHub-Markdown
-
-> Jeasx supports plain MDX by default, but you can enable GitHub-Markdown via plugins.
-
-* [ ] to do
-* [x] done
-
-| a | b  |  c |  d  |
-| - | :- | -: | :-: |
-
-~one~ or ~~two~~ tildes.
-
-www.example.com
 </section>
 </Layout>

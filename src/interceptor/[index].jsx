@@ -15,10 +15,7 @@ export default function ({ request }) {
       <section class="center">
         <h1>JSX interception</h1>
         <p>
-          The underlying{" "}
-          <a href="https://github.com/jeasx/jsx-async-runtime" target="_blank">
-            jsx-async-runtime
-          </a>{" "}
+          The underlying <a href="https://github.com/jeasx/jsx-async-runtime">jsx-async-runtime</a>{" "}
           allows you to intercept the rendering of jsx elements. This allows you to modify or
           replace existing markup.
         </p>

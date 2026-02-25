@@ -9,15 +9,10 @@ export default function () {
     >
       <h1 class="center">HTMX Active Search</h1>
       <p>
-        Implementing{" "}
-        <a href="https://htmx.org/examples/active-search/" target="_blank">
-          Active Search
-        </a>{" "}
-        with HTMX and Jeasx is straightforward. This example uses{" "}
-        <a href="https://nominatim.org/release-docs/latest/api/Search/" target="_blank">
-          Nominatim
-        </a>{" "}
-        from OpenStreetMap to provide addresses for a search query.
+        Implementing <a href="https://htmx.org/examples/active-search">Active Search</a> with HTMX
+        and Jeasx is straightforward. This example uses{" "}
+        <a href="https://nominatim.org/release-docs/latest/api/Search">Nominatim</a> from
+        OpenStreetMap to provide addresses for a search query.
       </p>
       <input
         type="search"

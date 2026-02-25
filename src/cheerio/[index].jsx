@@ -29,10 +29,8 @@ export default function ({ request, reply }) {
       <p style="color:green; text-align:center">
         Jeasx allows you to post-process the resulting HTML output via a response-handler. Have a
         look at the source to see how things are wired up. This is an example for how to use{" "}
-        <a href="https://cheerio.js.org" target="_blank">
-          cheerio.js
-        </a>{" "}
-        to extract styles from resulting HTML and insert them to head.
+        <a href="https://cheerio.js.org">cheerio.js</a> to extract styles from resulting HTML and
+        insert them to head.
       </p>
       <div style="display: flex; flex-direction: row; gap: 1rem; justify-content: center;">
         <IFrame title="Original source" src="?text=plain&source=raw" />

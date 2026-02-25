@@ -10,10 +10,7 @@ export default function () {
       <section class="center">
         <h1>Lit example</h1>
         <p>
-          Jeasx works smoothly with{" "}
-          <a href="https://lit.dev/" target="_blank">
-            Lit.
-          </a>
+          Jeasx works smoothly with <a href="https://lit.dev">Lit.</a>
         </p>
       </section>
       <section>

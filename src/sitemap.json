@@ -32,11 +32,11 @@
     "title": "Islands of client side JavaScript",
     "description": "Jeasx integrates smoothly with established JavaScript libraries to enhance UX through islands of interaction.",
     "links": [
-      { "path": "/alpine", "title": "Alpine.js" },
+      { "path": "/alpine", "title": "Alpine" },
       { "path": "/lit", "title": "Lit" },
-      { "path": "/svelte", "title": "Svelte" },
       { "path": "/preact", "title": "Preact" },
       { "path": "/react", "title": "React" },
+      { "path": "/svelte", "title": "Svelte" },
       { "path": "/cap", "title": "Cap.js" }
     ]
   },

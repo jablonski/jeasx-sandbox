@@ -25,9 +25,7 @@ export default async function ({ request }) {
       <ul>
         {repositories.map(({ html_url, full_name, description }) => (
           <li>
-            <a href={html_url} target="_blank">
-              {full_name}
-            </a>
+            <a href={html_url}>{full_name}</a>
             <p>{description}</p>
           </li>
         ))}

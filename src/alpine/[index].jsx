@@ -9,11 +9,9 @@ export default async function () {
     >
       <h1 class="center">Use Alpine.js with Jeasx</h1>
       <p class="center">
-        <a href="https://alpinejs.dev" target="_blank">
-          Alpine.js
-        </a>{" "}
-        is a rugged, minimal tool for composing behavior directly in your markup. Jeasx allows to
-        use Alpine.js by simply importing it as browser bundle.
+        <a href="https://alpinejs.dev">Alpine.js</a> is a rugged, minimal tool for composing
+        behavior directly in your markup. Jeasx allows to use Alpine.js by simply importing it as
+        browser bundle.
       </p>
       <form
         method="post"
