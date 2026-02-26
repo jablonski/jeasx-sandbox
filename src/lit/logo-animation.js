@@ -43,7 +43,7 @@ class MotionLit extends LitElement {
   };
   static styles = styles;
 
-  lit = ["j", "e", "a", "s", "x"];
+  lit = ["L", "I", "T"];
 
   duration = 1000;
   controller = new AnimateController(this, {
