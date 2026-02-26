@@ -24,7 +24,9 @@ export default function ({ request }) {
         <p>
           Creating routes that emit HTML fragments is straightforward in Jeasx which makes it a
           perfect match for <a href="https://htmx.org">HTMX</a>. Sometimes, however, creating many
-          routes by hand can be tedious.{" "}
+          routes by hand can be tedious.
+        </p>
+        <p>
           <a href="https://htmx.org/essays/template-fragments">Template fragments</a> allow you to
           render a fragment or partial bit of the content within a template, rather than the entire
           template. In Jeasx you can implement this feature in userland with just a few lines of

@@ -10,8 +10,8 @@ export default function ({ request, reply }) {
 
   // Add target=_blank to all external links
   this.jsxToString = (jsxElement) => {
-    if (jsxElement.type === "tag") {
-      if (jsxElement.tag === "a" && jsxElement.props.href?.startsWith("https://")) {
+    if (jsxElement?.type === "tag") {
+      if (jsxElement?.tag === "a" && jsxElement?.props?.href?.startsWith("https://")) {
         jsxElement.props.target = "_blank";
       }
     }
