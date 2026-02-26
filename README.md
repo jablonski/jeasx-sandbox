@@ -1,6 +1,5 @@
-# jeasx-sandbox
+# Jeasx Sandbox
 
-This is a repository to ease the development of the jeasx core repository.
-The Jeasx core files are ejected and slightly modified to be used in this repository.
+This repository is designed to simplify the development of the Jeasx core. Think of it as an ejected Jeasx project that provides greater flexibility and ease when building new features.
 
-Please visit <https://www.jeasx.dev> to learn more.
+Please visit <https://www.jeasx.dev> to learn more about Jeasx.
