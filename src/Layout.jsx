@@ -25,6 +25,7 @@ export default function Layout({
             rel="canonical"
             href={`https://expo.jeasx.dev${path.endsWith("/") ? path.slice(0, -1) : path}`}
           ></link>
+          <script type="module" src={`/index.js?${process.env.BUILD_TIME}`}></script>
           {script && <script type="module" src={`${script}?${process.env.BUILD_TIME}`}></script>}
           <title>{title} &raquo; Jeasx - JSX with Ease</title>
         </head>
