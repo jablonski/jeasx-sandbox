@@ -9,8 +9,13 @@ export default function ({ request, reply }) {
   reply.setCookie("posts", JSON.stringify(posts));
 
   return (
-    <Layout title="Blog">
-      <h1 class="center">Blog posts</h1>
+    <Layout title="Blog example with Jeasx">
+      <h1>Blog example</h1>
+      <p>
+        This example shows how to create a blog using Jeasx. Please note that the blog content is
+        stored in a browser cookie. While this approach eliminates the need for a database, it is
+        not suitable for a real-world blog.
+      </p>
       <section class="center">
         <a href="/blog/post" rel="nofollow">
           Submit New Post
@@ -30,7 +35,7 @@ export default function ({ request, reply }) {
             </time>
           </header>
           <main>
-            <h2>
+            <h2 style="text-align: left">
               <a href={slug}>{title}</a>
             </h2>
           </main>

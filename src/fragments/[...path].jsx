@@ -11,7 +11,7 @@ export default function ({ request }) {
     <Fragments
       container={({ children }) => (
         <Layout
-          title="Template fragments"
+          title="Template fragments with HTMX and Jeasx"
           description="Template fragments allow you to render a fragment or partial bit of the content within a template, rather than the entire template."
           script="./index.js"
         >
@@ -34,19 +34,16 @@ export default function ({ request }) {
         </p>
       </Fragment>
       <Fragment name="product">
-        <form>
+        <form hx-get="./~product" hx-swap="outerHTML" hx-target="closest form">
           <h2>Product-Browser</h2>
-          <input
-            name="id"
-            type="range"
-            value={id}
-            autofocus
-            min={1}
-            max={50}
-            hx-get="./~product"
-            hx-swap="outerHTML"
-            hx-target="closest form"
-          />
+          <fieldset class="grid">
+            <button name="id" type="submit" value={Number(id) - 1} disabled={Number(id) === 1}>
+              &laquo;
+            </button>
+            <button name="id" type="submit" value={Number(id) + 1} disabled={Number(id) === 10}>
+              &raquo;
+            </button>
+          </fieldset>
           <Product id={id} />
         </form>
       </Fragment>

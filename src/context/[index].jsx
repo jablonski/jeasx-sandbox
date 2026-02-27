@@ -7,15 +7,17 @@ export default function ({ request }) {
   this.theme = request.query["theme"] || "light";
 
   return (
-    <Layout title="ThisContext object" description="Use 'this' to avoid prop drilling">
-      <section class="center">
-        <h1>Avoid prop drilling via 'this'</h1>
-        <p>In Jeasx you can use 'this' to provide data to subcomponents without prop drilling.</p>
-        <p>
-          You should use this with care, but it is a handy feature for global state like themes.
-        </p>
-        <p>Have a look at the source to see how it works.</p>
-      </section>
+    <Layout
+      title="Use 'this' as context object for Jeasx"
+      description="Avoid prop drilling with forwarding settings via 'this' context."
+    >
+      <h1>Avoid prop drilling via 'this'</h1>
+      <p>
+        In Jeasx you can use 'this' to provide data to subcomponents without prop drilling. You
+        should use this with care to avoid concealed coupling of your components, but it is a handy
+        feature for forwarding global settings like themes. Have a look at the source to see how it
+        works.
+      </p>
       <hr />
       <Subcomponent />
     </Layout>

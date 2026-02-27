@@ -28,7 +28,8 @@ export default async function ({ request }) {
     <Layout title="User friendly error messages">
       <h1>Catch errors at runtime</h1>
       <p>
-        Jeasx allows you to catch errors with a dynamic error handler, so you can provide a
+        Jeasx allows you to catch errors with a dynamic{" "}
+        <a href="https://www.jeasx.dev/faq#error-handler">error handler</a>, so you can provide a
         user-friendly response when something goes wrong. Have a look at the source how things are
         wired up.
       </p>

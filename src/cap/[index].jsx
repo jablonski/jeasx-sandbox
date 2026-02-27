@@ -32,16 +32,15 @@ export default async function ({ request }) {
 
   return (
     <Layout
-      title="Captcha example"
-      description="Using Cap.js as proof-of-work captcha"
+      title="Use a captcha in Jeasx"
+      description="Using Cap.js as proof-of-work captcha with Jeasx"
       script="./index.js"
     >
-      <h1 class="center">Cap.js</h1>
-      <p class="center">
-        A modern, lightning-quick PoW captcha Cap is a lightweight, modern open-source CAPTCHA
-        alternative using proof-of-work.
-        <br />
-        <a href="https://capjs.js.org">Learn more...</a>
+      <h1>Cap.js - A modern, lightning-quick PoW captcha</h1>
+      <p>
+        <a href="https://capjs.js.org">Cap.js</a> is a lightweight, modern open-source CAPTCHA
+        alternative using proof-of-work. This example demonstrates how to integrate Cap.js with
+        Jeasx to protect form submissions.
       </p>
       <form action="" method="post">
         <label>
