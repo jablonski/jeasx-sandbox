@@ -59,7 +59,7 @@ export default function Layout({
                 width="20"
                 height="20"
                 alt="GitHub Logo"
-                title="Server source"
+                title="View source code"
               />
             </a>
           </header>
