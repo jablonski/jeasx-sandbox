@@ -3,11 +3,11 @@ import Layout from "../Layout";
 export default function () {
   return (
     <Layout
-      title="HTMX Active Search"
+      title="Implement Active Search with HTMX and Jeasx"
       description="Implementing active search with HTMX and Jeasx"
       script="./index.js"
     >
-      <h1 class="center">HTMX Active Search</h1>
+      <h1>Active Search with HTMX and Jeasx</h1>
       <p>
         Implementing <a href="https://htmx.org/examples/active-search">Active Search</a> with HTMX
         and Jeasx is straightforward. This example uses{" "}

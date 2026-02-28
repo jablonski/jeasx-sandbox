@@ -12,11 +12,33 @@ export async function Recipes() {
   return (await (await fetch(`https://dummyjson.com/recipes`)).json()).recipes;
 }
 
-<Layout title="MDX - Markdown for the component era">
-<section>
-# MDX - Markdown for the component era
+<Layout title="Use MDX for writing Markdown in Jeasx" description="MDX in Jeasx makes writing content easier">
+# MDX with Jeasx - write content with Markdown
 
 [MDX](https://mdxjs.com) allows you to use JSX directly within your markdown content. This means you can import JSX components and seamlessly embed them in your text. This makes writing long-form content with dynamic components much more enjoyable and efficient. Markdown often feels more natural to write than HTML or JSX, especially for common elements like emphasis or headings.
+
+<details>
+<summary>How to configure MDX for Jeasx?</summary>
+If you want to use MDX with Jeasx, simply run `npm install @mdx-js/esbuild` and add the configuration below to `ESBUILD_SERVER_OPTIONS` in `.env.js`. Visit [www.jeasx.dev](https://www.jeasx.dev/jsx) to learn how to enhance MDX with additional plugins.
+
+```js
+import mdx from "@mdx-js/esbuild";
+
+export default {
+  /** @type {() => import("esbuild").BuildOptions} */
+  ESBUILD_SERVER_OPTIONS: () => ({
+    plugins: [
+      mdx({
+        development: process.env.NODE_ENV === "development",
+        jsxImportSource: "jsx-async-runtime",
+        elementAttributeNameCase: "html",
+        stylePropertyNameCase: "css"
+      })
+    ]
+  })
+}
+```
+</details>
 
 ---
 
@@ -36,5 +58,4 @@ The current url is **{props.request.url}**. In MDX all props can be accessed via
 {(await Recipes()).slice(0, 5).map(({name}) => <li>{name}</li>)}
 </ul>
 
-</section>
 </Layout>

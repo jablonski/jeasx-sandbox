@@ -3,9 +3,9 @@ import sitemap from "./sitemap.json";
 
 export default function () {
   return (
-    <Layout title="Jeasx-Expo" description="Welcome to Jeasx - JSX with Ease">
+    <Layout title="The power of Jeasx in examples" description="Welcome to Jeasx - JSX with Ease">
       <section class="center">
-        <h1>Jeasx-Expo</h1>
+        <h1>Explore the power of Jeasx</h1>
         <p>
           Here are some examples of what can be done with the power of{" "}
           <a href="https://www.jeasx.dev">Jeasx</a>.

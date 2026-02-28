@@ -12,8 +12,12 @@ export default function ({ request, reply }) {
   reply.setCookie("counter", String(counter));
 
   return (
-    <Layout title="Jokes" description="Some funny jokes">
-      <h1 class="center">Jokes</h1>
+    <Layout title="Building forms with Jeasx" description="Some funny jokes with Jeasx">
+      <h1>Building a simple form</h1>
+      <p>
+        Jeasx allows you to build and evaluate server rendered forms easily, so you don't have to
+        rely on JavaScript in the frontend to make form submission work.
+      </p>
       <form method="post">
         <fieldset class="grid">
           <button class="secondary" name="counter" value={counter - 1} disabled={counter === 1}>
