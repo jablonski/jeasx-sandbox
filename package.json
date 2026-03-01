@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@cap.js/server": "4.0.5",
-    "@cap.js/widget": "0.1.37",
+    "@cap.js/widget": "0.1.40",
     "@fastify/cookie": "11.0.2",
     "@fastify/formbody": "8.0.2",
     "@fastify/multipart": "9.4.0",
