@@ -23,7 +23,7 @@
     "cheerio": "1.2.0",
     "esbuild": "0.27.3",
     "esbuild-svelte": "0.9.4",
-    "fastify": "5.7.4",
+    "fastify": "5.8.1",
     "htmx.org": "2.0.8",
     "jsx-async-runtime": "2.0.2",
     "lit": "3.3.2",
@@ -35,7 +35,7 @@
     "react-dom": "19.2.4",
     "rehype-prism-plus": "2.0.2",
     "sharp": "0.34.5",
-    "svelte": "5.53.6"
+    "svelte": "5.53.7"
   },
   "devDependencies": {
     "@types/node": "25.3.3",
