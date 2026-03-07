@@ -23,7 +23,7 @@
     "cheerio": "1.2.0",
     "esbuild": "0.27.3",
     "esbuild-svelte": "0.9.4",
-    "fastify": "5.8.1",
+    "fastify": "5.8.2",
     "htmx.org": "2.0.8",
     "jsx-async-runtime": "2.0.3",
     "lit": "3.3.2",
