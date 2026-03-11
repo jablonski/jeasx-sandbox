@@ -1,4 +1,4 @@
-import mdx from "@mdx-js/esbuild";
+import mdxPlugin from "@mdx-js/esbuild";
 import sveltePlugin from "esbuild-svelte";
 import rehypePrismPlus from "rehype-prism-plus";
 
@@ -9,7 +9,7 @@ export default {
   ESBUILD_SERVER_OPTIONS: () => ({
     plugins: [
       sveltePlugin({ compilerOptions: { generate: "server", css: "injected" } }),
-      mdx({
+      mdxPlugin({
         development: NODE_ENV_IS_DEVELOPMENT,
         jsxImportSource: "jsx-async-runtime",
         elementAttributeNameCase: "html",
