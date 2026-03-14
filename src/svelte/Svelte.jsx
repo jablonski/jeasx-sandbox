@@ -1,5 +1,4 @@
 import { render } from "svelte/server";
-
 import COMPONENTS from "./components/$index";
 
 export default function Svelte({ component, ...props }) {
