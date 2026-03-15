@@ -1,12 +1,7 @@
 import Layout from "../Layout";
 import Hello from "./Hello.mdx";
 
-{
-/**
-  @typedef Props
-  @type {import("../types").RouteProps}
-  */
-}
+{/** @typedef {import("../types").RouteProps} Props */}
 
 export async function Recipes() {
   return (await (await fetch(`https://dummyjson.com/recipes`)).json()).recipes;
@@ -32,11 +27,11 @@ export default {
         development: process.env.NODE_ENV === "development",
         jsxImportSource: "jsx-async-runtime",
         elementAttributeNameCase: "html",
-        stylePropertyNameCase: "css"
-      })
-    ]
-  })
-}
+        stylePropertyNameCase: "css",
+      }),
+    ],
+  }),
+};
 ```
 </details>
 
@@ -55,7 +50,7 @@ The current url is **{props.request.url}**. In MDX all props can be accessed via
 ### Dynamic content in MDX
 
 <ul>
-{(await Recipes()).slice(0, 5).map(({name}) => <li>{name}</li>)}
+  {(await Recipes()).slice(0, 5).map(({ name }) => (<li>{name}</li>))}
 </ul>
 
 </Layout>
