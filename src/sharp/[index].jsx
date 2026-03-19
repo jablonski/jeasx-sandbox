@@ -14,15 +14,17 @@ export default function () {
         example with static images. The image converter is also used in the{" "}
         <a href="/products">products</a> example.
       </p>
-      {[1, 2, 3].map((idx) => (
-        <Image
-          src={`/images/image${idx}.jpg`}
-          width={(idx + 2) * 200}
-          height={idx * 200}
-          position="entropy"
-          loading="lazy"
-        />
-      ))}
+      <section class="container center">
+        {[1, 2, 3].map((idx) => (
+          <Image
+            src={`/images/image${idx}.jpg`}
+            width={(idx + 2) * 200}
+            height={idx * 200}
+            position="entropy"
+            loading="lazy"
+          />
+        ))}
+      </section>
     </Layout>
   );
 }

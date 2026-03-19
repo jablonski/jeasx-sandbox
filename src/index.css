@@ -1,5 +1,6 @@
-@import "../node_modules/@picocss/pico/css/pico.css";
-@import "../node_modules/prismjs/themes/prism.css";
+@import "../node_modules/@digicreon/mucss/dist/mu.fuchsia.css";
+@import "../node_modules/prismjs/themes/prism-okaidia.css";
+
 @view-transition {
   navigation: auto;
 }
@@ -13,7 +14,6 @@ h2 {
   text-align: center;
 }
 
-details {
-  background-color: var(--pico-mark-background-color);
-  padding: 1rem;
+summary {
+  color: var(--mu-secondary) !important;
 }

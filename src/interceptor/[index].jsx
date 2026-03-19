@@ -53,7 +53,7 @@ function HouseKeeper({ children }) {
 
 function ThirdPartyComponent() {
   return (
-    <div className={{ third: true, party: false }} style="border: 4px dashed black;">
+    <div className={{ third: true, party: false }} style="border: 4px dashed var(--mu-accent);">
       {["red", "green", "blue", "orange"].map((color) => (
         <>
           <span style={`background-color: ${color}`}>{color}</span>

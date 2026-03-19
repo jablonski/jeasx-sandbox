@@ -4,23 +4,33 @@ import sitemap from "./sitemap.json";
 export default function () {
   return (
     <Layout title="The power of Jeasx in examples" description="Welcome to Jeasx - JSX with Ease">
-      <section class="center">
-        <h1>Explore the power of Jeasx</h1>
-        <p>
-          Here are some examples of what can be done with the power of{" "}
-          <a href="https://www.jeasx.dev">Jeasx</a>.
-        </p>
-        <p>
-          The examples are styled with <a href="https://picocss.com">Pico CSS</a> (mostly
-          classless), so they are easier to read in source code. The code is also optimized for
-          readability: no unnecessary abstractions, no fancy stuff, just simple and clean code to
-          get you started quickly.
-        </p>
-        <p>
-          You can find the complete repository on{" "}
-          <a href="https://github.com/jeasx/jeasx-expo">GitHub</a> to start experimenting with Jeasx
-          right on your computer.
-        </p>
+      <section class="hero hero-primary">
+        <div class="container">
+          <h1>Explore Jeasx</h1>
+          <p class="hero-tagline">
+            Asynchronous JSX as self-evident templating technology
+            <br />
+            for the server-side rendered web.
+          </p>
+          <p>
+            Visit <a href="https://www.jeasx.dev">jeasx.dev</a> to learn more about the framework...
+          </p>
+        </div>
+      </section>
+      <section>
+        <div class="container center">
+          <p>
+            The examples are styled with <a href="https://mucss.org/">µCSS</a> (a lightweight,
+            themeable CSS framework), so they are easier to read in source code. The code is also
+            optimized for readability: no unnecessary abstractions, no fancy stuff, just simple and
+            clean code to get you started quickly.
+          </p>
+          <p>
+            You can find the complete repository on{" "}
+            <a href="https://github.com/jeasx/jeasx-expo">GitHub</a> to start experimenting with
+            Jeasx right on your computer.
+          </p>
+        </div>
       </section>
       {sitemap.map(({ title, description, links }) => (
         <section class="center">

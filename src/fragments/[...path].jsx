@@ -36,7 +36,7 @@ export default function ({ request }) {
       <Fragment name="product">
         <form hx-get="./~product" hx-swap="outerHTML" hx-target="closest form">
           <h2>Product-Browser</h2>
-          <fieldset class="grid">
+          <fieldset role="group">
             <button name="id" type="submit" value={Number(id) - 1} disabled={Number(id) === 1}>
               &laquo;
             </button>
@@ -48,7 +48,9 @@ export default function ({ request }) {
         </form>
       </Fragment>
       <Fragment name="time">
-        <p hx-get="./~time" hx-trigger="every 1s" hx-swap="outerHTML">
+        <p hx-get="./~time" hx-trigger="every 1s" hx-swap="outerHTML" class="center">
+          <b>Server time:</b>
+          <br />
           {new Date().toTimeString()}
         </p>
       </Fragment>

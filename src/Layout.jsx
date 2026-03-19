@@ -13,7 +13,7 @@ export default function Layout({
   return (
     <>
       {{ html: "<!DOCTYPE html>" }}
-      <html lang="en">
+      <html lang="en" data-theme="dark">
         <head>
           <base href={`${path.endsWith("/") ? path : path + "/"}`} />
           <meta charset="utf-8" />
@@ -30,7 +30,7 @@ export default function Layout({
           <title>{title} &raquo; Jeasx - JSX with Ease</title>
         </head>
         <body>
-          <header>
+          <header class="container">
             {path !== "/" && (
               <a
                 href="/"
@@ -64,6 +64,13 @@ export default function Layout({
             </a>
           </header>
           <main class="container">{children}</main>
+          <footer class="container">
+            <hr />
+            <p class="center">
+              &copy; {new Date().getFullYear()} - powered by{" "}
+              <a href="https://www.jeasx.dev">Jeasx</a>
+            </p>
+          </footer>
         </body>
       </html>
     </>

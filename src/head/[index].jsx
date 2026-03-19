@@ -24,7 +24,7 @@ function Subcomponent() {
         <title>Use Helmet in Jeasx</title>
         <meta name="description" value="Move head tags to the head of a document." />
         <style>{
-          /* css */ `.highlight { background-color: orange; text-align: center; padding: 1rem;}`
+          /* css */ `.highlight { background-color: var(--mu-accent); text-align: center; padding: 1rem;}`
         }</style>
       </head>
     </section>
