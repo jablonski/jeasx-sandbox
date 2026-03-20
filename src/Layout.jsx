@@ -38,11 +38,7 @@ export default function Layout({
                     <a href="/">&laquo; Back to overview</a>
                   </li>
                 </ul>
-                <input type="checkbox" id="header-nav" class="navbar-toggle" hidden />
-                <label for="header-nav" class="navbar-burger">
-                  &#9776;
-                </label>
-                <ul class="navbar-menu">
+                <ul>
                   <li>
                     <a
                       href={
@@ -52,8 +48,8 @@ export default function Layout({
                     >
                       <img
                         src="/icons/github.svg"
-                        width="20"
-                        height="20"
+                        width="24"
+                        height="24"
                         alt="GitHub Logo"
                         title="View source code"
                       />

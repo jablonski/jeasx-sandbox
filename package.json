@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@cap.js/server": "4.0.5",
-    "@cap.js/widget": "0.1.41",
-    "@digicreon/mucss": "1.4.2",
+    "@cap.js/widget": "0.1.42",
+    "@digicreon/mucss": "1.4.3",
     "@fastify/cookie": "11.0.2",
     "@fastify/formbody": "8.0.2",
     "@fastify/multipart": "9.4.0",
