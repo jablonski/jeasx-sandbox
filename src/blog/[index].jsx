@@ -17,11 +17,13 @@ export default function ({ request, reply }) {
         not suitable for a real-world blog.
       </p>
       <section class="center">
-        <a href="/blog/post" rel="nofollow">
-          Submit New Post
-        </a>
-        <br />
-        (Login: demo/demo)
+        <article class="card-primary">
+          <a href="/blog/post" rel="nofollow">
+            Submit New Post
+          </a>
+          <br />
+          Login: demo/demo
+        </article>
       </section>
       {posts.map(({ slug, date, author, title }) => (
         <article>

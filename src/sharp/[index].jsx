@@ -16,13 +16,16 @@ export default function () {
       </p>
       <section class="container center">
         {[1, 2, 3].map((idx) => (
-          <Image
-            src={`/images/image${idx}.jpg`}
-            width={(idx + 2) * 200}
-            height={idx * 200}
-            position="entropy"
-            loading="lazy"
-          />
+          <figure>
+            <Image
+              src={`/images/image${idx}.jpg`}
+              width={(idx + 2) * 200}
+              height={idx * 200}
+              position="entropy"
+              loading="lazy"
+            />
+            <figcaption>Image {idx}</figcaption>
+          </figure>
         ))}
       </section>
     </Layout>

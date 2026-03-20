@@ -30,39 +30,39 @@ export default function Layout({
           <title>{title} &raquo; Jeasx - JSX with Ease</title>
         </head>
         <body>
-          <header class="container">
-            {path !== "/" && (
-              <a
-                href="/"
-                style={{
-                  position: "absolute",
-                  top: "1rem",
-                  left: "1rem",
-                }}
-              >
-                &laquo; Back
-              </a>
-            )}
-            <a
-              href={
-                `https://github.com/jeasx/jeasx-expo` +
-                (path !== "/" ? `/tree/main/src/${path.split("/")[1]}` : "")
-              }
-              style={{
-                position: "absolute",
-                top: "1rem",
-                left: "calc(100vw - 4em)",
-              }}
-            >
-              <img
-                src="/icons/github.svg"
-                width="20"
-                height="20"
-                alt="GitHub Logo"
-                title="View source code"
-              />
-            </a>
-          </header>
+          {path !== "/" && (
+            <header>
+              <nav class="container">
+                <ul>
+                  <li>
+                    <a href="/">&laquo; Back to overview</a>
+                  </li>
+                </ul>
+                <input type="checkbox" id="header-nav" class="navbar-toggle" hidden />
+                <label for="header-nav" class="navbar-burger">
+                  &#9776;
+                </label>
+                <ul class="navbar-menu">
+                  <li>
+                    <a
+                      href={
+                        `https://github.com/jeasx/jeasx-expo` +
+                        (path !== "/" ? `/tree/main/src/${path.split("/")[1]}` : "")
+                      }
+                    >
+                      <img
+                        src="/icons/github.svg"
+                        width="20"
+                        height="20"
+                        alt="GitHub Logo"
+                        title="View source code"
+                      />
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </header>
+          )}
           <main class="container">{children}</main>
           <footer class="container">
             <hr />

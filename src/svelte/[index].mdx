@@ -22,18 +22,17 @@ import sveltePlugin from "esbuild-svelte";
 
 export default {
   ESBUILD_SERVER_OPTIONS: () => ({
-    plugins: [
-      sveltePlugin({ compilerOptions: { generate: "server", css: "injected" } })
-    ]
+    plugins: [sveltePlugin({ compilerOptions: { generate: "server", css: "injected" } })],
   }),
 
   ESBUILD_BROWSER_OPTIONS: () => ({
-    plugins: [sveltePlugin({ compilerOptions: { generate: "client", css: "injected" } })]
-  })
-}
+    plugins: [sveltePlugin({ compilerOptions: { generate: "client", css: "injected" } })],
+  }),
+};
 ```
 
 View the [source code of this page](https://github.com/jeasx/jeasx-expo/tree/main/src/svelte) for an implementation of a Svelte integration with hydration support. Feel free to improve it as you like.
+
 </details>
 
 ---
@@ -46,8 +45,13 @@ View the [source code of this page](https://github.com/jeasx/jeasx-expo/tree/mai
 
 ## Crud example
 
-<Svelte component="Crud"
-        data={[{ first: "Hans", last: "Emil" }, { first: "Max", last: "Mustermann" }, { first: "Roman", last: "Tisch" }]}
+<Svelte
+  component="Crud"
+  data={[
+    { first: "Hans", last: "Emil" },
+    { first: "Max", last: "Mustermann" },
+    { first: "Roman", last: "Tisch" },
+  ]}
 />
 
 ---
@@ -55,5 +59,4 @@ View the [source code of this page](https://github.com/jeasx/jeasx-expo/tree/mai
 ## Todos example
 
 <Svelte component="Todos" />
-
 </Layout>

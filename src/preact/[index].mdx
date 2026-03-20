@@ -27,14 +27,18 @@ As Preact requires a dedicated JSX runtime, you have to configure it via a `tsco
 ```
 
 Please visit the [source code at GitHub](https://github.com/jeasx/jeasx-expo) to see how to setup Preact in detail.
+
 </details>
 
+<article>
 ## Jokes
 
 The widget below handles reactivity via manipulating state.
 
 <Preact component="Jokes" api="/jokes/api" initial={3} />
+</article>
 
+<article>
 ## Clocks
 
 Both clocks are synchronized via a common signal. You can use this pattern to create interactive islands which share a common state.
@@ -43,5 +47,6 @@ Both clocks are synchronized via a common signal. You can use this pattern to cr
   <Preact component="Clock" locale="en-US" />
   <Preact component="Clock" locale="de-DE" />
 </div>
+</article>
 
 </Layout>

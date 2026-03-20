@@ -31,7 +31,7 @@ export default function Lottery({ title }) {
       </div>
       {selectedNumbers.length > 0 && (
         <div className="selected-numbers">
-          <h2>Selected Numbers:</h2>
+          <h3>Selected Numbers:</h3>
           <ul>
             {selectedNumbers.map((number) => (
               <li key={number}>{number}</li>
