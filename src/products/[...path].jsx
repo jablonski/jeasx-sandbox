@@ -34,7 +34,7 @@ export default async function ({ request, reply }) {
         ))}
       </article>
       <section class="center">
-        <a href="..">Back to overview</a>
+        <a href="..">Show all products</a>
       </section>
     </Layout>
   );

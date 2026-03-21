@@ -4,7 +4,7 @@
 export default function Layout({
   title = "",
   description = "",
-  css = "/index.css",
+  css = undefined,
   script = undefined,
   robots = undefined,
   children,
@@ -20,7 +20,8 @@ export default function Layout({
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="robots" content={robots} />
-          <link rel="stylesheet" href={`${css}?${process.env.BUILD_TIME}`} />
+          <link rel="stylesheet" href={`/index.css?${process.env.BUILD_TIME}`} />
+          {css && <link rel="stylesheet" href={`${css}?${process.env.BUILD_TIME}`} />}
           <link
             rel="canonical"
             href={`https://expo.jeasx.dev${path.endsWith("/") ? path.slice(0, -1) : path}`}

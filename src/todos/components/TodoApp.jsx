@@ -1,17 +1,18 @@
 import Layout from "../../Layout";
 import TodoFilters from "./TodoFilters";
-import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
 
 export default function ({ todos, status, autofocus }) {
   return (
     <Layout title="Todo app with Jeasx" description="A simple todo app in Jeasx." css="./index.css">
-      <section class="todoapp">
-        <header class="header">
+      <section>
+        <header>
           <h1>todos</h1>
-          <TodoInput autofocus={autofocus} />
+          <form method="post">
+            <input name="newTodo" placeholder="What needs to be done?" autofocus={autofocus} />
+          </form>
         </header>
-        <section class="main">
+        <section>
           <TodoList todos={todos} status={status} />
         </section>
         <footer class="footer">

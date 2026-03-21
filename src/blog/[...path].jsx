@@ -33,7 +33,7 @@ export default function ({ request, reply }) {
         </main>
       </article>
       <section class="center">
-        <a href="..">Back to overview</a>
+        <a href="..">Show all articles</a>
       </section>
     </Layout>
   );
