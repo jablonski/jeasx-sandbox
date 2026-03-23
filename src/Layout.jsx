@@ -15,7 +15,7 @@ export default function Layout({
       {{ html: "<!DOCTYPE html>" }}
       <html lang="en" data-theme="dark">
         <head>
-          <base href={`${path.endsWith("/") ? path : path + "/"}`} />
+          <base href={path.endsWith("/") ? path : `${path}/`} />
           <meta charset="utf-8" />
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
