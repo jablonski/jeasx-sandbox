@@ -16,13 +16,11 @@ export default function ({ request }) {
     >
       <h1>Fixi.js and Jeasx - lightweight hypermedia controls</h1>
       <p>
-        <a href="https://github.com/bigskysoftware/fixi" target="_blank">
-          Fixi.js
-        </a>{" "}
-        is a minimalist alternative to HTMX, developed by the creators of HTMX. Enhancing a Jeasx
-        server rendered application with Fixi.js works without problems. The example illustrates
-        progressive enhancement: it provides an improved user experience with JavaScript while
-        remaining fully functional as a fallback without it.
+        <a href="https://github.com/bigskysoftware/fixi">Fixi.js</a> is a minimalist alternative to
+        HTMX, developed by the creators of HTMX. Enhancing a Jeasx server rendered application with
+        Fixi.js works without problems. The example illustrates progressive enhancement: it provides
+        an improved user experience with JavaScript while remaining fully functional as a fallback
+        without it.
       </p>
       <h2>Recipe editor</h2>
       <Fragment request={request} />

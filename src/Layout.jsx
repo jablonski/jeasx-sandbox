@@ -42,10 +42,7 @@ export default function Layout({
                 <ul>
                   <li>
                     <a
-                      href={
-                        `https://github.com/jeasx/jeasx-expo` +
-                        (path !== "/" ? `/tree/main/src/${path.split("/")[1]}` : "")
-                      }
+                      href={`https://github.com/jeasx/jeasx-expo/tree/main/src/${path.split("/")[1]}`}
                     >
                       <img
                         src="/icons/github.svg"
