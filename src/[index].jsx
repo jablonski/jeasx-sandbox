@@ -33,7 +33,7 @@ export default function () {
             <p>{description}</p>
             <div class="row center">
               {links.map(({ title, path }) => (
-                <a href={path} class="col-sm-6 col-md-4 col-lg-3">
+                <a href={path} class="col-12 col-md-3">
                   <article class="card-primary">{title}</article>
                 </a>
               ))}
