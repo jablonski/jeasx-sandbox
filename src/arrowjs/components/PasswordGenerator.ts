@@ -87,12 +87,14 @@ export const PasswordGenerator = component(() => {
     regenerate();
   };
 
-  return html`<main class="gen">
+  return html /*html*/ `<main class="gen">
     <section class="gen-display">
-      <code class="gen-password">${() =>
-        state.password
-          .split("")
-          .map((ch) => html`<span class="${charClass(ch)}">${ch}</span>`)}</code>
+      <code class="gen-password"
+        >${() =>
+          state.password
+            .split("")
+            .map((ch) => html /*html*/ `<span class="${charClass(ch)}">${ch}</span>`)}</code
+      >
       <div class="gen-actions">
         <button class="gen-copy" @click="${copy}">
           ${() => (state.copied ? "Copied!" : "Copy")}
@@ -104,7 +106,8 @@ export const PasswordGenerator = component(() => {
       <div class="strength-bar">
         <div
           class="strength-fill"
-          style="${() => `width: ${((strength() + 1) / 5) * 100}%; background: ${COLORS[strength()]}`}"
+          style="${() =>
+            `width: ${((strength() + 1) / 5) * 100}%; background: ${COLORS[strength()]}`}"
         ></div>
       </div>
       <span class="strength-label" style="${() => `color: ${COLORS[strength()]}`}">
@@ -114,44 +117,53 @@ export const PasswordGenerator = component(() => {
     <section class="gen-options">
       <label class="gen-length">
         <span>Length: <strong>${() => state.length}</strong></span>
-        <input
-          type="range"
-          min="4"
-          max="64"
-          class="gen-range"
-          @input="${handleLengthChange}"
-        />
+        <input type="range" min="4" max="64" class="gen-range" @input="${handleLengthChange}" />
       </label>
       <div class="gen-toggles">
         <label class="gen-sw">
-          <input type="checkbox" checked @change="${() => {
-            state.lower = !state.lower;
-            regenerate();
-          }}" />
+          <input
+            type="checkbox"
+            checked
+            @change="${() => {
+              state.lower = !state.lower;
+              regenerate();
+            }}"
+          />
           <span class="gen-sw-track"></span>
           <span>Lowercase</span>
         </label>
         <label class="gen-sw">
-          <input type="checkbox" checked @change="${() => {
-            state.upper = !state.upper;
-            regenerate();
-          }}" />
+          <input
+            type="checkbox"
+            checked
+            @change="${() => {
+              state.upper = !state.upper;
+              regenerate();
+            }}"
+          />
           <span class="gen-sw-track"></span>
           <span>Uppercase</span>
         </label>
         <label class="gen-sw">
-          <input type="checkbox" checked @change="${() => {
-            state.digits = !state.digits;
-            regenerate();
-          }}" />
+          <input
+            type="checkbox"
+            checked
+            @change="${() => {
+              state.digits = !state.digits;
+              regenerate();
+            }}"
+          />
           <span class="gen-sw-track"></span>
           <span>Numbers</span>
         </label>
         <label class="gen-sw">
-          <input type="checkbox" @change="${() => {
-            state.symbols = !state.symbols;
-            regenerate();
-          }}" />
+          <input
+            type="checkbox"
+            @change="${() => {
+              state.symbols = !state.symbols;
+              regenerate();
+            }}"
+          />
           <span class="gen-sw-track"></span>
           <span>Symbols</span>
         </label>

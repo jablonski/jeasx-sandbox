@@ -60,53 +60,54 @@ export const PomodoroTimer = component(() => {
     state.remaining = mode === "work" ? WORK_SECONDS : BREAK_SECONDS;
   };
 
-  return html`<main class="timer" data-mode="${() => state.mode}">
+  return html /*html*/ `<main class="timer" data-mode="${() => state.mode}">
     <nav class="timer-tabs">
       <button
         class="${() => `timer-tab${state.mode === "work" ? " timer-tab--on" : ""}`}"
         @click="${() => setMode("work")}"
-      >Focus</button>
+      >
+        Focus
+      </button>
       <button
         class="${() => `timer-tab${state.mode === "break" ? " timer-tab--on" : ""}`}"
         @click="${() => setMode("break")}"
-      >Break</button>
+      >
+        Break
+      </button>
     </nav>
-
     <section class="timer-face">
-        <svg class="timer-ring" viewBox="0 0 200 200">
-            <circle
-                class="timer-ring__track"
-                cx="100"
-                cy="100"
-                r="${RADIUS}"
-                fill="none"
-                stroke-width="8"
-            />
-            <circle
-                class="timer-ring__fill"
-                cx="100"
-                cy="100"
-                r="${RADIUS}"
-                fill="none"
-                stroke-width="8"
-                stroke-linecap="round"
-                stroke-dasharray="${CIRCUMFERENCE}"
-                stroke-dashoffset="${() => CIRCUMFERENCE * (1 - progress())}"
-                transform="rotate(-90 100 100)"
-            />
-        </svg>
-        <div class="timer-time">
-            <span class="timer-digits">${minutes}:${seconds}</span>
-        </div>
+      <svg class="timer-ring" viewBox="0 0 200 200">
+        <circle
+          class="timer-ring__track"
+          cx="100"
+          cy="100"
+          r="${RADIUS}"
+          fill="none"
+          stroke-width="8"
+        />
+        <circle
+          class="timer-ring__fill"
+          cx="100"
+          cy="100"
+          r="${RADIUS}"
+          fill="none"
+          stroke-width="8"
+          stroke-linecap="round"
+          stroke-dasharray="${CIRCUMFERENCE}"
+          stroke-dashoffset="${() => CIRCUMFERENCE * (1 - progress())}"
+          transform="rotate(-90 100 100)"
+        />
+      </svg>
+      <div class="timer-time">
+        <span class="timer-digits">${minutes}:${seconds}</span>
+      </div>
     </section>
-
     <div class="timer-controls">
       <button class="timer-btn" @click="${() => (state.running ? pause() : start())}">
         ${() => (state.running ? "Pause" : "Start")}
       </button>
       <button class="timer-btn timer-btn--sec" @click="${reset}">Reset</button>
     </div>
-
     <p class="timer-sessions">
       ${() => state.sessions} ${() => (state.sessions === 1 ? "session" : "sessions")} completed
     </p>

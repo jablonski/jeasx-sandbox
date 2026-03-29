@@ -62,7 +62,12 @@ export default function Layout({
             <hr />
             <p class="center">
               &copy; {new Date().getFullYear()} - powered by{" "}
-              <a href="https://www.jeasx.dev">Jeasx</a>
+              <a href="https://www.jeasx.dev">Jeasx</a> -{" "}
+              {process.versions.deno
+                ? `Deno@${process.versions.deno}`
+                : process.versions.bun
+                  ? `Bun@${process.versions.bun}`
+                  : `Node@${process.versions.node}`}
             </p>
           </footer>
         </body>
