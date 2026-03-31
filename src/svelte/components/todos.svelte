@@ -83,6 +83,8 @@
             </label>
         {/each}
     </div>
+
+    <div class="clear"></div>
 </div>
 
 <style>
@@ -148,5 +150,9 @@
 
     label:hover button {
         opacity: 1;
+    }
+
+    .clear {
+        clear: left;
     }
 </style>

@@ -59,7 +59,7 @@ export const PasswordGenerator = component(() => {
     lower: true,
     upper: true,
     digits: true,
-    symbols: false,
+    symbols: true,
     password: "",
     copied: false,
   });
@@ -123,7 +123,7 @@ export const PasswordGenerator = component(() => {
         <label class="gen-sw">
           <input
             type="checkbox"
-            checked
+            checked="${() => state.lower}"
             @change="${() => {
               state.lower = !state.lower;
               regenerate();
@@ -135,7 +135,7 @@ export const PasswordGenerator = component(() => {
         <label class="gen-sw">
           <input
             type="checkbox"
-            checked
+            checked="${() => state.upper}"
             @change="${() => {
               state.upper = !state.upper;
               regenerate();
@@ -147,7 +147,7 @@ export const PasswordGenerator = component(() => {
         <label class="gen-sw">
           <input
             type="checkbox"
-            checked
+            checked="${() => state.digits}"
             @change="${() => {
               state.digits = !state.digits;
               regenerate();
@@ -159,6 +159,7 @@ export const PasswordGenerator = component(() => {
         <label class="gen-sw">
           <input
             type="checkbox"
+            checked="${() => state.symbols}"
             @change="${() => {
               state.symbols = !state.symbols;
               regenerate();
