@@ -17,7 +17,16 @@ export default function () {
           whole application in the browser.
         </p>
       </section>
-      <React component="Lottery" title="Lottery 6 from 49" />
+      <hr />
+      <section>
+        <h2>Lottery</h2>
+        <React component="Lottery" title="6 out of 49" />
+      </section>
+      <hr />
+      <section>
+        <h2>Analog Clock</h2>
+        <React component="Clock" />
+      </section>
     </Layout>
   );
 }
