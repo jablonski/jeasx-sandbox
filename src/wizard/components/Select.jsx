@@ -19,7 +19,9 @@ export default function Select({
         </select>
         {submitOnChange && (
           <noscript>
-            <button value="Refresh">Refresh</button>
+            <button class="btn btn-primary" value="Refresh">
+              Refresh
+            </button>
           </noscript>
         )}
       </div>

@@ -37,10 +37,22 @@ export default function ({ request }) {
         <form hx-get="./~product" hx-swap="outerHTML" hx-target="closest form">
           <h2>Product-Browser</h2>
           <fieldset role="group">
-            <button name="id" type="submit" value={Number(id) - 1} disabled={Number(id) === 1}>
+            <button
+              class="btn btn-primary"
+              name="id"
+              type="submit"
+              value={Number(id) - 1}
+              disabled={Number(id) === 1}
+            >
               &laquo;
             </button>
-            <button name="id" type="submit" value={Number(id) + 1} disabled={Number(id) === 10}>
+            <button
+              class="btn btn-primary"
+              name="id"
+              type="submit"
+              value={Number(id) + 1}
+              disabled={Number(id) === 10}
+            >
               &raquo;
             </button>
           </fieldset>

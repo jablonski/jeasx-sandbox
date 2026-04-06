@@ -51,7 +51,7 @@ export default async function ({ request }) {
           <cap-widget data-cap-api-endpoint={`${request.path}/`}></cap-widget>
         </label>
         <label>
-          <input type="submit" value="Submit" />
+          <input class="btn btn-primary" type="submit" value="Submit" />
         </label>
       </form>
     </Layout>

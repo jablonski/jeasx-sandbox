@@ -34,7 +34,9 @@ export default function () {
           <option value="JokesHTML">HTML</option>
           <option value="JokesJSON">JSON</option>
         </select>
-        <button type="submit">Tell me jokes</button>
+        <button class="btn btn-primary" type="submit">
+          Tell me jokes
+        </button>
       </form>
       <div id="jokes"></div>
     </Layout>

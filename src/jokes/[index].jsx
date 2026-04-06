@@ -20,20 +20,30 @@ export default function ({ request, reply }) {
       </p>
       <form method="post">
         <fieldset class="grid">
-          <button class="secondary" name="counter" value={counter - 1} disabled={counter === 1}>
+          <button
+            class="btn btn-secondary"
+            name="counter"
+            value={counter - 1}
+            disabled={counter === 1}
+          >
             -
           </button>
-          <button class="secondary" name="counter" value={counter + 1} disabled={counter === 5}>
+          <button
+            class="btn btn-secondary"
+            name="counter"
+            value={counter + 1}
+            disabled={counter === 5}
+          >
             +
           </button>
         </fieldset>
         <fieldset class="grid">
-          <button name="category" value="programming">
+          <button class="btn btn-primary" name="category" value="programming">
             Tell me {counter} nerd {counter === 1 ? "joke" : "jokes"}
           </button>
         </fieldset>
         <fieldset class="grid">
-          <button name="category" value="general">
+          <button class="btn btn-primary" name="category" value="general">
             Tell me {counter} {counter === 1 ? "pun" : "puns"}
           </button>
         </fieldset>

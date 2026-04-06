@@ -35,7 +35,9 @@ export default function ({ request, reply }) {
           Body
           <textarea name="body" rows={6} required></textarea>
         </label>
-        <button type="submit">Submit Post</button>
+        <button class="btn btn-primary" type="submit">
+          Submit Post
+        </button>
       </form>
     </Layout>
   );

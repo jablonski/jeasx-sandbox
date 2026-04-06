@@ -45,7 +45,9 @@ export default async function () {
           Choose a picture (jpg only)
           <input type="file" name="upload" accept="jpg" required />
         </label>
-        <button type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">
+          Submit
+        </button>
       </form>
     </Layout>
   );

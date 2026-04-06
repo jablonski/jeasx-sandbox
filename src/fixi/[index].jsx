@@ -83,11 +83,11 @@ function Fragment({ request }) {
             </div>
             <div class="col-md-3 col-sm-12">
               {isEditMode ? (
-                <button type="submit" name="action" value="save">
+                <button class="btn btn-primary" type="submit" name="action" value="save">
                   Save
                 </button>
               ) : (
-                <button type="submit" name="action" value="edit">
+                <button class="btn btn-primary" type="submit" name="action" value="edit">
                   Edit
                 </button>
               )}
@@ -105,7 +105,7 @@ function Fragment({ request }) {
       >
         <div class="offset-md-9 col-md-3 col-sm-12">
           <input type="hidden" name="id" value={entries.length} />
-          <button type="submit" name="action" value="create">
+          <button class="btn btn-primary" type="submit" name="action" value="create">
             Add
           </button>
         </div>

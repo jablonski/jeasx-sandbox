@@ -26,16 +26,16 @@ export default async function () {
       >
         <div class="grid">
           <button
+            class="btn btn-secondary"
             type="button"
-            class="secondary"
             x-on:click="counter--"
             x-bind:disabled="counter === 1"
           >
             -
           </button>
           <button
+            class="btn btn-secondary"
             type="button"
-            class="secondary"
             name="counter"
             x-on:click="counter++"
             x-bind:disabled="counter === 5"
@@ -44,12 +44,22 @@ export default async function () {
           </button>
         </div>
         <div class="grid">
-          <button type="button" name="category" x-on:click="load('programming')">
+          <button
+            class="btn btn-primary"
+            type="button"
+            name="category"
+            x-on:click="load('programming')"
+          >
             Tell me <span x-text="counter === 1 ? `a joke` : `${counter} jokes`" />
           </button>
         </div>
         <div class="grid">
-          <button type="button" name="category" x-on:click="load('general')">
+          <button
+            class="btn btn-primary"
+            type="button"
+            name="category"
+            x-on:click="load('general')"
+          >
             Tell me <span x-text="counter === 1 ? `a pun` : `${counter} puns`" />
           </button>
         </div>
