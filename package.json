@@ -15,8 +15,8 @@
     "@digicreon/mucss": "1.4.4",
     "@fastify/cookie": "11.0.2",
     "@fastify/formbody": "8.0.2",
-    "@fastify/multipart": "9.4.0",
-    "@fastify/static": "9.0.0",
+    "@fastify/multipart": "10.0.0",
+    "@fastify/static": "9.1.0",
     "@lit-labs/motion": "1.1.0",
     "@mdx-js/esbuild": "3.1.1",
     "@preact/signals": "2.9.0",
@@ -37,7 +37,7 @@
     "react-dom": "19.2.4",
     "rehype-prism-plus": "2.0.2",
     "sharp": "0.34.5",
-    "svelte": "5.55.1"
+    "svelte": "5.55.2"
   },
   "devDependencies": {
     "@types/node": "25.5.2",
